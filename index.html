@@ -56,12 +56,12 @@
   .gnav .btn{min-height:40px;padding:0 18px;font-size:14px}
 
   /* ---------- HERO ---------- */
-  .hero{position:relative;min-height:100svh;padding:calc(64px + clamp(44px,9vh,100px)) var(--pad) 0;overflow:hidden;background:radial-gradient(1200px 500px at 50% 110%,var(--sand) 0,transparent 70%),#fff}
+  .hero{position:relative;min-height:100svh;padding:calc(64px + clamp(32px,6vh,72px)) var(--pad) 0;overflow:hidden;background:radial-gradient(1200px 500px at 50% 110%,var(--sand) 0,transparent 70%),#fff}
   .hero-text{text-align:center;max-width:1040px;margin:0 auto;position:relative;z-index:3}
   .eyebrow{display:inline-flex;align-items:center;gap:10px;font:600 14px var(--display);color:var(--sea);background:var(--sand);padding:8px 16px;border-radius:99px;margin-bottom:26px}
   .eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(226,85,61,.6);animation:ping 2s infinite}
   @keyframes ping{70%{box-shadow:0 0 0 10px rgba(226,85,61,0)}100%{box-shadow:0 0 0 0 rgba(226,85,61,0)}}
-  h1{font-family:var(--display);font-weight:800;font-size:clamp(42px,7vw,96px);line-height:1.02;letter-spacing:-.045em;color:var(--sea)}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(40px,5.8vw,84px);line-height:1.02;letter-spacing:-.045em;color:var(--sea)}
   h1 .l{display:block;overflow:hidden;padding-bottom:.08em}
   h1 .l>span{display:inline-block;transform:translateY(108%);animation:rise 1s cubic-bezier(.2,.8,.2,1) forwards}
   h1 .l:nth-child(2)>span{animation-delay:.1s}
@@ -76,7 +76,7 @@
   .frame-cap small{display:block;color:var(--muted);font:400 14px var(--body)}
 
   /* fila curva (port de TiltedGridHero) */
-  .tgh{position:relative;height:clamp(250px,34vw,440px);margin:clamp(20px,4vh,48px) calc(var(--pad) * -1) 64px;container-type:size;overflow:hidden}
+  .tgh{position:relative;height:clamp(230px,30vw,400px);margin:clamp(20px,4vh,48px) calc(var(--pad) * -1) 64px;container-type:size;overflow:hidden}
   .tgh-band{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .5s}
   .tgh-band.on{opacity:1}
   .tgh-tile{position:absolute;transform-style:preserve-3d}
@@ -528,7 +528,7 @@
      las puntas se doblan hacia ti y se desvanecen. Cada tarjeta se corta en
      SLICES tiras verticales, cada una girada a su lugar en el arco. */
   const SLICES = 16, CAMERA = 1.6, MAX_WIDTH = 55;
-  const CFG = {speed: 4, tileHeight: 78, aspect: 16 / 9, gap: 6, axis: 50, curve: 72, fade: 12};
+  const CFG = {speed: 4, tileHeight: 60, aspect: 16 / 9, gap: 6, axis: 50, curve: 80, fade: 12};
   const arc = bend => (CAMERA - 1 + Math.cos(bend)) / (2 * CAMERA * Math.sin(bend));
   function measure(width, height, tile, aspect, gap, bend){
     const h = Math.min((tile / 100) * height, ((MAX_WIDTH / 100) * width) / aspect);
