@@ -1,0 +1,47 @@
+/* Faro Digital — brand kit "Señal clara" (v2, nov 2026)
+   Tokens compartidos por el sitio y la página del brand kit. */
+:root{
+  /* color: un solo acento */
+  --tinta:#111418;   /* texto y bloques oscuros */
+  --papel:#F5F2EC;   /* fondo principal */
+  --blanco:#FFFFFF;  /* tarjetas, formularios */
+  --mar:#0B2A3C;     /* segundo bloque oscuro */
+  --senal:#FF4D1C;   /* acento: botones, el haz del faro. Máx. 1 por pantalla */
+  --senal-h:#E63E0F;
+  --piedra:#77726A;  /* texto secundario */
+  --linea:#D9D3C7;   /* filetes */
+
+  /* tipografía */
+  --f-display:"Archivo",Arial,sans-serif;          /* títulos: 800, ancho 70–85 */
+  --f-text:"Public Sans",-apple-system,system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+
+  /* espacio y forma */
+  --pad:clamp(20px,3.2vw,48px);
+  --max:1320px;
+  --r-card:14px;     /* fotos y tarjetas */
+  --r-pill:999px;    /* botones */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--papel);color:var(--tinta);font-family:var(--f-text);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit}
+img{display:block;max-width:100%}
+::selection{background:var(--tinta);color:var(--papel)}
+:focus-visible{outline:2px solid var(--senal);outline-offset:3px}
+
+.label{font-family:var(--f-mono);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.display{font-family:var(--f-display);font-weight:800;font-stretch:75%;letter-spacing:-.03em;line-height:.9}
+
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 24px;border-radius:var(--r-pill);background:var(--tinta);color:var(--papel);border:1.5px solid var(--tinta);font:600 16px var(--f-text);text-decoration:none;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.btn:hover{background:var(--senal);border-color:var(--senal);color:var(--tinta)}
+.btn.senal{background:var(--senal);border-color:var(--senal);color:var(--tinta)}
+.btn.senal:hover{background:var(--tinta);border-color:var(--tinta);color:var(--papel)}
+.btn.line{background:transparent;color:var(--tinta)}
+.btn.line:hover{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+.btn .arr{font-family:var(--f-mono);font-weight:500}
+
+.logo{display:inline-flex;align-items:center;gap:8px;text-decoration:none;min-height:44px}
+.logo img,.logo svg{width:30px;height:30px}
+.logo b{font-family:var(--f-display);font-weight:800;font-stretch:80%;font-size:25px;letter-spacing:-.03em;line-height:1}
+.logo span{font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding-top:5px}

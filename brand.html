@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand kit · Faro Digital</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=IBM+Plex+Mono:wght@500&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/faro.css">
+<style>
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+  header.cover{background:var(--tinta);color:var(--papel);padding:28px 0 clamp(60px,10vh,110px)}
+  .cover .row{display:flex;justify-content:space-between;align-items:center;color:#8f8a81}
+  .cover .row a{text-decoration:none}.cover .row a:hover{color:var(--papel)}
+  .cover h1{font-family:var(--f-display);font-weight:800;font-stretch:66%;font-size:clamp(80px,17vw,250px);line-height:.8;letter-spacing:-.05em;margin-top:clamp(60px,12vh,140px)}
+  .cover h1 em{font-style:normal;color:var(--senal)}
+  .cover .sub{display:grid;grid-template-columns:repeat(12,1fr);gap:0 var(--pad);margin-top:40px;padding-top:18px;border-top:1px solid #2b2f35}
+  .cover .sub p{grid-column:1 / span 6;font-size:20px;color:#c8c3ba}
+  .cover .sub .label{grid-column:10 / span 3;text-align:right;color:#8f8a81}
+
+  section{padding:clamp(70px,10vh,120px) 0;border-bottom:1px solid var(--linea)}
+  .sh{display:grid;grid-template-columns:repeat(12,1fr);gap:0 var(--pad);margin-bottom:44px}
+  .sh .label{grid-column:1 / span 3;color:var(--piedra);padding-top:.6em}
+  .sh h2{grid-column:4 / span 9;font-family:var(--f-display);font-weight:800;font-stretch:75%;font-size:clamp(40px,5vw,72px);line-height:.92;letter-spacing:-.03em}
+  .sh p{grid-column:4 / span 7;margin-top:18px;color:#3a3d42}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--pad)}
+
+  /* logo */
+  .lg{border-radius:var(--r-card);min-height:300px;display:grid;place-items:center;position:relative;border:1px solid var(--linea)}
+  .lg .cap{position:absolute;left:18px;bottom:14px}
+  .lg .mark{display:flex;align-items:center;gap:14px}
+  .lg .mark img{width:64px;height:64px}
+  .lg .mark b{font-family:var(--f-display);font-weight:800;font-stretch:80%;font-size:58px;letter-spacing:-.03em;line-height:1}
+  .lg .mark span{font-family:var(--f-mono);font-size:16px;letter-spacing:.12em;text-transform:uppercase;padding-top:12px}
+  .lg.a{grid-column:span 7;background:var(--papel)}
+  .lg.b{grid-column:span 5;background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+  .lg.c{grid-column:span 4;background:var(--senal);border-color:var(--senal)}
+  .lg.d{grid-column:span 4;background:var(--mar);border-color:var(--mar)}
+  .lg.e{grid-column:span 4;background:var(--blanco)}
+  .lg.c img,.lg.d img,.lg.e img{width:96px;height:96px}
+  .lg .cap{color:inherit;opacity:.7}
+  .notes{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--pad);border-top:1.5px solid var(--tinta)}
+  .notes div{padding-top:14px}
+  .notes h3{font:700 20px/1.2 var(--f-display);font-stretch:85%;margin-bottom:6px}
+  .notes p{color:#3a3d42;font-size:16px}
+  .dl{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+
+  /* color */
+  .sw{border-radius:var(--r-card);overflow:hidden;border:1px solid var(--linea);background:var(--blanco)}
+  .sw .chip{height:190px;display:flex;align-items:flex-end;padding:14px 16px}
+  .sw .meta{padding:14px 16px;display:grid;gap:4px;font-size:15px}
+  .sw .meta b{font:700 22px var(--f-display);font-stretch:85%;letter-spacing:-.02em}
+  .sw .meta code{font:500 12px var(--f-mono);color:var(--piedra)}
+  .sw.big{grid-column:span 4}.sw.sm{grid-column:span 3}
+  .ratio{display:flex;height:56px;border-radius:var(--r-card);overflow:hidden;margin-top:30px;border:1px solid var(--linea)}
+  .ratio div{display:flex;align-items:center;padding-left:12px;font:500 11px var(--f-mono);letter-spacing:.06em}
+
+  /* tipografía */
+  .spec{grid-column:span 12;display:grid;grid-template-columns:repeat(12,1fr);gap:0 var(--pad);padding:26px 0;border-top:1px solid var(--linea)}
+  .spec .label{grid-column:1 / span 3;color:var(--piedra)}
+  .spec .label small{display:block;margin-top:8px;font-size:11px;text-transform:none;letter-spacing:0;color:var(--piedra)}
+  .spec .ex{grid-column:4 / span 9}
+  .t1{font-family:var(--f-display);font-weight:800;font-stretch:72%;font-size:clamp(56px,8vw,120px);line-height:.88;letter-spacing:-.035em}
+  .t2{font-family:var(--f-display);font-weight:800;font-stretch:75%;font-size:clamp(36px,4.6vw,64px);line-height:.92;letter-spacing:-.03em}
+  .t3{font-family:var(--f-display);font-weight:700;font-stretch:85%;font-size:28px;line-height:1.05;letter-spacing:-.02em}
+  .t4{font-size:19px;max-width:58ch;color:#3a3d42}
+  .t5{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+  .alpha{font-family:var(--f-display);font-weight:800;font-stretch:72%;font-size:clamp(28px,3vw,40px);letter-spacing:-.02em;color:var(--piedra);margin-top:10px;word-break:break-all}
+
+  /* componentes */
+  .comp{grid-column:span 6;border:1px solid var(--linea);border-radius:var(--r-card);padding:28px;background:var(--blanco)}
+  .comp .label{color:var(--piedra);display:block;margin-bottom:18px}
+  .comp .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .demo-in{display:flex;flex-direction:column;gap:4px;max-width:360px}
+  .demo-in input{font:inherit;font-size:18px;background:transparent;border:0;border-bottom:1.5px solid var(--tinta);padding:10px 0;outline:none}
+  .demo-in input:focus{border-bottom-color:var(--senal)}
+  .rule-list{list-style:none;border-top:1.5px solid var(--tinta)}
+  .rule-list li{display:grid;grid-template-columns:repeat(12,1fr);gap:0 var(--pad);padding:18px 0;border-bottom:1px solid var(--linea)}
+  .rule-list .k{grid-column:1 / span 1;font:500 12px var(--f-mono);color:var(--piedra);padding-top:4px}
+  .rule-list .yes{grid-column:2 / span 5}
+  .rule-list .no{grid-column:7 / span 6;color:var(--piedra)}
+  .rule-list .yes::before{content:"SÍ  ";font:500 11px var(--f-mono);color:var(--tinta);background:var(--senal);padding:2px 6px;margin-right:10px}
+  .rule-list .no::before{content:"NO  ";font:500 11px var(--f-mono);color:var(--papel);background:var(--piedra);padding:2px 6px;margin-right:10px}
+
+  .voice{grid-column:span 6;border-top:1.5px solid var(--tinta);padding-top:14px}
+  .voice .label{color:var(--piedra)}
+  .voice p{font-family:var(--f-display);font-weight:600;font-stretch:90%;font-size:26px;line-height:1.15;letter-spacing:-.015em;margin-top:12px}
+  .voice.bad p{color:var(--piedra);text-decoration:line-through;text-decoration-thickness:1.5px}
+
+  .insp{grid-column:span 3;border-top:1.5px solid var(--tinta);padding-top:14px}
+  .insp h3{font:800 34px/1 var(--f-display);font-stretch:75%;letter-spacing:-.03em;margin:10px 0 12px}
+  .insp p{color:#3a3d42;font-size:16px}
+
+  footer{padding:30px 0 50px;color:var(--piedra);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer a{text-decoration:none}footer a:hover{color:var(--tinta)}
+
+  @media (max-width:900px){
+    .sh .label,.sh h2,.sh p,.cover .sub p,.cover .sub .label{grid-column:1 / -1;text-align:left}
+    .sh h2{margin-top:10px}
+    .lg.a,.lg.b,.lg.c,.lg.d,.lg.e,.sw.big,.sw.sm,.comp,.voice,.insp{grid-column:span 12}
+    .notes{grid-template-columns:1fr}
+    .spec .label,.spec .ex{grid-column:1 / -1}.spec .ex{margin-top:14px}
+    .rule-list .k{display:none}.rule-list .yes,.rule-list .no{grid-column:1 / -1}.rule-list .no{margin-top:8px}
+    .lg .mark b{font-size:42px}
+  }
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="wrap">
+    <div class="row label"><a href="index.html">← farodigitalfl.com</a><span>Brand kit v2 · Nov 2026</span></div>
+    <h1>Señal<br><em>clara.</em></h1>
+    <div class="sub">
+      <p>El sistema visual de Faro Digital: un solo color de acento, tipografía con carácter, fotos reales y mucho aire. Hecho para que cada página se vea pensada por una persona, no generada.</p>
+      <span class="label">Logo · Color · Tipografía · Componentes · Reglas · Voz</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- LOGO -->
+<section>
+  <div class="wrap">
+    <div class="sh">
+      <span class="label">01 — Logo</span>
+      <h2>Una torre y un haz de luz.</h2>
+      <p>El símbolo es un faro reducido a cinco formas planas: techo, linterna, torre, base y el haz en color Señal. El haz es la única parte de color; todo lo demás va en Tinta o en Papel.</p>
+    </div>
+    <div class="grid">
+      <div class="lg a"><div class="mark"><img src="assets/logo.svg" alt=""><b>Faro</b><span>Digital</span></div><span class="cap label">Principal · sobre Papel</span></div>
+      <div class="lg b"><div class="mark"><img src="assets/logo-blanco.svg" alt=""><b>Faro</b><span>Digital</span></div><span class="cap label">Invertido · sobre Tinta</span></div>
+      <div class="lg c"><img src="assets/logo.svg" alt="" style="filter:none"><span class="cap label">Símbolo · sobre Señal (solo redes)</span></div>
+      <div class="lg d"><img src="assets/logo-blanco.svg" alt=""><span class="cap label" style="color:var(--papel)">Símbolo · sobre Mar</span></div>
+      <div class="lg e"><img src="assets/logo.svg" alt=""><span class="cap label">Símbolo · favicon y perfil</span></div>
+    </div>
+    <div class="notes">
+      <div><h3>Espacio libre</h3><p>Deja alrededor del logo, como mínimo, el ancho de la torre. Nada de texto ni bordes dentro de ese espacio.</p></div>
+      <div><h3>Tamaño mínimo</h3><p>Símbolo: 20 px de alto en pantalla. Logo completo: 110 px de ancho.</p></div>
+      <div><h3>No hagas</h3><p>No le pongas sombras, degradados ni contornos. No cambies el color del haz. No estires ni rotes el símbolo.</p></div>
+    </div>
+    <div class="dl">
+      <a class="btn" href="assets/logo.svg" download>Descargar logo.svg <span class="arr">↓</span></a>
+      <a class="btn line" href="assets/logo-blanco.svg" download>logo-blanco.svg <span class="arr">↓</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR -->
+<section>
+  <div class="wrap">
+    <div class="sh">
+      <span class="label">02 — Color</span>
+      <h2>Mucho Papel, poca Señal.</h2>
+      <p>Dos neutros cálidos hacen casi todo el trabajo. Señal es el haz del faro: marca la acción principal y nada más. Si en una pantalla hay dos cosas en Señal, sobra una.</p>
+    </div>
+    <div class="grid">
+      <div class="sw big"><div class="chip" style="background:var(--papel)"></div><div class="meta"><b>Papel</b><code>#F5F2EC · RGB 245 242 236</code><span>Fondo principal. Cálido, como papel de revista.</span></div></div>
+      <div class="sw big"><div class="chip" style="background:var(--tinta)"></div><div class="meta"><b>Tinta</b><code>#111418 · RGB 17 20 24</code><span>Texto, botones, bloques oscuros.</span></div></div>
+      <div class="sw big"><div class="chip" style="background:var(--senal)"></div><div class="meta"><b>Señal</b><code>#FF4D1C · RGB 255 77 28</code><span>El haz del faro. Botón principal y un solo detalle por pantalla.</span></div></div>
+      <div class="sw sm"><div class="chip" style="background:var(--mar)"></div><div class="meta"><b>Mar</b><code>#0B2A3C</code><span>Segundo bloque oscuro (Sobre mí).</span></div></div>
+      <div class="sw sm"><div class="chip" style="background:var(--blanco)"></div><div class="meta"><b>Blanco</b><code>#FFFFFF</code><span>Portafolio y formularios.</span></div></div>
+      <div class="sw sm"><div class="chip" style="background:var(--piedra)"></div><div class="meta"><b>Piedra</b><code>#77726A</code><span>Texto secundario y etiquetas.</span></div></div>
+      <div class="sw sm"><div class="chip" style="background:var(--linea)"></div><div class="meta"><b>Línea</b><code>#D9D3C7</code><span>Filetes y divisiones.</span></div></div>
+    </div>
+    <div class="ratio" aria-label="Proporción de uso">
+      <div style="flex:58;background:var(--papel)">PAPEL 58%</div>
+      <div style="flex:22;background:var(--tinta);color:var(--papel)">TINTA 22%</div>
+      <div style="flex:10;background:var(--blanco)">BLANCO 10%</div>
+      <div style="flex:6;background:var(--mar);color:var(--papel)">MAR</div>
+      <div style="flex:4;background:var(--senal)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPOGRAFÍA -->
+<section>
+  <div class="wrap">
+    <div class="sh">
+      <span class="label">03 — Tipografía</span>
+      <h2>Archivo, Public Sans y Plex Mono.</h2>
+      <p>Archivo estrecho y pesado para los titulares: llama la atención como un cartel. Public Sans para leer, neutra y clara. IBM Plex Mono en mayúsculas pequeñas para etiquetas, números y pies de foto. Las tres son gratis en Google Fonts.</p>
+    </div>
+    <div class="grid">
+      <div class="spec"><span class="label">Titular<small>Archivo 800 · ancho 72 · −3.5% · interlínea 0.88</small></span><div class="ex"><div class="t1">Se ve desde lejos.</div><div class="alpha">AaBbCcDdEeÑñ 0123456789</div></div></div>
+      <div class="spec"><span class="label">Título de sección<small>Archivo 800 · ancho 75 · −3%</small></span><div class="ex t2">Tres formas de empezar.</div></div>
+      <div class="spec"><span class="label">Subtítulo<small>Archivo 700 · ancho 85 · −2%</small></span><div class="ex t3">Iglesias y ministerios</div></div>
+      <div class="spec"><span class="label">Texto<small>Public Sans 400 · 17–19 px · interlínea 1.55</small></span><div class="ex t4">Páginas web bilingües, claras y fáciles de mantener, para iglesias, academias y negocios del suroeste de Florida.</div></div>
+      <div class="spec"><span class="label">Etiqueta<small>IBM Plex Mono 500 · 12 px · mayúsculas · +6%</small></span><div class="ex t5">02 — Servicios · Fig. 01 — Página de inicio</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENTES -->
+<section>
+  <div class="wrap">
+    <div class="sh">
+      <span class="label">04 — Componentes</span>
+      <h2>Pocas piezas, siempre iguales.</h2>
+      <p>Botones tipo píldora de 48 px de alto (fáciles de tocar, como pide Apple). Campos de formulario con una sola línea abajo. Esquinas de 14 px en fotos y tarjetas; los bloques de color van rectos, de borde a borde.</p>
+    </div>
+    <div class="grid">
+      <div class="comp"><span class="label">Botones</span><div class="row"><a class="btn senal" href="#">Cotización gratis <span class="arr">→</span></a><a class="btn" href="#">Cotizar</a><a class="btn line" href="#">Ver trabajos <span class="arr">↓</span></a></div></div>
+      <div class="comp"><span class="label">Campo de formulario</span><label class="demo-in"><span class="label" style="margin:0">Nombre</span><input placeholder="Escribe aquí"></label></div>
+      <div class="comp"><span class="label">Etiquetas y numeración</span><div class="row"><span class="label">01 — Para quién</span><span class="label" style="background:var(--senal);padding:3px 8px">El más pedido</span><span class="label" style="color:var(--piedra)">Fig. 02</span></div></div>
+      <div class="comp"><span class="label">Listas</span><ul style="list-style:none;font-size:17px"><li style="padding:10px 0;border-top:1px solid var(--linea)">Horarios, ubicación y transmisiones</li><li style="padding:10px 0;border-top:1px solid var(--linea)">Ofrendas en línea y eventos</li><li style="padding:10px 0;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)">Conexión con Tithely y Breeze</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- REGLAS -->
+<section>
+  <div class="wrap">
+    <div class="sh">
+      <span class="label">05 — Reglas</span>
+      <h2>Para que no parezca hecho con IA.</h2>
+      <p>Las páginas generadas se parecen entre sí: todo centrado, degradados morados, íconos en círculos, tres tarjetas iguales y frases vacías. Estas reglas evitan esos tics.</p>
+    </div>
+    <ul class="rule-list">
+      <li><span class="k">01</span><span class="yes">Un solo color de acento, usado poco.</span><span class="no">Degradados, brillos, sombras de colores, efecto vidrio en todo.</span></li>
+      <li><span class="k">02</span><span class="yes">Texto alineado a la izquierda en una rejilla de 12 columnas, con partes que no son simétricas.</span><span class="no">Todo centrado, una sección igual a la otra.</span></li>
+      <li><span class="k">03</span><span class="yes">Capturas y fotos reales de clientes y de la comunidad.</span><span class="no">Ilustraciones genéricas, fotos de banco con gente sonriendo a la cámara, imágenes hechas con IA.</span></li>
+      <li><span class="k">04</span><span class="yes">Números, letras y filetes finos para ordenar (01, A, Fig. 02).</span><span class="no">Íconos en cuadritos de colores y viñetas con palomitas en círculos.</span></li>
+      <li><span class="k">05</span><span class="yes">Nombres, lugares y datos concretos: Fort Myers, Tithely, WhatsApp, K–12.</span><span class="no">“Soluciones innovadoras”, “lleva tu negocio al siguiente nivel”, “experiencias digitales”.</span></li>
+      <li><span class="k">06</span><span class="yes">Movimiento solo donde cuenta algo (la fila de trabajos, el menú).</span><span class="no">Todo apareciendo con fundidos al hacer scroll, puntos que laten, contadores animados.</span></li>
+      <li><span class="k">07</span><span class="yes">Firmar con nombre propio: “Julio C. Chinea, Fundador”.</span><span class="no">Testimonios inventados o cifras que no se pueden comprobar.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- VOZ -->
+<section>
+  <div class="wrap">
+    <div class="sh">
+      <span class="label">06 — Voz</span>
+      <h2>Cercana, clara, de tú.</h2>
+      <p>Habla como un pastor que conoce a su comunidad: frases cortas, palabras de todos los días, en español y en inglés con el mismo tono. Primero lo que la persona gana; después cómo se hace.</p>
+    </div>
+    <div class="grid">
+      <div class="voice"><span class="label">Así sí</span><p>“Que tu iglesia se vea desde lejos. Te respondemos en 1 o 2 días.”</p></div>
+      <div class="voice bad"><span class="label">Así no</span><p>“Potenciamos tu presencia digital con soluciones web innovadoras de última generación.”</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSPIRACIÓN -->
+<section>
+  <div class="wrap">
+    <div class="sh">
+      <span class="label">07 — De dónde viene</span>
+      <h2>Cuatro referencias, una sola voz.</h2>
+      <p>No es una copia de ninguna: de cada una se tomó una idea concreta.</p>
+    </div>
+    <div class="grid">
+      <div class="insp"><span class="label">Apple</span><h3>Aire y orden</h3><p>Mucho espacio en blanco, una idea por pantalla, botones de 48 px y textos que se leen sin esfuerzo.</p></div>
+      <div class="insp"><span class="label">PayPal</span><h3>Confianza</h3><p>Botones tipo píldora, un azul marino profundo (Mar) y formularios sencillos que dan seguridad.</p></div>
+      <div class="insp"><span class="label">Robinhood</span><h3>Contraste</h3><p>Bloques negros a todo lo ancho, titulares enormes y un solo color fuerte que salta a la vista.</p></div>
+      <div class="insp"><span class="label">Okoro</span><h3>Carácter editorial</h3><p>Fondo color papel, letras estrechas y grandes, etiquetas en mono y el trabajo mostrado como en una revista.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>Faro Digital · Brand kit v2 · Fort Myers, FL</span><a href="index.html">Volver al sitio →</a></div>
+</footer>
+</body>
+</html>
