@@ -9,7 +9,9 @@
     document.querySelectorAll('[data-lang-toggle]').forEach(b => b.textContent = lang === 'es' ? 'English' : 'Español');
     localStorage.setItem('faro-lang', lang);
   }
-  document.querySelectorAll('[data-lang-toggle]').forEach(b => b.addEventListener('click', () => { lang = lang === 'es' ? 'en' : 'es'; applyLang(); }));
+  // medición (assets/track.js); si no está cargado, no hace nada
+  const T_ = (name, data) => { if (window.faroTrack) window.faroTrack(name, data); };
+  document.querySelectorAll('[data-lang-toggle]').forEach(b => b.addEventListener('click', () => { lang = lang === 'es' ? 'en' : 'es'; applyLang(); T_('lang_change', {to: lang}); }));
 
   // menú: transparente sobre fotos oscuras (como Tesla), blanco sobre contenido claro
   const top = document.getElementById('top');
@@ -29,7 +31,7 @@
 
   // cajón móvil
   const menu = document.querySelector('[data-menu]');
-  if (menu) menu.addEventListener('click', () => { document.body.classList.add('open'); onScroll(); });
+  if (menu) menu.addEventListener('click', () => { document.body.classList.add('open'); onScroll(); T_('menu_open'); });
   document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => { document.body.classList.remove('open'); onScroll(); }));
   addEventListener('keydown', e => { if (e.key === 'Escape') { document.body.classList.remove('open'); onScroll(); } });
 
@@ -65,7 +67,7 @@
       const was = b.getAttribute('aria-expanded') === 'true';
       btns.forEach(x => x.setAttribute('aria-expanded', 'false'));
       panels.forEach(p => p.classList.remove('on'));
-      if (!was) { b.setAttribute('aria-expanded', 'true'); panels[+b.dataset.tab].classList.add('on'); reveal.classList.add('open'); }
+      if (!was) { b.setAttribute('aria-expanded', 'true'); panels[+b.dataset.tab].classList.add('on'); reveal.classList.add('open'); T_('about_reveal', {tab: +b.dataset.tab}); }
       else reveal.classList.remove('open');
     }));
   });
@@ -211,16 +213,17 @@
       count.textContent = i < 3 ? `${t.step} ${i + 1} ${t.of} 3` : '';
       back.hidden = i === 0 || i === 3;
       if (i === 2) setTimeout(() => (validName() ? contactI : nameI).focus(), 350);
+      if (i < 3) T_(rev ? 'quote_back' : 'quote_step', {step: i + 1});
     };
     // paso 1: tocar avanza solo
     qm.querySelectorAll('.opt').forEach(o => o.addEventListener('click', () => {
-      qm.querySelectorAll('.opt').forEach(x => x.classList.remove('sel')); o.classList.add('sel'); st.type = o.dataset.v; buzz();
+      qm.querySelectorAll('.opt').forEach(x => x.classList.remove('sel')); o.classList.add('sel'); st.type = o.dataset.v; buzz(); T_('quote_option', {type: o.dataset.v});
       setTimeout(() => qm.show(1), 320);
     }));
     // paso 2: elegir varias
     const nextB = qm.querySelector('[data-next]');
     qm.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
-      c.classList.toggle('sel'); buzz();
+      c.classList.toggle('sel'); buzz(); T_('quote_chip', {chip: c.dataset.v, on: c.classList.contains('sel')});
       st.wants = [...qm.querySelectorAll('.chip.sel')].map(x => x.dataset.v);
       nextB.disabled = !st.wants.length;
     }));
@@ -231,22 +234,26 @@
     nameI.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); contactI.focus(); } });
     contactI.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); sendB.click(); } });
     sendB.addEventListener('click', () => {
-      if (!validName()) { err.textContent = t.badName; nameI.focus(); return; }
-      if (!validContact()) { err.textContent = t.badContact; contactI.focus(); return; }
+      if (!validName()) { err.textContent = t.badName; nameI.focus(); T_('quote_error', {field: 'name'}); return; }
+      if (!validContact()) { err.textContent = t.badContact; contactI.focus(); T_('quote_error', {field: 'phone'}); return; }
       const n = nameI.value.trim(), k = contactI.value.trim();
       const msg = t.msg.replace('{n}', n).replace('{t}', st.type).replace('{c}', st.wants.join(', ')).replace('{k}', k);
-      // se envía directo al correo de Faro Digital, sin abrir otra app
+      // se guarda en Supabase (tabla leads) y además llega al correo de Faro Digital
       const label = sendB.textContent;
       sendB.disabled = true; sendB.textContent = t.sending;
-      fetch('https://formsubmit.co/ajax/info@farodigitalfl.com', {
+      const toDb = (window.faroLead ? window.faroLead({name: n, phone: k, org_type: st.type, wants: st.wants}) : Promise.reject(new Error('off')));
+      const toMail = fetch('https://formsubmit.co/ajax/info@farodigitalfl.com', {
         method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
         body: JSON.stringify({_subject: 'Nueva cotización – ' + n, _template: 'table', _captcha: 'false', Nombre: n, 'Teléfono': k, Tipo: st.type, Quiere: st.wants.join(', '), Idioma: lang, Mensaje: msg})
-      }).then(r => r.json()).then(d => {
-        if (!(d && (d.success === true || d.success === 'true'))) throw new Error(d && d.message);
+      }).then(r => r.json()).then(d => { if (!(d && (d.success === true || d.success === 'true'))) throw new Error(d && d.message); return true; });
+      Promise.allSettled([toDb, toMail]).then(([db, mail]) => {
+        const ok = db.status === 'fulfilled' || mail.status === 'fulfilled';
+        if (!ok) { err.textContent = t.failed; T_('quote_fail', {db: db.status, mail: mail.status}); return; }
+        T_('quote_sent', {db: db.status, mail: mail.status, wants: st.wants.length});
         qm.querySelector('.ty').textContent = t.thanks.replace('{n}', n.split(' ')[0]);
         qm.querySelector('.summary').innerHTML = `<li><b>${t.s0}:</b> ${st.type}</li><li><b>${t.s1}:</b> ${st.wants.join(', ')}</li><li><b>${t.s2}:</b> ${k.replace(/</g, '&lt;')}</li>`;
         qm.show(3); buzz(); confetti();
-      }).catch(() => { err.textContent = t.failed; }).finally(() => { sendB.textContent = label; sendB.disabled = false; });
+      }).finally(() => { sendB.textContent = label; sendB.disabled = false; });
     });
     back.addEventListener('click', () => qm.show(Math.max(0, cur - 1), true));
     qm.querySelectorAll('[data-qclose]').forEach(b => b.addEventListener('click', closeQuote));
@@ -260,7 +267,8 @@
   function openQuote(preset){
     if (qm && qm.dataset.lang !== lang) { qm.remove(); qm = null; }
     // si cerró a medias, al volver sigue donde iba
-    if (qm && cur !== 3) { document.documentElement.style.overflow = 'hidden'; requestAnimationFrame(() => qm.classList.add('open')); return; }
+    if (qm && cur !== 3) { T_('quote_open', {resumed: true, step: cur + 1}); document.documentElement.style.overflow = 'hidden'; requestAnimationFrame(() => qm.classList.add('open')); return; }
+    T_('quote_open', {resumed: false, preset: preset || null});
     if (!qm) { buildQuote(); qm.dataset.lang = lang; }
     st = {wants: []};
     qm.querySelectorAll('.sel').forEach(x => x.classList.remove('sel'));
@@ -272,7 +280,7 @@
     requestAnimationFrame(() => qm.classList.add('open'));
     setTimeout(() => (qm.querySelector('.qstep.on .opt, .qstep.on .chip') || qm).focus(), 400);
   }
-  function closeQuote(){ if (!qm) return; qm.classList.remove('open'); document.documentElement.style.overflow = ''; }
+  function closeQuote(){ if (!qm) return; T_(cur < 3 ? 'quote_close' : 'quote_done_close', {step: cur + 1}); qm.classList.remove('open'); document.documentElement.style.overflow = ''; }
   // todos los botones "Cotizar" abren el pop-up (la página de contacto queda como respaldo)
   const preset = /iglesias/.test(here) ? 'church' : /escuelas/.test(here) ? 'school' : null;
   document.querySelectorAll('a.btn[href="contacto.html"], a.pill[href="contacto.html"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); document.body.classList.remove('open'); onScroll(); openQuote(preset); }));
