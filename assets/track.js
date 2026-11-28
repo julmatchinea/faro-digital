@@ -25,8 +25,11 @@
   const track = (name, data) => {
     queue.push({visitor_id: vid, session_id: sid, name: String(name).slice(0, 60), page, data: data || {}, referrer: document.referrer.slice(0, 200) || null, device, lang: lang(), vw: innerWidth, vh: innerHeight});
     if (queue.length >= 20) flush();
+    // también marca el momento en Microsoft Clarity para filtrar grabaciones
+    if (window.clarity && !/^(click|scroll_depth|section_view|field_focus|load_time)$/.test(name)) window.clarity('event', name);
   };
   window.faroTrack = track;
+  if (window.clarity) { window.clarity('set', 'visitor', vid); window.clarity('set', 'device', device); }
 
   // pedidos de cotización: se guardan en public.leads
   window.faroLead = (lead) => fetch(SB_URL + '/rest/v1/leads', {method: 'POST', headers, body: JSON.stringify(Object.assign({visitor_id: vid, session_id: sid, page, lang: lang()}, lead))})
