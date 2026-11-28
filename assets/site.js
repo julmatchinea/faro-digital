@@ -41,5 +41,19 @@
     if (img.complete && img.naturalWidth === 0) swap(); else img.addEventListener('error', swap);
   });
 
+  // hero de Julio: el círculo y la foto se mueven un poco con el mouse
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.julio').forEach(sec => {
+      const ph = sec.querySelector('.photo');
+      if (!ph) return;
+      sec.addEventListener('pointermove', e => {
+        const r = sec.getBoundingClientRect();
+        ph.style.setProperty('--mx', ((e.clientX - r.left) / r.width - .5) * 2);
+        ph.style.setProperty('--my', ((e.clientY - r.top) / r.height - .5) * 2);
+      });
+      sec.addEventListener('pointerleave', () => { ph.style.setProperty('--mx', 0); ph.style.setProperty('--my', 0); });
+    });
+  }
+
   if (lang !== 'es') applyLang();
 })();
