@@ -1,0 +1,140 @@
+/* Faro Digital — estilos compartidos por todas las páginas (usa los tokens de faro.css) */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+
+/* ---------- menú (Tesla) ---------- */
+.top{position:fixed;inset:0 0 auto 0;z-index:50;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,2.6vw,40px);transition:background .3s,box-shadow .3s}
+.top .brand{display:flex;align-items:center;height:44px}
+.top .brand img{height:20px;width:auto}
+.top .brand .dark{display:none}
+.top nav ul{list-style:none;display:flex;gap:4px}
+.top nav a,.top .tool{display:inline-flex;align-items:center;min-height:36px;padding:0 16px;border-radius:var(--r-btn);font:600 14px var(--f);text-decoration:none;color:#fff;background:transparent;border:0;cursor:pointer;transition:background .2s,color .2s}
+.top nav a:hover,.top .tool:hover{background:rgba(255,255,255,.16)}
+.top nav a[aria-current="page"]{box-shadow:inset 0 -2px 0 var(--neon)}
+.top .right{display:flex;align-items:center;gap:6px}
+.top .btn{min-width:0;min-height:36px;padding:0 18px;font-size:14px}
+.top.solid{background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--linea)}
+.top.solid nav a,.top.solid .tool{color:var(--grafito)}
+.top.solid nav a:hover,.top.solid .tool:hover{background:rgba(23,26,32,.07)}
+.top.solid .brand .light{display:none}.top.solid .brand .dark{display:block}
+.top .menu-btn{display:none}
+
+/* cajón lateral (móvil) */
+.scrim{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.45);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(340px,88vw);background:#fff;padding:22px 24px;transform:translateX(100%);transition:transform .4s var(--ease);display:flex;flex-direction:column;gap:6px;overflow:auto}
+.open .scrim{opacity:1;pointer-events:auto}.open .drawer{transform:none}
+.drawer .x{align-self:flex-end;width:40px;height:40px;border-radius:var(--r-btn);border:0;background:transparent;font-size:24px;cursor:pointer;color:var(--grafito)}
+.drawer .x:hover{background:var(--niebla)}
+.drawer a,.drawer button.item{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:var(--r-btn);font:600 17px var(--f);color:var(--grafito);text-decoration:none;background:transparent;border:0;cursor:pointer;text-align:left}
+.drawer a:hover,.drawer button.item:hover{background:var(--niebla)}
+.drawer a[aria-current="page"]{background:var(--niebla)}
+.drawer a:not(.btn)::after{content:"›";color:var(--gris);font-size:22px}
+.drawer .btn{margin-top:14px;width:100%;justify-content:center}
+
+/* ---------- pantallas completas con foto (Tesla) ---------- */
+.panel{position:relative;isolation:isolate;height:100svh;min-height:600px;overflow:hidden;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:clamp(110px,15vh,150px) var(--pad) clamp(44px,8vh,80px)}
+.panel>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.06);transition:transform 1.6s var(--ease)}
+.panel.in>img{transform:scale(1)}
+.panel::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,11,14,.78) 0%,rgba(10,11,14,.42) 34%,rgba(10,11,14,.18) 58%,rgba(10,11,14,.72) 100%)}
+.panel h1,.panel h2{color:#fff;font-weight:600;font-size:clamp(36px,4.6vw,60px);letter-spacing:-.025em;max-width:18ch;margin:0 auto}
+.panel h1,.panel h2,.panel .sub{text-shadow:0 2px 18px rgba(0,0,0,.45)}
+.panel .sub{margin:12px auto 0;font-size:clamp(16px,1.3vw,19px);color:rgba(255,255,255,.9);max-width:52ch}
+.panel .stars{display:block;margin-top:18px;font-size:22px;letter-spacing:4px}
+.panel .ctas{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.panel .ctas .btn{min-width:240px}
+.panel .tag{display:inline-block;margin-bottom:12px;font:700 13px var(--f);letter-spacing:.14em;text-transform:uppercase;color:var(--neon)}
+.chev{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:28px;height:28px;color:#fff;opacity:.8;animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translate(-50%,6px)}}
+
+/* ---------- encabezado de página sin foto ---------- */
+.page-head{padding:clamp(130px,18vh,180px) var(--pad) clamp(40px,6vh,60px);text-align:center}
+.page-head .tag{display:inline-block;margin-bottom:12px;font:700 13px var(--f);letter-spacing:.14em;text-transform:uppercase;color:var(--neon-txt)}
+.page-head h1{font-size:clamp(40px,5vw,68px);letter-spacing:-.03em;max-width:16ch;margin:0 auto}
+.page-head p{margin:16px auto 0;max-width:52ch;font-size:19px;color:var(--gris)}
+
+/* ---------- bloques 50/50 (Starbucks) ---------- */
+.blocks{padding:clamp(24px,3vw,40px) 0;display:grid;gap:clamp(24px,3vw,40px)}
+.block{display:grid;grid-template-columns:1fr 1fr;min-height:560px;max-width:1440px;margin:0 auto;width:100%}
+.block .txt{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:clamp(40px,6vw,90px)}
+.block .txt h2{font-size:clamp(30px,3vw,42px);font-weight:700;letter-spacing:-.02em;color:inherit;max-width:16ch}
+.block .txt p{margin:16px 0 0;max-width:40ch;font-size:18px}
+.block .txt ul{list-style:none;margin:22px 0 28px;display:grid;gap:8px;font-size:16px}
+.block .txt li::before{content:"✓";font-weight:800;margin-right:8px}
+.block .pic{overflow:hidden;position:relative;min-height:320px}
+.block .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.block:hover .pic img{transform:scale(1.05)}
+.block.flip .pic{order:-1}
+.block.neon .txt{background:var(--neon);color:var(--grafito)}
+.block.dark .txt{background:var(--grafito);color:#fff}
+.block.dark .txt h2{color:#fff}
+.block.dark li::before{color:var(--neon)}
+.block.mist .txt{background:var(--niebla);color:var(--grafito)}
+.block.mist li::before{color:var(--neon-txt)}
+.block .badge{display:inline-block;margin-bottom:16px;padding:6px 14px;border-radius:var(--r-pill);font:700 12px var(--f);letter-spacing:.1em;text-transform:uppercase}
+.block.neon .badge{background:var(--grafito);color:var(--neon)}
+.block.dark .badge{background:var(--neon);color:var(--grafito)}
+.block.mist .badge{background:var(--grafito);color:#fff}
+
+/* ---------- proceso ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding-bottom:clamp(80px,11vh,120px)}
+.step{background:var(--niebla);border-radius:var(--r-card);padding:30px 26px 34px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;transition:background .35s var(--ease),transform .35s var(--ease)}
+.step .n{font:800 64px/1 var(--f);letter-spacing:-.04em;color:#c9cbcf;transition:color .35s}
+.step h3{font-size:24px;margin-bottom:8px;transition:color .35s}
+.step p{font-size:16px;color:var(--gris);transition:color .35s}
+.step:hover{background:var(--grafito);transform:translateY(-6px)}
+.step:hover .n{color:var(--neon)}
+.step:hover h3{color:#fff}.step:hover p{color:#c9cbcf}
+
+/* ---------- hero de Julio (sobre mí + cotizar) ---------- */
+.julio{position:relative;isolation:isolate;min-height:100svh;background:var(--grafito);color:#fff;display:grid;grid-template-columns:1fr 1fr;align-items:end;overflow:hidden;padding:80px clamp(20px,5vw,80px) 0}
+.julio .photo{position:relative;align-self:end;display:flex;justify-content:center;height:min(86vh,820px)}
+.julio .photo::before{content:"";position:absolute;left:50%;bottom:8%;width:min(36vw,560px);aspect-ratio:1;transform:translateX(-50%);border-radius:50%;border:clamp(28px,3.4vw,52px) solid var(--neon);z-index:-1;transition:transform .8s var(--ease)}
+.julio:hover .photo::before{transform:translateX(-50%) scale(1.04)}
+.julio .photo img{height:100%;width:auto;max-width:100%;object-fit:contain;object-position:bottom;filter:drop-shadow(0 30px 40px rgba(0,0,0,.35))}
+.julio .photo .mono{align-self:center;width:min(30vw,440px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font:800 clamp(80px,10vw,150px)/1 var(--f);letter-spacing:-.05em;color:#fff;margin-bottom:12%}
+.julio .info{align-self:center;padding:40px 0 clamp(60px,10vh,110px);max-width:560px}
+.julio .tag{font:700 13px var(--f);letter-spacing:.14em;text-transform:uppercase;color:var(--neon)}
+.julio h2{color:#fff;font-size:clamp(44px,5.4vw,78px);letter-spacing:-.035em;line-height:1;margin:14px 0 22px}
+.julio p{color:#c9cbcf;font-size:18px;margin-bottom:14px}
+.julio .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:28px 0 30px}
+.julio .facts div{background:var(--grafito-2);border-radius:var(--r-card);padding:16px;transition:background .25s,transform .25s}
+.julio .facts div:hover{background:#2d323b;transform:translateY(-3px)}
+.julio .facts b{display:block;font:800 30px/1 var(--f);color:#fff;letter-spacing:-.03em}
+.julio .facts span{font-size:14px;color:#a9abaf}
+.julio .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.julio .ctas .btn{min-width:0;flex:1 1 180px}
+.julio .note{margin-top:16px;font-size:14px;color:#8c8f94}
+
+/* ---------- pie sencillo ---------- */
+footer{border-top:1px solid var(--linea);padding:28px 0}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--gris)}
+footer img{height:16px;width:auto}
+footer nav{display:flex;gap:18px;flex-wrap:wrap}
+footer a{text-decoration:none;color:var(--gris)}footer a:hover{color:var(--grafito);text-decoration:underline;text-underline-offset:3px}
+footer button{background:none;border:0;font:600 14px var(--f);cursor:pointer;color:var(--grafito);text-decoration:underline;text-underline-offset:3px;min-height:44px}
+
+.wa{position:fixed;right:18px;bottom:18px;z-index:40;display:flex;align-items:center;gap:8px;min-height:48px;padding:0 18px 0 14px;border-radius:var(--r-pill);background:#25D366;color:#0b2a17;text-decoration:none;font:700 15px var(--f);box-shadow:0 10px 30px -8px rgba(0,0,0,.4);transition:transform .2s,box-shadow .2s}
+.wa:hover{transform:translateY(-3px);box-shadow:0 16px 34px -8px rgba(0,0,0,.45)}
+.wa svg{width:20px;height:20px}
+
+@media (max-width:1000px){
+  .top nav,.top .right .tool[data-lang-toggle],.top .right .btn{display:none}
+  .top .menu-btn{display:inline-flex}
+  .block,.block.flip{grid-template-columns:1fr}
+  .block .pic{order:-1}
+  .steps{grid-template-columns:1fr 1fr}
+  .julio{grid-template-columns:1fr;padding-top:90px}
+  .julio .photo{order:2;height:min(70vh,560px)}
+  .julio .photo::before{width:min(80vw,440px)}
+  .julio .photo .mono{width:min(70vw,360px)}
+  .julio .info{padding-bottom:20px}
+}
+@media (max-width:600px){
+  .panel .ctas{flex-direction:column;width:100%;max-width:340px}
+  .panel .ctas .btn{width:100%;min-width:0}
+  .steps{grid-template-columns:1fr}
+  .step{min-height:0;gap:20px}
+  .julio .facts{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .julio .facts b{font-size:24px}
+  .wa span{display:none}.wa{padding:0 14px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

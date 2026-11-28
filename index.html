@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Faro Digital · Páginas web bilingües en Fort Myers, FL</title>
-<meta name="description" content="Páginas web bilingües, claras y fáciles de mantener, para iglesias, escuelas y negocios en Fort Myers y el suroeste de Florida. Calificación 5.0 de nuestros clientes.">
+<title>Faro Digital · Páginas web bilingües para iglesias y escuelas</title>
+<meta name="description" content="Páginas web bilingües, claras y fáciles de mantener, para iglesias y escuelas.">
 <meta name="theme-color" content="#171A20">
 <link rel="icon" href="assets/simbolo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/faro-digital-perfil.png">
@@ -13,239 +13,53 @@
 <link rel="preconnect" href="https://images.unsplash.com">
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/faro.css">
-<style>
-  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
-
-  /* ---------- menú (Tesla) ---------- */
-  .top{position:fixed;inset:0 0 auto 0;z-index:50;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,2.6vw,40px);transition:background .3s,box-shadow .3s}
-  .top .brand{display:flex;align-items:center;height:44px}
-  .top .brand img{height:20px;width:auto}
-  .top .brand .dark{display:none}
-  .top nav ul{list-style:none;display:flex;gap:4px}
-  .top nav a,.top .tool{display:inline-flex;align-items:center;min-height:36px;padding:0 16px;border-radius:var(--r-btn);font:600 14px var(--f);text-decoration:none;color:#fff;background:transparent;border:0;cursor:pointer;transition:background .2s,color .2s}
-  .top nav a:hover,.top .tool:hover{background:rgba(255,255,255,.16)}
-  .top .right{display:flex;align-items:center;gap:6px}
-  .top .btn{min-width:0;min-height:36px;padding:0 18px;font-size:14px}
-  .top.solid{background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--linea)}
-  .top.solid nav a,.top.solid .tool{color:var(--grafito)}
-  .top.solid nav a:hover,.top.solid .tool:hover{background:rgba(23,26,32,.07)}
-  .top.solid .brand .light{display:none}.top.solid .brand .dark{display:block}
-  .top .menu-btn{display:none}
-
-  /* cajón lateral (Tesla móvil) */
-  .scrim{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.45);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s}
-  .drawer{position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(340px,88vw);background:#fff;padding:22px 24px;transform:translateX(100%);transition:transform .4s var(--ease);display:flex;flex-direction:column;gap:6px;overflow:auto}
-  .open .scrim{opacity:1;pointer-events:auto}.open .drawer{transform:none}
-  .drawer .x{align-self:flex-end;width:40px;height:40px;border-radius:var(--r-btn);border:0;background:transparent;font-size:24px;cursor:pointer;color:var(--grafito)}
-  .drawer .x:hover{background:var(--niebla)}
-  .drawer a,.drawer button.item{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:var(--r-btn);font:600 17px var(--f);color:var(--grafito);text-decoration:none;background:transparent;border:0;cursor:pointer;text-align:left}
-  .drawer a:hover,.drawer button.item:hover{background:var(--niebla)}
-  .drawer a:not(.btn)::after{content:"›";color:var(--gris);font-size:22px}
-  .drawer .btn{margin-top:14px;width:100%;justify-content:center}
-
-  /* ---------- pantallas completas (Tesla) ---------- */
-  .panel{position:relative;isolation:isolate;height:100svh;min-height:600px;overflow:hidden;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:clamp(110px,15vh,150px) var(--pad) clamp(44px,8vh,80px)}
-  .panel>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.06);transition:transform 1.6s var(--ease)}
-  .panel.in>img{transform:scale(1)}
-  .panel::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,11,14,.78) 0%,rgba(10,11,14,.42) 34%,rgba(10,11,14,.18) 58%,rgba(10,11,14,.72) 100%)}
-  .panel h1,.panel h2,.panel .sub{text-shadow:0 2px 18px rgba(0,0,0,.45)}
-  .panel h1,.panel h2{color:#fff;font-weight:600;font-size:clamp(36px,4.6vw,60px);letter-spacing:-.025em;max-width:18ch;margin:0 auto}
-  .panel .sub{margin-top:12px;font-size:clamp(16px,1.3vw,19px);color:rgba(255,255,255,.9);max-width:52ch;margin-left:auto;margin-right:auto}
-  .rating{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:8px 16px;border-radius:var(--r-pill);background:rgba(23,26,32,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font:600 14px var(--f);color:#fff;text-decoration:none;transition:background .2s}
-  .rating:hover{background:rgba(23,26,32,.8)}
-  .rating .stars{font-size:15px}
-  .panel .ctas{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
-  .panel .ctas .btn{min-width:240px}
-  .chev{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:28px;height:28px;color:#fff;opacity:.8;animation:bob 2.2s ease-in-out infinite}
-  @keyframes bob{50%{transform:translate(-50%,6px)}}
-  .panel .tag{display:inline-block;margin-bottom:12px;font:700 13px var(--f);letter-spacing:.14em;text-transform:uppercase;color:var(--neon)}
-
-  /* ---------- franja de confianza (neón) ---------- */
-  .trust{background:var(--neon);color:var(--grafito)}
-  .trust .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:var(--pad);padding-top:44px;padding-bottom:44px;align-items:center}
-  .trust .score{display:flex;align-items:center;gap:18px}
-  .trust .score b{font:800 72px/1 var(--f);letter-spacing:-.04em;color:var(--grafito)}
-  .trust .score .stars{color:var(--grafito);font-size:22px;display:block}
-  .trust .score small{font:600 14px var(--f)}
-  .trust .item{border-left:2px solid rgba(23,26,32,.25);padding-left:20px}
-  .trust .item b{display:block;font:700 20px var(--f);color:var(--grafito)}
-  .trust .item span{font-size:15px}
-
-  /* ---------- bloques 50/50 (Starbucks) ---------- */
-  .blocks{padding:clamp(24px,3vw,40px) 0;display:grid;gap:clamp(24px,3vw,40px)}
-  .block{display:grid;grid-template-columns:1fr 1fr;min-height:560px;max-width:1440px;margin:0 auto;width:100%}
-  .block .txt{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:clamp(40px,6vw,90px)}
-  .block .txt h2{font-size:clamp(30px,3vw,42px);font-weight:700;letter-spacing:-.02em;color:inherit;max-width:16ch}
-  .block .txt p{margin:16px 0 0;max-width:40ch;font-size:18px}
-  .block .txt ul{list-style:none;margin:22px 0 28px;display:grid;gap:8px;font-size:16px}
-  .block .txt li::before{content:"✓";font-weight:800;margin-right:8px}
-  .block .pic{overflow:hidden;position:relative;min-height:320px}
-  .block .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
-  .block:hover .pic img{transform:scale(1.05)}
-  .block.flip .pic{order:-1}
-  .block.neon .txt{background:var(--neon);color:var(--grafito)}
-  .block.dark .txt{background:var(--grafito);color:#fff}
-  .block.dark .txt h2{color:#fff}
-  .block.dark li::before{color:var(--neon)}
-  .block.mist .txt{background:var(--niebla);color:var(--grafito)}
-  .block.mist li::before{color:var(--neon-txt)}
-  .block .badge{display:inline-block;margin-bottom:16px;padding:6px 14px;border-radius:var(--r-pill);font:700 12px var(--f);letter-spacing:.1em;text-transform:uppercase}
-  .block.neon .badge{background:var(--grafito);color:var(--neon)}
-  .block.dark .badge{background:var(--neon);color:var(--grafito)}
-  .block.mist .badge{background:var(--grafito);color:#fff}
-  .sec-title{text-align:center;padding:clamp(80px,11vh,120px) var(--pad) 0}
-  .sec-title h2{font-size:clamp(34px,4vw,52px);letter-spacing:-.025em}
-  .sec-title p{margin:14px auto 0;max-width:52ch;font-size:18px;color:var(--gris)}
-  .also{text-align:center;color:var(--gris);font-size:16px;padding:0 var(--pad) 10px}
-
-  /* ---------- proceso (tarjetas Tesla) ---------- */
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:clamp(40px,6vh,60px)}
-  .step{background:var(--niebla);border-radius:var(--r-card);padding:30px 26px 34px;min-height:280px;display:flex;flex-direction:column;justify-content:space-between;cursor:default;transition:background .35s var(--ease),transform .35s var(--ease)}
-  .step .n{font:800 64px/1 var(--f);letter-spacing:-.04em;color:#c9cbcf;transition:color .35s}
-  .step h3{font-size:24px;margin-bottom:8px;transition:color .35s}
-  .step p{font-size:16px;color:var(--gris);transition:color .35s}
-  .step:hover{background:var(--grafito);transform:translateY(-6px)}
-  .step:hover .n{color:var(--neon)}
-  .step:hover h3{color:#fff}.step:hover p{color:#c9cbcf}
-
-  /* ---------- contacto (Tesla) ---------- */
-  .contact{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(30px,5vw,70px);align-items:start;padding-top:clamp(80px,11vh,120px);padding-bottom:clamp(80px,11vh,120px)}
-  .contact h2{font-size:clamp(34px,4vw,52px);letter-spacing:-.025em}
-  .contact .lead{margin-top:12px;font-size:18px;color:var(--gris)}
-  form{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:20px 16px}
-  .field{display:flex;flex-direction:column;gap:6px}
-  .field.full{grid-column:1/-1}
-  .field label{font:500 14px var(--f);color:var(--texto)}
-  input,select,textarea{font:inherit;font-size:16px;color:var(--grafito);background:var(--niebla);border:1.5px solid transparent;border-radius:var(--r-btn);min-height:44px;padding:10px 14px;outline:none;transition:border-color .2s,background .2s}
-  input:hover,select:hover,textarea:hover{background:#ececec}
-  input:focus,select:focus,textarea:focus{border-color:var(--grafito);background:#fff}
-  textarea{min-height:120px;resize:vertical}
-  .form-foot{grid-column:1/-1;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-  .form-foot small{width:100%;color:var(--gris);font-size:15px}
-  .card-dark{background:var(--grafito);color:#fff;border-radius:var(--r-card);padding:34px;position:sticky;top:90px}
-  .card-dark h3{color:#fff;font-size:24px}
-  .card-dark .score{display:flex;align-items:baseline;gap:12px;margin:18px 0 6px}
-  .card-dark .score b{font:800 56px/1 var(--f);color:#fff;letter-spacing:-.04em}
-  .card-dark .score .stars{font-size:20px}
-  .card-dark small{color:#a9abaf;font-size:14px}
-  .card-dark ul{list-style:none;margin-top:26px;border-top:1px solid #33373f}
-  .card-dark li>a,.card-dark li>span{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 4px;border-bottom:1px solid #33373f;text-decoration:none;color:#fff;transition:color .2s,padding .2s}
-  .card-dark li>a:hover{color:var(--neon);padding-left:10px}
-  .card-dark li em{font-style:normal;color:#a9abaf;font-size:14px}
-
-  /* ---------- pie (Starbucks) ---------- */
-  footer{border-top:1px solid var(--linea);padding:clamp(50px,7vh,70px) 0 30px}
-  .fcols{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--pad)}
-  .fcols h4{font-size:18px;margin-bottom:16px}
-  .fcols ul{list-style:none;display:grid;gap:12px;font-size:15px;color:var(--gris)}
-  .fcols a{text-decoration:none}.fcols a:hover{color:var(--grafito);text-decoration:underline;text-underline-offset:3px}
-  .fcols details summary{list-style:none;cursor:default}
-  .fcols details summary::-webkit-details-marker{display:none}
-  .fbottom{margin-top:44px;padding-top:24px;border-top:1px solid var(--linea);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--gris)}
-  .fbottom img{height:18px;width:auto}
-  .fbottom button{background:none;border:0;font:600 14px var(--f);cursor:pointer;color:var(--grafito);text-decoration:underline;text-underline-offset:3px;min-height:44px}
-
-  .wa{position:fixed;right:18px;bottom:18px;z-index:40;display:flex;align-items:center;gap:8px;min-height:48px;padding:0 18px 0 14px;border-radius:var(--r-pill);background:#25D366;color:#0b2a17;text-decoration:none;font:700 15px var(--f);box-shadow:0 10px 30px -8px rgba(0,0,0,.4);transition:transform .2s,box-shadow .2s}
-  .wa:hover{transform:translateY(-3px);box-shadow:0 16px 34px -8px rgba(0,0,0,.45)}
-  .wa svg{width:20px;height:20px}
-
-  /* hoja "qué incluye" */
-  dialog{margin:auto;border:0;border-radius:var(--r-card);padding:0;max-width:520px;width:calc(100% - 32px);color:var(--texto);box-shadow:0 30px 80px -20px rgba(0,0,0,.5);overflow:hidden}
-  dialog::backdrop{background:rgba(0,0,0,.5);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
-  dialog img{width:100%;height:200px;object-fit:cover}
-  dialog .in{padding:28px}
-  dialog h3{font-size:28px}
-  dialog ul{list-style:none;margin:18px 0 26px;display:grid;gap:10px}
-  dialog li{padding-left:28px;position:relative}
-  dialog li::before{content:"✓";position:absolute;left:0;color:var(--neon-txt);font-weight:800}
-  dialog .row{display:flex;gap:10px;flex-wrap:wrap}
-  dialog .row .btn{min-width:0;flex:1}
-  dialog .x{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:var(--r-btn);border:0;background:rgba(255,255,255,.9);font-size:22px;cursor:pointer}
-  dialog .x:hover{background:#fff}
-
-  @media (max-width:1000px){
-    .top nav,.top .right .tool[data-lang-toggle],.top .right .btn{display:none}
-    .top .menu-btn{display:inline-flex}
-    .trust .wrap{grid-template-columns:1fr 1fr}
-    .block,.block.flip{grid-template-columns:1fr}
-    .block .pic{order:-1}
-    .steps{grid-template-columns:1fr 1fr}
-    .contact{grid-template-columns:1fr}
-    .card-dark{position:static}
-    .fcols{grid-template-columns:1fr 1fr}
-  }
-  @media (max-width:600px){
-    .panel .ctas{flex-direction:column;width:100%;max-width:340px}
-    .panel .ctas .btn{width:100%;min-width:0}
-    .trust .wrap{grid-template-columns:1fr}
-    .trust .item{border-left:0;border-top:2px solid rgba(23,26,32,.25);padding:16px 0 0}
-    .steps{grid-template-columns:1fr}
-    .step{min-height:0;gap:20px}
-    form{grid-template-columns:1fr}
-    .fcols{grid-template-columns:1fr;gap:0}
-    .fcols details{border-bottom:1px solid var(--linea)}
-    .fcols details summary{cursor:pointer;padding:16px 0;display:flex;justify-content:space-between;align-items:center}
-    .fcols details summary::after{content:"+";font-size:22px;line-height:1;color:var(--grafito)}
-    .fcols details[open] summary::after{content:"–"}
-    .fcols h4{margin:0}
-    .fcols ul{padding-bottom:16px}
-    .wa span{display:none}.wa{padding:0 14px}
-  }
-  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 
-<!-- MENÚ -->
 <header class="top" id="top">
-  <a class="brand" href="#inicio" aria-label="Faro Digital, inicio"><img class="light" src="assets/logo-blanco.svg" alt="Faro"><img class="dark" src="assets/logo.svg" alt="Faro"></a>
+  <a class="brand" href="index.html" aria-label="Faro Digital, inicio"><img class="light" src="assets/logo-blanco.svg" alt="Faro"><img class="dark" src="assets/logo.svg" alt="Faro"></a>
   <nav aria-label="Principal"><ul>
-    <li><a href="#iglesias" data-en="Churches">Iglesias</a></li>
-    <li><a href="#escuelas" data-en="Schools">Escuelas</a></li>
-    <li><a href="#negocios" data-en="Businesses">Negocios</a></li>
-    <li><a href="#servicios" data-en="Services">Servicios</a></li>
-    <li><a href="#proceso" data-en="Process">Proceso</a></li>
-    <li><a href="#sobre-mi" data-en="About">Sobre mí</a></li>
+    <li><a href="iglesias.html" data-en="Churches">Iglesias</a></li>
+    <li><a href="escuelas.html" data-en="Schools">Escuelas</a></li>
+    <li><a href="servicios.html" data-en="Services">Servicios</a></li>
+    <li><a href="proceso.html" data-en="Process">Proceso</a></li>
+    <li><a href="contacto.html" data-en="About">Sobre mí</a></li>
   </ul></nav>
   <div class="right">
     <button class="tool" type="button" data-lang-toggle>English</button>
-    <a class="btn neon" href="#contacto" data-en="Get a quote">Cotizar</a>
+    <a class="btn neon" href="contacto.html" data-en="Get a quote">Cotizar</a>
     <button class="tool menu-btn" type="button" data-menu data-en="Menu">Menú</button>
   </div>
 </header>
-
 <div class="scrim" data-close></div>
 <aside class="drawer" aria-label="Menú">
   <button class="x" type="button" data-close aria-label="Cerrar">×</button>
-  <a href="#iglesias" data-close data-en="Churches">Iglesias</a>
-  <a href="#escuelas" data-close data-en="Schools">Escuelas</a>
-  <a href="#negocios" data-close data-en="Businesses">Negocios</a>
-  <a href="#servicios" data-close data-en="Services">Servicios</a>
-  <a href="#proceso" data-close data-en="Process">Proceso</a>
-  <a href="#sobre-mi" data-close data-en="About">Sobre mí</a>
-  <a href="#contacto" data-close data-en="Contact">Contacto</a>
+  <a href="iglesias.html" data-en="Churches">Iglesias</a>
+  <a href="escuelas.html" data-en="Schools">Escuelas</a>
+  <a href="servicios.html" data-en="Services">Servicios</a>
+  <a href="proceso.html" data-en="Process">Proceso</a>
+  <a href="contacto.html" data-en="About">Sobre mí</a>
   <button class="item" type="button" data-lang-toggle>English</button>
-  <a class="btn neon" href="#contacto" data-close data-en="Get a free quote">Cotización gratis</a>
+  <a class="btn neon" href="contacto.html" data-en="Get a free quote">Cotización gratis</a>
 </aside>
 
 <main>
-<!-- HERO -->
 <section class="panel" id="inicio">
   <img src="https://images.unsplash.com/photo-1627718725000-8d47e8ff6354?auto=format&fit=crop&w=2200&q=80" alt="Un faro encendido de noche junto al mar" fetchpriority="high">
   <div>
     <h1 data-en="Websites that are seen from far away">Páginas web que se ven desde lejos</h1>
-    <p class="sub" data-en="Bilingual sites for churches, schools and businesses in Fort Myers, FL">Sitios bilingües para iglesias, escuelas y negocios en Fort Myers, FL</p>
-    <a class="rating" href="#confianza"><span class="stars" aria-hidden="true">★★★★★</span><span data-en="5.0 · rated by our 2 clients">5.0 · calificación de nuestros 2 clientes</span></a>
+    <p class="sub" data-en="Bilingual websites for churches and schools">Sitios bilingües para iglesias y escuelas</p>
+    <span class="stars" role="img" aria-label="5 estrellas">★★★★★</span>
   </div>
   <div class="ctas">
-    <a class="btn neon" href="#contacto" data-en="Get a free quote">Cotización gratis</a>
-    <a class="btn light" href="#servicios" data-en="See services">Ver servicios</a>
+    <a class="btn neon" href="contacto.html" data-en="Get a free quote">Cotización gratis</a>
+    <a class="btn light" href="servicios.html" data-en="See services">Ver servicios</a>
   </div>
   <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
 </section>
 
-<!-- IGLESIAS -->
-<section class="panel" id="iglesias">
+<section class="panel">
   <img src="https://images.unsplash.com/photo-1579975096649-e773152b04cb?auto=format&fit=crop&w=2200&q=80" alt="Personas adorando con las manos levantadas" loading="lazy">
   <div>
     <span class="tag" data-en="Churches & ministries">Iglesias y ministerios</span>
@@ -253,13 +67,12 @@
     <p class="sub" data-en="Service times, live streams, online giving and events, in English and Spanish.">Horarios, transmisiones en vivo, ofrendas en línea y eventos, en inglés y en español.</p>
   </div>
   <div class="ctas">
-    <a class="btn neon" href="#contacto" data-plan="Iglesia" data-en="Get a quote">Cotizar</a>
-    <button class="btn light" type="button" data-sheet="iglesias" data-en="What's included">Qué incluye</button>
+    <a class="btn neon" href="contacto.html" data-en="Get a quote">Cotizar</a>
+    <a class="btn light" href="iglesias.html" data-en="Learn more">Ver más</a>
   </div>
 </section>
 
-<!-- ESCUELAS -->
-<section class="panel" id="escuelas">
+<section class="panel">
   <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=2200&q=80" alt="Maestra enseñando a niños en un salón de clases" loading="lazy">
   <div>
     <span class="tag" data-en="Academies & schools">Academias y escuelas</span>
@@ -267,224 +80,43 @@
     <p class="sub" data-en="Admissions, online enrollment, calendar and parent information in one place.">Admisiones, inscripción en línea, calendario e información para padres en un solo lugar.</p>
   </div>
   <div class="ctas">
-    <a class="btn neon" href="#contacto" data-plan="Escuela" data-en="Get a quote">Cotizar</a>
-    <button class="btn light" type="button" data-sheet="escuelas" data-en="What's included">Qué incluye</button>
+    <a class="btn neon" href="contacto.html" data-en="Get a quote">Cotizar</a>
+    <a class="btn light" href="escuelas.html" data-en="Learn more">Ver más</a>
   </div>
 </section>
 
-<!-- NEGOCIOS -->
-<section class="panel" id="negocios">
-  <img src="https://images.unsplash.com/photo-1753351052617-62818ffc9173?auto=format&fit=crop&w=2200&q=80" alt="Dos dueños de un café sonriendo en su negocio" loading="lazy">
-  <div>
-    <span class="tag" data-en="Local businesses">Negocios locales</span>
-    <h2 data-en="Get found. Get called.">Que te encuentren. Que te llamen.</h2>
-    <p class="sub" data-en="Services, prices, Google profile and a WhatsApp button that brings you customers.">Servicios, precios, perfil de Google y un botón de WhatsApp que te trae clientes.</p>
-  </div>
-  <div class="ctas">
-    <a class="btn neon" href="#contacto" data-plan="Negocio" data-en="Get a quote">Cotizar</a>
-    <button class="btn light" type="button" data-sheet="negocios" data-en="What's included">Qué incluye</button>
-  </div>
-</section>
-
-<!-- CONFIANZA -->
-<section class="trust" id="confianza">
-  <div class="wrap">
-    <div class="score"><b>5.0</b><div><span class="stars" aria-label="5 de 5 estrellas">★★★★★</span><small data-en="Rated by our 2 clients">Calificación de nuestros 2 clientes</small></div></div>
-    <div class="item"><b data-en="Bilingual">Bilingüe</b><span data-en="Every site in English and Spanish">Cada sitio en inglés y español</span></div>
-    <div class="item"><b data-en="1–2 days">1–2 días</b><span data-en="To receive your quote">Para recibir tu cotización</span></div>
-    <div class="item"><b>Fort Myers</b><span data-en="Local, in person or by WhatsApp">Local, en persona o por WhatsApp</span></div>
-  </div>
-</section>
-
-<!-- SERVICIOS (Starbucks) -->
-<div id="servicios">
-  <div class="sec-title"><h2 data-en="Three ways to get started">Tres formas de empezar</h2><p data-en="Every package includes English and Spanish, phone-ready design and personal support.">Todos los paquetes incluyen inglés y español, diseño para teléfono y atención personal.</p></div>
-  <div class="blocks">
-    <div class="block neon">
-      <div class="txt">
-        <span class="badge" data-en="To start">Para empezar</span>
-        <h2 data-en="Essential site">Sitio esencial</h2>
-        <p data-en="Everything you need to look professional online, quickly.">Todo lo necesario para verte profesional en internet, rápido.</p>
-        <ul><li data-en="Up to 5 pages, English and Spanish">Hasta 5 páginas, inglés y español</li><li data-en="Looks great on phones">Se ve bien en el teléfono</li><li data-en="Contact form and map">Formulario de contacto y mapa</li><li data-en="Linked to your social media">Conexión con tus redes sociales</li></ul>
-        <a class="pill on-neon" href="#contacto" data-plan="Sitio esencial" data-en="Get a quote">Cotizar</a>
-      </div>
-      <div class="pic"><img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=1400&q=80" alt="Laptop abierta sobre un escritorio de madera" loading="lazy"></div>
+<section class="julio">
+  <div class="photo"><img src="assets/julio.png" alt="Julio C. Chinea" data-fallback="JC"></div>
+  <div class="info">
+    <span class="tag" data-en="About me · Free quote">Sobre mí · Cotización gratis</span>
+    <h2 data-en="Hi, I'm Julio Chinea">Hola, soy Julio Chinea</h2>
+    <p data-en="I'm a pastor with more than 35 years in ministry, always focused on reaching souls and making disciples. I have developed ministry training schools, and my goal has always been to serve others.">Soy pastor con más de 35 años en el ministerio, siempre enfocado en alcanzar almas y formar discípulos. He desarrollado escuelas de formación ministerial, y mi meta ha sido servir a otros.</p>
+    <p data-en="That's how Faro Digital was born: to light the way for those seeking to reach new levels. Tell me what you need and I'll send you a free quote.">Así nace Faro Digital: para iluminar el camino de quienes buscan alcanzar nuevos niveles. Cuéntame qué necesitas y te envío una cotización gratis.</p>
+    <div class="facts">
+      <div><b>35+</b><span data-en="years in ministry">años en el ministerio</span></div>
+      <div><b>ES·EN</b><span data-en="two languages">dos idiomas</span></div>
+      <div><b>1–2</b><span data-en="days for your quote">días para tu cotización</span></div>
     </div>
-    <div class="block dark flip">
-      <div class="txt">
-        <span class="badge" data-en="Most requested">El más pedido</span>
-        <h2 data-en="Complete site">Sitio completo</h2>
-        <p data-en="For busy churches and schools that need more than a page.">Para iglesias y escuelas con mucha actividad que necesitan más que una página.</p>
-        <ul><li data-en="Everything in the essential site">Todo lo del sitio esencial</li><li data-en="Events and ministries calendar">Calendario de eventos y ministerios</li><li data-en="Online giving or enrollment">Donaciones o inscripciones en línea</li><li data-en="Streams, sermons and gallery">Transmisiones, mensajes y galería</li></ul>
-        <a class="pill on-dark" href="#contacto" data-plan="Sitio completo" data-en="Get a quote">Cotizar</a>
-      </div>
-      <div class="pic"><img src="https://images.unsplash.com/photo-1507692049790-de58290a4334?auto=format&fit=crop&w=1400&q=80" alt="Banda de alabanza en un escenario" loading="lazy"></div>
+    <div class="ctas">
+      <a class="btn neon" href="https://wa.me/17868057734" target="_blank" rel="noopener" data-en="Message me on WhatsApp">Escríbeme por WhatsApp</a>
+      <a class="btn light" href="tel:+17868057734" data-en="Call (786) 805-7734">Llamar (786) 805-7734</a>
     </div>
-    <div class="block mist">
-      <div class="txt">
-        <span class="badge" data-en="Ongoing">Siempre al día</span>
-        <h2 data-en="Monthly care">Cuidado mensual</h2>
-        <p data-en="We keep your site updated, safe and running, every month.">Mantenemos tu sitio actualizado, seguro y funcionando, cada mes.</p>
-        <ul><li data-en="Changes and updates every month">Cambios y actualizaciones cada mes</li><li data-en="Hosting, security and backups">Hosting, seguridad y respaldos</li><li data-en="New events and announcements">Nuevos eventos y anuncios</li><li data-en="Support via WhatsApp">Soporte por WhatsApp</li></ul>
-        <a class="pill on-light" href="#contacto" data-plan="Cuidado mensual" data-en="Get a quote">Cotizar</a>
-      </div>
-      <div class="pic"><img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1400&q=80" alt="Niño escribiendo en un salón de clases" loading="lazy"></div>
-    </div>
+    <p class="note"><a href="mailto:info@farodigitalfl.com" style="color:inherit">info@farodigitalfl.com</a> · <span data-en="Free, no obligation">Gratis y sin compromiso</span></p>
   </div>
-  <p class="also" data-en="Also: redesigns of existing sites, work in Wix or with custom code, and setting up your Google profile.">También: rediseño de sitios existentes, trabajo en Wix o con código a la medida, y configuración de tu perfil de Google.</p>
-</div>
-
-<!-- PROCESO -->
-<section id="proceso">
-  <div class="wrap">
-    <div class="sec-title" style="padding-left:0;padding-right:0"><h2 data-en="Four steps, no surprises">Cuatro pasos, sin sorpresas</h2><p data-en="You always know what comes next, and who to call.">Siempre sabes qué sigue y a quién llamar.</p></div>
-    <div class="steps">
-      <div class="step"><span class="n">01</span><div><h3 data-en="We talk">Conversamos</h3><p data-en="A free meeting to understand your vision, your people and what you need.">Una reunión gratis para entender tu visión, tu gente y lo que necesitas.</p></div></div>
-      <div class="step"><span class="n">02</span><div><h3 data-en="We design">Diseñamos</h3><p data-en="We show you a draft so you can see it and ask for changes.">Te mostramos un borrador para que lo veas y pidas cambios.</p></div></div>
-      <div class="step"><span class="n">03</span><div><h3 data-en="We launch">Publicamos</h3><p data-en="Your site goes live on your domain, ready on phones and computers.">Tu sitio sale en línea con tu dominio, listo en teléfonos y computadoras.</p></div></div>
-      <div class="step"><span class="n">04</span><div><h3 data-en="We stay with you">Te acompañamos</h3><p data-en="Monthly maintenance so your site never falls behind.">Mantenimiento mensual para que tu sitio nunca se quede atrás.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- SOBRE MÍ (Starbucks) -->
-<div class="blocks" id="sobre-mi" style="padding-top:clamp(80px,11vh,120px)">
-  <div class="block dark">
-    <div class="txt">
-      <span class="badge" data-en="About me">Sobre mí</span>
-      <h2 data-en="Hi, I'm Julio Chinea">Hola, soy Julio Chinea</h2>
-      <p data-en="I'm a pastor with more than 35 years in ministry, always focused on reaching souls and making disciples. I have developed ministry training schools, and my goal has always been to serve others and help them fulfill their purpose.">Soy pastor con más de 35 años en el ministerio, siempre enfocado en alcanzar almas y formar discípulos. He desarrollado escuelas de formación ministerial, y mi meta ha sido servir a otros y ayudarles a cumplir su propósito.</p>
-      <p data-en="That same desire led me to put my experience in technology at the service of others. That's how Faro Digital was born: to light the way for those seeking to reach new levels.">Ese mismo anhelo me llevó a poner mi experiencia en tecnología al servicio de otros. Así nace Faro Digital: para iluminar el camino de quienes buscan alcanzar nuevos niveles.</p>
-      <div style="margin-top:28px"><a class="pill on-dark" href="https://wa.me/17868057734" target="_blank" rel="noopener" data-en="Message me on WhatsApp">Escríbeme por WhatsApp</a></div>
-    </div>
-    <div class="pic"><img src="https://images.unsplash.com/photo-1620803660514-b57a2916c12f?auto=format&fit=crop&w=1400&q=80" alt="Faro junto al mar al atardecer" loading="lazy"></div>
-  </div>
-</div>
-
-<!-- CONTACTO (Tesla) -->
-<section class="wrap contact" id="contacto">
-  <div>
-    <h2 data-en="Get your free quote">Pide tu cotización gratis</h2>
-    <p class="lead" data-en="Tell us what you need. We reply within 1–2 days, with no obligation.">Cuéntanos qué necesitas. Te respondemos en 1 o 2 días, sin compromiso.</p>
-    <form id="quote" novalidate>
-      <div class="field"><label for="f-name" data-en="Name">Nombre</label><input id="f-name" name="nombre" required autocomplete="name"></div>
-      <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
-      <div class="field"><label for="f-org" data-en="Organization">Organización</label><input id="f-org" name="organizacion" autocomplete="organization"></div>
-      <div class="field"><label for="f-type" data-en="Type">Tipo</label><select id="f-type" name="tipo"><option>Iglesia / Church</option><option>Academia / School</option><option>Negocio / Business</option><option>Otro / Other</option></select></div>
-      <div class="field full"><label for="f-msg" data-en="What do you need?">¿Qué necesitas?</label><textarea id="f-msg" name="mensaje"></textarea></div>
-      <div class="form-foot">
-        <button class="btn neon" type="submit" data-via="wa" data-en="Send via WhatsApp">Enviar por WhatsApp</button>
-        <button class="btn dark" type="submit" data-via="mail" data-en="Send by email">Enviar por email</button>
-        <small id="formMsg" role="status"></small>
-      </div>
-    </form>
-  </div>
-  <aside class="card-dark">
-    <h3 data-en="Talk to Julio directly">Habla directo con Julio</h3>
-    <div class="score"><b>5.0</b><span class="stars">★★★★★</span></div>
-    <small data-en="Rated 5 stars by our 2 clients">Calificación de 5 estrellas de nuestros 2 clientes</small>
-    <ul>
-      <li><a href="https://wa.me/17868057734" target="_blank" rel="noopener"><span>WhatsApp</span><em>(786) 805-7734 →</em></a></li>
-      <li><a href="mailto:info@farodigitalfl.com"><span>Email</span><em>info@farodigitalfl.com →</em></a></li>
-      <li><span><span data-en="Area">Zona</span><em>Fort Myers · Cape Coral</em></span></li>
-    </ul>
-  </aside>
 </section>
 </main>
 
-<!-- PIE (Starbucks) -->
 <footer>
   <div class="wrap">
-    <div class="fcols">
-      <details open><summary><h4 data-en="Services">Servicios</h4></summary><ul><li><a href="#servicios" data-en="Essential site">Sitio esencial</a></li><li><a href="#servicios" data-en="Complete site">Sitio completo</a></li><li><a href="#servicios" data-en="Monthly care">Cuidado mensual</a></li><li><a href="#servicios" data-en="Redesigns">Rediseños</a></li></ul></details>
-      <details open><summary><h4 data-en="Who we serve">Para quién</h4></summary><ul><li><a href="#iglesias" data-en="Churches">Iglesias</a></li><li><a href="#escuelas" data-en="Schools">Escuelas</a></li><li><a href="#negocios" data-en="Businesses">Negocios</a></li></ul></details>
-      <details open><summary><h4>Faro Digital</h4></summary><ul><li><a href="#sobre-mi" data-en="About">Sobre mí</a></li><li><a href="#proceso" data-en="Process">Proceso</a></li><li><a href="brand.html">Brand Guidelines</a></li></ul></details>
-      <details open><summary><h4 data-en="Contact">Contacto</h4></summary><ul><li><a href="https://wa.me/17868057734" target="_blank" rel="noopener">(786) 805-7734</a></li><li><a href="mailto:info@farodigitalfl.com">info@farodigitalfl.com</a></li><li>Fort Myers, FL</li></ul></details>
-    </div>
-    <div class="fbottom">
-      <img src="assets/logo.svg" alt="Faro">
-      <span data-en="© 2026 Faro Digital · Fort Myers, Florida · Photos: Unsplash">© 2026 Faro Digital · Fort Myers, Florida · Fotos: Unsplash</span>
-      <button type="button" data-lang-toggle>English</button>
-    </div>
+    <img src="assets/logo.svg" alt="Faro">
+    <nav><a href="servicios.html" data-en="Services">Servicios</a><a href="contacto.html" data-en="Contact">Contacto</a><a href="brand.html">Brand</a></nav>
+    <span>© 2026 Faro Digital</span>
+    <button type="button" data-lang-toggle>English</button>
   </div>
 </footer>
 
-<!-- hoja "qué incluye" -->
-<dialog id="sheet"><button class="x" type="button" data-sheet-close aria-label="Cerrar">×</button><img alt=""><div class="in"><h3></h3><ul></ul><div class="row"><a class="btn neon" href="#contacto" data-sheet-close data-en="Get a quote">Cotizar</a><a class="btn dark" href="https://wa.me/17868057734" target="_blank" rel="noopener">WhatsApp</a></div></div></dialog>
+<a class="wa" href="https://wa.me/17868057734" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.4 6.4 0 0 0 1.3 3.4 14.7 14.7 0 0 0 5.6 5c2.1.9 2.9 1 4 .8.6-.1 1.9-.8 2.2-1.5s.3-1.4.2-1.5-.3-.2-.6-.3z"/></svg><span>WhatsApp</span></a>
 
-<a class="wa" href="https://wa.me/17868057734" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.4 6.4 0 0 0 1.3 3.4 14.7 14.7 0 0 0 5.6 5c2.1.9 2.9 1 4 .8.6-.1 1.9-.8 2.2-1.5s.3-1.4.2-1.5-.3-.2-.6-.3z"/></svg><span>WhatsApp</span>
-</a>
-
-<script>
-(() => {
-  /* ---------- idioma ---------- */
-  let lang = localStorage.getItem('faro-lang') || 'es';
-  const tEls = [...document.querySelectorAll('[data-en]')];
-  tEls.forEach(el => el.dataset.es = el.innerHTML);
-  const S = {
-    es:{toggle:'English', waOk:'Abriendo WhatsApp…', mailOk:'Abriendo tu correo…', need:'Escribe tu nombre y un email válido.', hi:'Hola Faro Digital, soy', org:'Organización', type:'Tipo', plan:'Me interesa: '},
-    en:{toggle:'Español', waOk:'Opening WhatsApp…', mailOk:'Opening your email app…', need:'Please enter your name and a valid email.', hi:'Hi Faro Digital, I am', org:'Organization', type:'Type', plan:'I am interested in: '}
-  };
-  function applyLang(){
-    document.documentElement.lang = lang;
-    tEls.forEach(el => el.innerHTML = el.dataset[lang]);
-    document.querySelectorAll('[data-lang-toggle]').forEach(b => b.textContent = S[lang].toggle);
-    localStorage.setItem('faro-lang', lang);
-  }
-  document.querySelectorAll('[data-lang-toggle]').forEach(b => b.addEventListener('click', () => { lang = lang === 'es' ? 'en' : 'es'; applyLang(); }));
-
-  /* ---------- menú: transparente sobre la foto, sólido al bajar ---------- */
-  const top = document.getElementById('top');
-  // transparente mientras haya fotos detrás (como Tesla); blanco al llegar al contenido
-  const lastPanel = document.getElementById('negocios');
-  const onScroll = () => top.classList.toggle('solid', scrollY > lastPanel.offsetTop + lastPanel.offsetHeight - 120 || document.body.classList.contains('open'));
-  addEventListener('scroll', onScroll, {passive:true}); onScroll();
-
-  /* ---------- cajón móvil ---------- */
-  document.querySelector('[data-menu]').addEventListener('click', () => { document.body.classList.add('open'); onScroll(); });
-  document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => { document.body.classList.remove('open'); onScroll(); }));
-  addEventListener('keydown', e => { if (e.key === 'Escape') { document.body.classList.remove('open'); onScroll(); } });
-
-  /* ---------- fotos que se acomodan al entrar ---------- */
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), {threshold:.25});
-  document.querySelectorAll('.panel').forEach(p => io.observe(p));
-
-  /* ---------- hojas "qué incluye" ---------- */
-  const SHEETS = {
-    iglesias:{img:'1579975096649-e773152b04cb', es:['Iglesias y ministerios',['Horarios de servicio y ubicación con mapa','Transmisiones en vivo y mensajes grabados','Ofrendas en línea (Tithely, Breeze y otras)','Calendario de eventos y ministerios','Todo en inglés y en español']], en:['Churches & ministries',['Service times and location with map','Live streams and recorded sermons','Online giving (Tithely, Breeze and more)','Events and ministries calendar','Everything in English and Spanish']]},
-    escuelas:{img:'1577896851231-70ef18881754', es:['Academias y escuelas',['Admisiones e inscripción en línea','Calendario escolar e información para padres','Programas, personal y galería de fotos','Formularios que llegan a tu correo','Todo en inglés y en español']], en:['Academies & schools',['Admissions and online enrollment','School calendar and parent information','Programs, staff and photo gallery','Forms that reach your inbox','Everything in English and Spanish']]},
-    negocios:{img:'1753351052617-62818ffc9173', es:['Negocios locales',['Servicios, precios y galería de trabajos','Perfil de Google para que te encuentren','Botón de WhatsApp y citas','Se ve bien en el teléfono','Todo en inglés y en español']], en:['Local businesses',['Services, prices and work gallery','Google profile so people find you','WhatsApp button and appointments','Looks great on phones','Everything in English and Spanish']]}
-  };
-  const dlg = document.getElementById('sheet');
-  document.querySelectorAll('[data-sheet]').forEach(b => b.addEventListener('click', () => {
-    const d = SHEETS[b.dataset.sheet], t = d[lang];
-    dlg.querySelector('img').src = `https://images.unsplash.com/photo-${d.img}?auto=format&fit=crop&w=1000&q=75`;
-    dlg.querySelector('h3').textContent = t[0];
-    dlg.querySelector('ul').innerHTML = t[1].map(x => `<li>${x}</li>`).join('');
-    dlg.showModal();
-  }));
-  dlg.querySelectorAll('[data-sheet-close]').forEach(b => b.addEventListener('click', () => dlg.close()));
-  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
-
-  /* ---------- paquetes → mensaje ---------- */
-  document.querySelectorAll('[data-plan]').forEach(b => b.addEventListener('click', () => { const m = document.getElementById('f-msg'); if (!m.value) m.value = S[lang].plan + b.dataset.plan + '. '; }));
-
-  /* ---------- formulario → WhatsApp o correo ---------- */
-  const form = document.getElementById('quote'), msg = document.getElementById('formMsg');
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const via = (e.submitter && e.submitter.dataset.via) || 'wa';
-    const fd = new FormData(form);
-    const name = (fd.get('nombre') || '').trim(), email = (fd.get('email') || '').trim();
-    if (!name || !/^\S+@\S+\.\S+$/.test(email)) { msg.textContent = S[lang].need; return; }
-    const body = `${S[lang].hi} ${name}.\nEmail: ${email}\n${S[lang].org}: ${fd.get('organizacion') || '-'}\n${S[lang].type}: ${fd.get('tipo')}\n\n${fd.get('mensaje') || ''}`;
-    if (via === 'mail') { msg.textContent = S[lang].mailOk; location.href = 'mailto:info@farodigitalfl.com?subject=' + encodeURIComponent('Cotización – ' + name) + '&body=' + encodeURIComponent(body); }
-    else { msg.textContent = S[lang].waOk; window.open('https://wa.me/17868057734?text=' + encodeURIComponent(body), '_blank', 'noopener'); }
-  });
-
-  if (lang !== 'es') applyLang();
-})();
-</script>
+<script src="assets/site.js"></script>
 </body>
 </html>
