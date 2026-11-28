@@ -175,7 +175,7 @@ footer button{background:none;border:0;font:600 14px var(--f);cursor:pointer;col
 .julio .facts{margin:26px 0 26px}
 
 /* ---------- luz del faro que gira ---------- */
-.panel>div{position:relative;z-index:1}
+.panel>div:not(.beam){position:relative;z-index:1}
 .beam{position:absolute;left:var(--lx,42%);top:var(--ly,12%);width:0;height:0;z-index:0;pointer-events:none}
 .beam .cone{position:absolute;left:0;top:0;width:280vmax;height:280vmax;transform:translate(-50%,-50%) rotate(0deg);background:conic-gradient(from 0deg,rgba(255,238,205,0) 0deg,rgba(255,238,205,.5) 5deg,rgba(255,238,205,.18) 11deg,rgba(255,238,205,0) 17deg,transparent 180deg,rgba(255,238,205,0) 180deg,rgba(255,238,205,.5) 185deg,rgba(255,238,205,.18) 191deg,rgba(255,238,205,0) 197deg,transparent 360deg);-webkit-mask:radial-gradient(circle,#000 0,rgba(0,0,0,.75) 10%,rgba(0,0,0,.25) 30%,transparent 50%);mask:radial-gradient(circle,#000 0,rgba(0,0,0,.75) 10%,rgba(0,0,0,.25) 30%,transparent 50%);mix-blend-mode:screen;animation:sweep 9s linear infinite}
 .beam .lamp{position:absolute;left:0;top:0;width:70px;height:70px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#fff 0,rgba(255,240,210,.9) 14%,rgba(255,200,120,.35) 40%,transparent 70%);mix-blend-mode:screen;animation:glow 4.5s ease-in-out infinite}
