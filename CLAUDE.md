@@ -18,7 +18,7 @@ correos privados, cuentas, contraseñas, claves ni notas internas del negocio.
 
 ## El sitio
 - Publicado en https://farodigitalfl.com con GitHub Pages (archivo `CNAME`).
-- Páginas: index, iglesias, escuelas, servicios, proceso, contacto, más 4 páginas SEO
+- Páginas: index, iglesias, escuelas, servicios, proceso, contacto, más guías SEO (índice en `guias.html`; ver sitemap.xml)
   (iglesias hispanas, escuela cristiana bilingüe, ofrendas en línea, qué debe tener la
   página de una iglesia). `sitemap.xml` y `robots.txt` en la raíz.
 - Estilos y scripts compartidos: `assets/site.css`, `assets/site.js`, tokens en
