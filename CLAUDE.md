@@ -22,7 +22,7 @@ correos privados, cuentas, contraseñas, claves ni notas internas del negocio.
   (iglesias hispanas, escuela cristiana bilingüe, ofrendas en línea, qué debe tener la
   página de una iglesia). `sitemap.xml` y `robots.txt` en la raíz.
 - Estilos y scripts compartidos: `assets/site.css`, `assets/site.js`, tokens en
-  `assets/faro.css`. Medición en `assets/track.js` (Supabase: tablas `leads` y `events`)
+  `assets/faro.css`. Medición en `assets/medir.js` (Supabase `events`; no llamarlo track.js: los bloqueadores lo bloquean). Las cotizaciones (Supabase `leads` + FormSubmit al correo) salen desde `assets/site.js` y no dependen de la medición
   y Microsoft Clarity en todas las páginas.
 - Cuando cambie CSS/JS, sube el `?v=N` de los enlaces en todos los `.html` (caché).
 

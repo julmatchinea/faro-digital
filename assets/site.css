@@ -242,8 +242,31 @@ footer button{background:none;border:0;font:600 14px var(--f);cursor:pointer;col
 .qm .sendrow{display:grid;gap:10px;margin-top:20px}
 .qm .sendrow .btn{width:100%;min-height:54px}
 .qm .confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.qm .confetti i{position:absolute;top:-12px;width:8px;height:14px;border-radius:2px;animation:fall 1.6s ease-in forwards}
-@keyframes fall{to{transform:translateY(620px) rotate(540deg);opacity:0}}
+.qm .confetti{z-index:3}
+.qm .confetti i{position:absolute;width:8px;height:14px;margin:-7px 0 0 -4px;border-radius:2px;opacity:0;animation:burst 1.5s cubic-bezier(.15,.7,.3,1) forwards}
+@keyframes burst{0%{opacity:1;transform:translate(0,0) rotate(0) scale(.4)}12%{opacity:1;transform:translate(calc(var(--dx)*.45),calc(var(--dy)*.45)) rotate(calc(var(--r)*.2)) scale(1)}55%{opacity:1;transform:translate(var(--dx),var(--dy)) rotate(calc(var(--r)*.6))}100%{opacity:0;transform:translate(calc(var(--dx)*1.1),calc(var(--dy) + 260px)) rotate(var(--r))}}
+/* botón Enviar: se vuelve círculo que gira, luego ✓ con un golpe */
+.qm [data-send]{position:relative;display:flex;margin-inline:auto;overflow:hidden;transition:width .45s var(--ease),border-radius .45s var(--ease),box-shadow .3s,background .3s}
+.qm [data-send] .lbl{transition:transform .3s var(--ease),opacity .2s}
+.qm [data-send] .tick{position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;fill:none;stroke:var(--grafito);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24}
+.qm [data-send]::after{content:"";position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;border:3px solid rgba(23,26,32,.18);border-top-color:var(--grafito);opacity:0;transition:opacity .2s}
+.qm [data-send].sending{width:56px;min-width:0;padding:0;border-radius:50%;pointer-events:none;box-shadow:0 0 0 8px rgba(255,94,0,.16),0 10px 30px -8px rgba(255,94,0,.7)}
+.qm [data-send].sending .lbl{transform:translateY(-140%);opacity:0}
+.qm [data-send].sending::after{opacity:1;animation:spin .7s linear infinite}
+.qm [data-send].success::after{opacity:0;animation:none}
+.qm [data-send].success{animation:thump .5s cubic-bezier(.2,1.6,.4,1);box-shadow:0 0 0 14px rgba(255,94,0,0),0 14px 40px -8px rgba(255,94,0,.9);transition:box-shadow .6s ease-out}
+.qm [data-send].success .tick{transition:stroke-dashoffset .35s .05s ease-out;stroke-dashoffset:0}
+.qm [data-send].shake{animation:shake .45s}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes thump{0%{transform:scale(1)}35%{transform:scale(1.28)}65%{transform:scale(.94)}100%{transform:scale(1)}}
+@keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+.qm .wa-send{width:100%;min-height:54px;margin-top:10px;background:#25D366;color:#0b2e17;font-weight:700}
+.qm .wa-send[hidden]{display:none}
+/* la ola naranja que llena la tarjeta */
+.qm .flood{position:absolute;left:0;right:0;top:0;height:100%;z-index:4;pointer-events:none;background:var(--neon);clip-path:circle(0 at var(--x,50%) var(--y,80%));visibility:hidden}
+.qm .flood.in{visibility:visible;clip-path:circle(150% at var(--x,50%) var(--y,80%));transition:clip-path .55s cubic-bezier(.7,0,.3,1)}
+.qm .flood.in.out{transform:translateY(-102%);transition:transform .55s cubic-bezier(.7,0,.3,1)}
+@media (prefers-reduced-motion:reduce){.qm .flood{display:none}.qm [data-send].sending::after{animation:none}}
 @media (max-width:600px){
   .qm{place-items:end center;padding:0}
   .qm .card{border-radius:20px 20px 0 0;max-height:94svh;transform:translateY(100%)}

@@ -9,8 +9,12 @@
     document.querySelectorAll('[data-lang-toggle]').forEach(b => b.textContent = lang === 'es' ? 'English' : 'Español');
     localStorage.setItem('faro-lang', lang);
   }
-  // medición (assets/track.js); si no está cargado, no hace nada
+  // medición (assets/medir.js); si no está cargado, no hace nada
   const T_ = (name, data) => { if (window.faroTrack) window.faroTrack(name, data); };
+  // Supabase para las cotizaciones (clave pública: solo permite guardar, no leer)
+  const SB_URL = 'https://blbcyrfrdmrnauxxcsrz.supabase.co', SB_KEY = 'sb_publishable_jbPE3roXIHmnAsRSdRdaVQ_wuuNr8GL';
+  const rid = () => (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2));
+  const store = (s, k) => { try { let v = s.getItem(k); if (!v) { v = rid(); s.setItem(k, v); } return v; } catch (e) { return rid(); } };
   document.querySelectorAll('[data-lang-toggle]').forEach(b => b.addEventListener('click', () => { lang = lang === 'es' ? 'en' : 'es'; applyLang(); T_('lang_change', {to: lang}); }));
 
   // menú: transparente sobre fotos oscuras (como Tesla), blanco sobre contenido claro
@@ -164,12 +168,12 @@
   const T = {
     es:{step:'Paso', of:'de', q0:'¿Para quién es tu página?', h0:'Toca una opción.', church:'Iglesia', school:'Escuela', other:'Otro',
         q1:'¿Qué te gustaría tener?', h1:'Elige todo lo que quieras.', chips:['Sitio nuevo','Rediseño','Ofrendas en línea','Inscripciones','Transmisiones en vivo','Calendario de eventos','Cuidado mensual'],
-        cont:'Continuar', q2:'¿Cómo te contactamos?', h2:'Solo dos datos y listo.', name:'Tu nombre', contact:'Tu número de teléfono', send:'Enviar', badName:'Escribe tu nombre.', badContact:'Escribe un número de teléfono válido (10 dígitos).', sending:'Enviando…', failed:'No se pudo enviar. Intenta otra vez o llama al (786) 805-7734.',
+        cont:'Continuar', q2:'¿Cómo te contactamos?', h2:'Solo dos datos y listo.', name:'Tu nombre', contact:'Tu número de teléfono', send:'Enviar', badName:'Escribe tu nombre.', badContact:'Escribe un número de teléfono válido (10 dígitos).', sending:'Enviando…', failed:'No se pudo enviar por aquí. Mándalo por WhatsApp con un toque:', viaWa:'Enviar por WhatsApp',
         thanks:'¡Gracias, {n}!', done:'Recibí tu solicitud. Te llamo en 1 o 2 días.', s0:'Para', s1:'Quiero', s2:'Teléfono', ok:'Listo', close:'Cerrar',
         msg:'Hola Julio, soy {n}. Quiero una página para: {t}. Me interesa: {c}. Mi contacto: {k}.'},
     en:{step:'Step', of:'of', q0:'Who is your website for?', h0:'Tap one option.', church:'Church', school:'School', other:'Other',
         q1:'What would you like to have?', h1:'Pick as many as you like.', chips:['New website','Redesign','Online giving','Enrollment','Live streams','Events calendar','Monthly care'],
-        cont:'Continue', q2:'How do we reach you?', h2:'Just two details and done.', name:'Your name', contact:'Your phone number', send:'Send', badName:'Please enter your name.', badContact:'Please enter a valid phone number (10 digits).', sending:'Sending…', failed:'Could not send. Try again or call (786) 805-7734.',
+        cont:'Continue', q2:'How do we reach you?', h2:'Just two details and done.', name:'Your name', contact:'Your phone number', send:'Send', badName:'Please enter your name.', badContact:'Please enter a valid phone number (10 digits).', sending:'Sending…', failed:'It could not be sent from here. Send it on WhatsApp with one tap:', viaWa:'Send on WhatsApp',
         thanks:'Thank you, {n}!', done:'I received your request. I will call you within 1–2 days.', s0:'For', s1:'Wants', s2:'Phone', ok:'Done', close:'Close',
         msg:'Hi Julio, I am {n}. I want a website for: {t}. I am interested in: {c}. My contact: {k}.'}
   };
@@ -196,7 +200,9 @@
       <section class="qstep" data-s="2"><h3>${t.q2}</h3><p class="hint">${t.h2}</p>
         <label for="q-name">${t.name}</label><input id="q-name" autocomplete="name" enterkeyhint="next">
         <label for="q-contact">${t.contact}</label><input id="q-contact" type="tel" autocomplete="tel" inputmode="tel" placeholder="(239) 555-1234" enterkeyhint="send">
-        <p class="err" role="status"></p><button class="btn neon next" type="button" data-send disabled>${t.send} →</button></section>
+        <p class="err" role="status"></p><button class="btn neon next" type="button" data-send disabled><span class="lbl">${t.send} →</span><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
+        <a class="btn wa-send" hidden target="_blank" rel="noopener">${t.viaWa}</a></section>
+      <div class="flood" aria-hidden="true"></div>
       <section class="qstep done" data-s="3"><div class="confetti"></div><div class="check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
         <h3 class="ty"></h3><p class="hint">${t.done}</p><ul class="summary"></ul>
         <div class="sendrow"><button class="btn neon" type="button" data-qclose>${t.ok}</button></div></section>
@@ -238,30 +244,70 @@
       if (!validContact()) { err.textContent = t.badContact; contactI.focus(); T_('quote_error', {field: 'phone'}); return; }
       const n = nameI.value.trim(), k = contactI.value.trim();
       const msg = t.msg.replace('{n}', n).replace('{t}', st.type).replace('{c}', st.wants.join(', ')).replace('{k}', k);
-      // se guarda en Supabase (tabla leads) y además llega al correo de Faro Digital
-      const label = sendB.textContent;
-      sendB.disabled = true; sendB.textContent = t.sending;
-      const toDb = (window.faroLead ? window.faroLead({name: n, phone: k, org_type: st.type, wants: st.wants}) : Promise.reject(new Error('off')));
+      // se guarda en Supabase (tabla leads) y además llega al correo de Faro Digital.
+      // No depende de la medición: aunque un bloqueador o "Do Not Track" la apaguen, la cotización sale.
+      if (sendB.classList.contains('sending')) return;
+      const reduceM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const waBtn = qm.querySelector('.wa-send'); waBtn.hidden = true;
+      sendB.classList.remove('shake'); sendB.classList.add('sending'); sendB.setAttribute('aria-label', t.sending); buzz();
+      const toDb = fetch(SB_URL + '/rest/v1/leads', {method: 'POST', headers: {'apikey': SB_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal'},
+        body: JSON.stringify({visitor_id: store(localStorage, 'faro-vid'), session_id: store(sessionStorage, 'faro-sid'), page: here, lang, name: n, phone: k, org_type: st.type, wants: st.wants})})
+        .then(r => { if (!r.ok) throw new Error('lead ' + r.status); return true; });
       const toMail = fetch('https://formsubmit.co/ajax/info@farodigitalfl.com', {
         method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
         body: JSON.stringify({_subject: 'Nueva cotización – ' + n, _template: 'table', _captcha: 'false', Nombre: n, 'Teléfono': k, Tipo: st.type, Quiere: st.wants.join(', '), Idioma: lang, Mensaje: msg})
       }).then(r => r.json()).then(d => { if (!(d && (d.success === true || d.success === 'true'))) throw new Error(d && d.message); return true; });
-      Promise.allSettled([toDb, toMail]).then(([db, mail]) => {
+      const wait = ms => new Promise(r => setTimeout(r, reduceM ? 0 : ms));
+      // el círculo gira al menos un momento, para que se sienta el envío
+      Promise.all([Promise.allSettled([toDb, toMail]), wait(900)]).then(async ([[db, mail]]) => {
         const ok = db.status === 'fulfilled' || mail.status === 'fulfilled';
-        if (!ok) { err.textContent = t.failed; T_('quote_fail', {db: db.status, mail: mail.status}); return; }
+        if (!ok) {
+          T_('quote_fail', {db: db.status, mail: mail.status});
+          sendB.classList.remove('sending'); sendB.removeAttribute('aria-label'); void sendB.offsetWidth; sendB.classList.add('shake');
+          if (navigator.vibrate) navigator.vibrate([30, 60, 30]);
+          err.textContent = t.failed; waBtn.href = 'https://wa.me/17868057734?text=' + encodeURIComponent(msg); waBtn.hidden = false;
+          return;
+        }
         T_('quote_sent', {db: db.status, mail: mail.status, wants: st.wants.length});
         qm.querySelector('.ty').textContent = t.thanks.replace('{n}', n.split(' ')[0]);
-        qm.querySelector('.summary').innerHTML = `<li><b>${t.s0}:</b> ${st.type}</li><li><b>${t.s1}:</b> ${st.wants.join(', ')}</li><li><b>${t.s2}:</b> ${k.replace(/</g, '&lt;')}</li>`;
-        qm.show(3); buzz(); confetti();
-      }).finally(() => { sendB.textContent = label; sendB.disabled = false; });
+        qm.querySelector('.summary').innerHTML = `<li><b>${t.s0}:</b> ${esc(st.type)}</li><li><b>${t.s1}:</b> ${esc(st.wants.join(', '))}</li><li><b>${t.s2}:</b> ${esc(k)}</li>`;
+        // 1) el círculo se vuelve ✓ con un golpe
+        sendB.classList.add('success'); if (navigator.vibrate) navigator.vibrate([18, 50, 28]);
+        await wait(650);
+        // 2) una ola naranja sale del botón y llena la tarjeta
+        const card = qm.querySelector('.card'), flood = qm.querySelector('.flood');
+        const cb = card.getBoundingClientRect(), bb = sendB.getBoundingClientRect();
+        flood.style.top = card.scrollTop + 'px'; flood.style.height = card.clientHeight + 'px';
+        flood.style.setProperty('--x', (bb.left + bb.width / 2 - cb.left) + 'px');
+        flood.style.setProperty('--y', (bb.top + bb.height / 2 - cb.top) + 'px');
+        flood.classList.remove('out'); flood.classList.add('in');
+        await wait(520);
+        // 3) cambia a la pantalla de gracias y la ola se retira hacia arriba
+        card.scrollTop = 0; flood.style.top = '0px';
+        qm.show(3); buzz();
+        flood.classList.add('out');
+        await wait(120); confetti();
+        setTimeout(() => { flood.classList.remove('in', 'out'); sendB.classList.remove('sending', 'success'); sendB.removeAttribute('aria-label'); }, 700);
+      });
     });
+    const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
     back.addEventListener('click', () => qm.show(Math.max(0, cur - 1), true));
     qm.querySelectorAll('[data-qclose]').forEach(b => b.addEventListener('click', closeQuote));
     function confetti(){
       if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      // estallido desde el ✓: cada papelito sale en su dirección y luego cae con gravedad
       const box = qm.querySelector('.confetti'); box.innerHTML = '';
-      const colors = ['#FF5E00', '#171A20', '#FFB37A', '#25D366'];
-      for (let i = 0; i < 40; i++) { const c = document.createElement('i'); c.style.left = Math.random() * 100 + '%'; c.style.background = colors[i % colors.length]; c.style.animationDelay = Math.random() * .35 + 's'; c.style.transform = `rotate(${Math.random() * 180}deg)`; box.appendChild(c); }
+      const chk = qm.querySelector('.done .check'), bx = box.getBoundingClientRect(), cr = chk.getBoundingClientRect();
+      const ox = cr.left + cr.width / 2 - bx.left, oy = cr.top + cr.height / 2 - bx.top;
+      const colors = ['#FF5E00', '#171A20', '#FFB37A', '#FF5E00', '#C24600'];
+      for (let i = 0; i < 70; i++) {
+        const c = document.createElement('i'), a = Math.random() * Math.PI * 2, v = 90 + Math.random() * 190;
+        c.style.left = ox + 'px'; c.style.top = oy + 'px'; c.style.background = colors[i % colors.length];
+        if (i % 3 === 0) { c.style.width = c.style.height = '9px'; c.style.borderRadius = '50%'; }
+        c.style.setProperty('--dx', Math.cos(a) * v + 'px'); c.style.setProperty('--dy', Math.sin(a) * v * .8 - 40 + 'px');
+        c.style.setProperty('--r', (Math.random() * 900 - 450) + 'deg'); c.style.animationDelay = Math.random() * .08 + 's';
+        box.appendChild(c);
+      }
     }
   }
   function openQuote(preset){
