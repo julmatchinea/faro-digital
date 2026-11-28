@@ -111,22 +111,22 @@
     qm.innerHTML = `<div class="bg" data-qclose></div><div class="card">
       <div class="bar"><i></i></div>
       <div class="head"><button class="back" type="button" aria-label="Atrás">←</button><small class="count"></small><button class="x" type="button" data-qclose aria-label="${t.close}">×</button></div>
-      <section class="step" data-s="0"><h3>${t.q0}</h3><p class="hint">${t.h0}</p><div class="opts three">
+      <section class="qstep" data-s="0"><h3>${t.q0}</h3><p class="hint">${t.h0}</p><div class="opts three">
         <button class="opt" type="button" data-v="${t.church}">${ICON.church}${t.church}</button>
         <button class="opt" type="button" data-v="${t.school}">${ICON.school}${t.school}</button>
         <button class="opt" type="button" data-v="${t.other}">${ICON.other}${t.other}</button></div></section>
-      <section class="step" data-s="1"><h3>${t.q1}</h3><p class="hint">${t.h1}</p><div class="chips">${t.chips.map(c => `<button class="chip" type="button" data-v="${c}">${c}</button>`).join('')}</div>
+      <section class="qstep" data-s="1"><h3>${t.q1}</h3><p class="hint">${t.h1}</p><div class="chips">${t.chips.map(c => `<button class="chip" type="button" data-v="${c}">${c}</button>`).join('')}</div>
         <button class="btn neon next" type="button" data-next disabled>${t.cont} →</button></section>
-      <section class="step" data-s="2"><h3>${t.q2}</h3><p class="hint">${t.h2}</p>
+      <section class="qstep" data-s="2"><h3>${t.q2}</h3><p class="hint">${t.h2}</p>
         <label for="q-name">${t.name}</label><input id="q-name" autocomplete="name" enterkeyhint="next">
         <label for="q-contact">${t.contact}</label><input id="q-contact" autocomplete="tel" inputmode="email" enterkeyhint="send">
         <p class="err" role="status"></p><button class="btn neon next" type="button" data-send disabled>${t.send} →</button></section>
-      <section class="step done" data-s="3"><div class="confetti"></div><div class="check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <section class="qstep done" data-s="3"><div class="confetti"></div><div class="check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
         <h3 class="ty"></h3><p class="hint">${t.done}</p><ul class="summary"></ul>
         <div class="sendrow"><a class="btn neon" data-wa target="_blank" rel="noopener">${t.wa}</a><a class="btn dark" data-mail>${t.mail}</a></div></section>
     </div>`;
     document.body.appendChild(qm);
-    const steps = [...qm.querySelectorAll('.step')], bar = qm.querySelector('.bar i'), count = qm.querySelector('.count'), back = qm.querySelector('.back');
+    const steps = [...qm.querySelectorAll('.qstep')], bar = qm.querySelector('.bar i'), count = qm.querySelector('.count'), back = qm.querySelector('.back');
     const nameI = qm.querySelector('#q-name'), contactI = qm.querySelector('#q-contact'), err = qm.querySelector('.err'), sendB = qm.querySelector('[data-send]');
     const validName = () => nameI.value.trim().length > 1;
     const validContact = () => /^\S+@\S+\.\S+$/.test(contactI.value.trim()) || contactI.value.replace(/\D/g, '').length >= 10;
@@ -189,7 +189,7 @@
     else qm.show(0);
     document.documentElement.style.overflow = 'hidden';
     requestAnimationFrame(() => qm.classList.add('open'));
-    setTimeout(() => (qm.querySelector('.step.on .opt, .step.on .chip') || qm).focus(), 400);
+    setTimeout(() => (qm.querySelector('.qstep.on .opt, .qstep.on .chip') || qm).focus(), 400);
   }
   function closeQuote(){ if (!qm) return; qm.classList.remove('open'); document.documentElement.style.overflow = ''; }
   addEventListener('keydown', e => { if (e.key === 'Escape') closeQuote(); });
