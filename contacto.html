@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/faro.css?v=6">
-<link rel="stylesheet" href="assets/site.css?v=6">
+<link rel="stylesheet" href="assets/faro.css?v=7">
+<link rel="stylesheet" href="assets/site.css?v=7">
 </head>
 <body>
 
@@ -53,18 +53,24 @@
   <div class="info">
     <span class="tag" data-en="About me · Free quote">Sobre mí · Cotización gratis</span>
     <h1 data-en="Hi, I'm Julio Chinea">Hola, soy Julio Chinea</h1>
-    <p data-en="I'm a pastor with more than 35 years in ministry, always focused on reaching souls and making disciples. I have developed ministry training schools, and my goal has always been to serve others and help them fulfill their purpose.">Soy pastor con más de 35 años en el ministerio, siempre enfocado en alcanzar almas y formar discípulos. He desarrollado escuelas de formación ministerial, y mi meta ha sido servir a otros y ayudarles a cumplir su propósito.</p>
-    <p data-en="That same desire led me to put my experience in technology at the service of others. That's how Faro Digital was born: to light the way for those seeking to reach new levels. Tell me what you need and I'll send you a free quote.">Ese mismo anhelo me llevó a poner mi experiencia en tecnología al servicio de otros. Así nace Faro Digital: para iluminar el camino de quienes buscan alcanzar nuevos niveles. Cuéntame qué necesitas y te envío una cotización gratis.</p>
-    <div class="facts">
-      <div><b>35+</b><span data-en="years in ministry">años en el ministerio</span></div>
-      <div><b>ES·EN</b><span data-en="two languages">dos idiomas</span></div>
-      <div><b>1–2</b><span data-en="days for your quote">días para tu cotización</span></div>
+    <p class="lead1" data-en="Pastor for 35+ years. Now I help churches and schools be seen from far away.">Pastor por más de 35 años. Ahora ayudo a iglesias y escuelas a verse desde lejos.</p>
+    <div class="facts" role="tablist" data-en-hint="Tap to learn more">
+      <button type="button" role="tab" aria-expanded="false" data-tab="0"><b>35+</b><span data-en="years in ministry">años de ministerio</span><i aria-hidden="true"></i></button>
+      <button type="button" role="tab" aria-expanded="false" data-tab="1"><b>Faro</b><span data-en="why it exists">por qué existe</span><i aria-hidden="true"></i></button>
+      <button type="button" role="tab" aria-expanded="false" data-tab="2"><b>1–2</b><span data-en="days for your quote">días para tu cotización</span><i aria-hidden="true"></i></button>
+    </div>
+    <div class="reveal" aria-live="polite">
+      <div class="reveal-in">
+        <p data-panel="0" data-en="I'm a pastor and I've developed ministry training schools. My goal has always been to serve others and help them fulfill their purpose.">Soy pastor y he desarrollado escuelas de formación ministerial. Mi meta siempre ha sido servir a otros y ayudarles a cumplir su propósito.</p>
+        <p data-panel="1" data-en="I put my experience in technology at the service of others: to light the way for those seeking to reach new levels.">Puse mi experiencia en tecnología al servicio de otros: para iluminar el camino de quienes buscan alcanzar nuevos niveles.</p>
+        <p data-panel="2" data-en="Message me on WhatsApp, tell me what you need, and I'll send you a free quote with no obligation.">Escríbeme por WhatsApp, cuéntame qué necesitas y te envío una cotización gratis, sin compromiso.</p>
+      </div>
     </div>
     <div class="ctas">
       <a class="btn neon" href="https://wa.me/17868057734" target="_blank" rel="noopener" data-en="Message me on WhatsApp">Escríbeme por WhatsApp</a>
-      <a class="btn light" href="tel:+17868057734" data-en="Call (786) 805-7734">Llamar (786) 805-7734</a>
+      <button class="btn light" type="button" data-quote data-en="Free quote in 3 steps">Cotización en 3 pasos</button>
     </div>
-    <p class="note"><a href="mailto:info@farodigitalfl.com" style="color:inherit">info@farodigitalfl.com</a> · <span data-en="Free, no obligation">Gratis y sin compromiso</span></p>
+    <p class="note"><a href="tel:+17868057734" style="color:inherit" data-en="Or call (786) 805-7734">O llama al (786) 805-7734</a></p>
   </div>
 </section>
 </main>
@@ -78,6 +84,6 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=6"></script>
+<script src="assets/site.js?v=7"></script>
 </body>
 </html>
