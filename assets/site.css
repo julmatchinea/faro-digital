@@ -176,6 +176,7 @@ footer button{background:none;border:0;font:600 14px var(--f);cursor:pointer;col
 
 /* ---------- luz del faro que gira ---------- */
 .panel>div:not(.beam){position:relative;z-index:1}
+#inicio{padding-top:clamp(230px,34vh,330px)}
 .beam{position:absolute;left:var(--lx,42%);top:var(--ly,12%);width:0;height:0;z-index:0;pointer-events:none}
 /* El faro gira sobre un eje vertical: de lado, el haz barre en horizontal.
    Se alarga hacia un lado, se acorta al girar hacia nosotros (destello), cruza al otro lado
