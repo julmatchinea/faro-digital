@@ -37,7 +37,15 @@ correos privados, cuentas, contraseñas, claves ni notas internas del negocio.
   pantallas curvas o giradas. Le gusta el color vivo y las interacciones reales al pasar
   el mouse.
 
+## Notas privadas
+- Precios, datos de cuentas y decisiones del negocio van en el repositorio PRIVADO
+  `julmatchinea/faro-digital-negocio` (no en este).
+- `_config.yml` excluye este archivo de la web pública.
+
 ## Pendientes
+- www.farodigitalfl.com da error de seguridad: el certificado de GitHub solo cubre
+  farodigitalfl.com (revisado 27 nov 2026). Arreglo: en Settings → Pages, quitar y volver
+  a guardar el dominio para que GitHub pida el certificado con www.
 - Definir precios de los paquetes (propuesta hecha el 27 nov 2026, esperando decisión).
 - DBA o LLC en Sunbiz.
 - Perfil de Google Business.
