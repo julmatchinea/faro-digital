@@ -17,7 +17,9 @@
   const onScroll = () => {
     const y = 40; // punto bajo el menú
     const overDark = darkEls.some(el => { const r = el.getBoundingClientRect(); return r.top <= y && r.bottom > y; });
-    top.classList.toggle('solid', !overDark || document.body.classList.contains('open'));
+    const solid = !overDark || document.body.classList.contains('open');
+    top.classList.toggle('solid', solid);
+    top.classList.toggle('glass', !solid && scrollY > 8); // al bajar sobre fondo oscuro: vidrio oscuro
   };
   addEventListener('scroll', onScroll, {passive:true}); addEventListener('resize', onScroll); onScroll();
 
