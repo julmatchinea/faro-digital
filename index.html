@@ -438,7 +438,7 @@
   const top = document.getElementById('top');
   // transparente mientras haya fotos detrás (como Tesla); blanco al llegar al contenido
   const lastPanel = document.getElementById('negocios');
-  const onScroll = () => top.classList.toggle('solid', scrollY > lastPanel.offsetTop + lastPanel.offsetHeight - 60 || document.body.classList.contains('open'));
+  const onScroll = () => top.classList.toggle('solid', scrollY > lastPanel.offsetTop + lastPanel.offsetHeight - 120 || document.body.classList.contains('open'));
   addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
   /* ---------- cajón móvil ---------- */
