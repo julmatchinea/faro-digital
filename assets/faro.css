@@ -1,47 +1,54 @@
-/* Faro Digital — brand kit "Señal clara" (v2, nov 2026)
-   Tokens compartidos por el sitio y la página del brand kit. */
+/* Faro Digital — brand kit v3 "Señal clara" (nov 2026)
+   Inspiración: Mastercard (crema, cápsulas, órbitas, titulares medianos)
+   y Robinhood (noche + un color fuerte, serif grande, secciones a todo lo ancho). */
 :root{
-  /* color: un solo acento */
-  --tinta:#111418;   /* texto y bloques oscuros */
-  --papel:#F5F2EC;   /* fondo principal */
-  --blanco:#FFFFFF;  /* tarjetas, formularios */
-  --mar:#0B2A3C;     /* segundo bloque oscuro */
-  --senal:#FF4D1C;   /* acento: botones, el haz del faro. Máx. 1 por pantalla */
-  --senal-h:#E63E0F;
-  --piedra:#77726A;  /* texto secundario */
-  --linea:#D9D3C7;   /* filetes */
+  --crema:#F3F0EE;   /* fondo principal */
+  --crema-2:#FCFBFA; /* tarjetas sobre crema */
+  --tinta:#141413;   /* texto */
+  --noche:#15120C;   /* secciones oscuras */
+  --noche-2:#211C13; /* segunda sección oscura */
+  --senal:#FF4D1C;   /* acento: botones, puntos, órbitas, banda superior */
+  --senal-h:#E8400F;
+  --senal-txt:#C8370A; /* Señal para texto sobre crema (mejor contraste) */
+  --pizarra:#B7C0CE; /* sección de apoyo */
+  --gris:#6B6862;    /* texto secundario */
+  --linea:#DDD7D1;
 
-  /* tipografía */
-  --f-display:"Archivo",Arial,sans-serif;          /* títulos: 800, ancho 70–85 */
-  --f-text:"Public Sans",-apple-system,system-ui,sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --f-serif:"Newsreader",Georgia,serif;               /* titulares grandes */
+  --f-sans:"Sofia Sans",-apple-system,system-ui,sans-serif; /* todo lo demás */
 
-  /* espacio y forma */
-  --pad:clamp(20px,3.2vw,48px);
-  --max:1320px;
-  --r-card:14px;     /* fotos y tarjetas */
-  --r-pill:999px;    /* botones */
+  --pad:clamp(20px,3.4vw,56px);
+  --max:1340px;
+  --r-xl:48px;   /* contenedores grandes (hero) */
+  --r-lg:28px;   /* tarjetas */
+  --r-pill:999px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{background:var(--papel);color:var(--tinta);font-family:var(--f-text);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+body{background:var(--crema);color:var(--tinta);font-family:var(--f-sans);font-size:18px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 img{display:block;max-width:100%}
-::selection{background:var(--tinta);color:var(--papel)}
-:focus-visible{outline:2px solid var(--senal);outline-offset:3px}
+::selection{background:var(--senal);color:var(--tinta)}
+:focus-visible{outline:2px solid var(--senal);outline-offset:3px;border-radius:6px}
 
-.label{font-family:var(--f-mono);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
-.display{font-family:var(--f-display);font-weight:800;font-stretch:75%;letter-spacing:-.03em;line-height:.9}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:700 13px var(--f-sans);letter-spacing:.06em;text-transform:uppercase}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--senal)}
 
-.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 24px;border-radius:var(--r-pill);background:var(--tinta);color:var(--papel);border:1.5px solid var(--tinta);font:600 16px var(--f-text);text-decoration:none;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
-.btn:hover{background:var(--senal);border-color:var(--senal);color:var(--tinta)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 26px;border-radius:var(--r-pill);background:var(--tinta);color:var(--crema);border:1.5px solid var(--tinta);font:600 16px var(--f-sans);text-decoration:none;cursor:pointer;transition:background .15s,color .15s,border-color .15s,transform .15s}
+.btn:hover{transform:translateY(-1px)}
 .btn.senal{background:var(--senal);border-color:var(--senal);color:var(--tinta)}
-.btn.senal:hover{background:var(--tinta);border-color:var(--tinta);color:var(--papel)}
+.btn.senal:hover{background:var(--senal-h);border-color:var(--senal-h)}
 .btn.line{background:transparent;color:var(--tinta)}
-.btn.line:hover{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
-.btn .arr{font-family:var(--f-mono);font-weight:500}
+.btn.line:hover{background:var(--tinta);color:var(--crema)}
+.btn.ghost-senal{background:transparent;border-color:var(--senal);color:var(--senal)}
+.btn.ghost-senal:hover{background:var(--senal);color:var(--tinta)}
+.btn .arr{font-size:18px;line-height:1}
 
-.logo{display:inline-flex;align-items:center;gap:8px;text-decoration:none;min-height:44px}
-.logo img,.logo svg{width:30px;height:30px}
-.logo b{font-family:var(--f-display);font-weight:800;font-stretch:80%;font-size:25px;letter-spacing:-.03em;line-height:1}
-.logo span{font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding-top:5px}
+.circle-btn{width:48px;height:48px;border-radius:50%;display:inline-grid;place-items:center;border:1.5px solid var(--tinta);background:transparent;color:var(--tinta);cursor:pointer;font-size:18px;transition:background .15s,color .15s}
+.circle-btn:hover{background:var(--tinta);color:var(--crema)}
+
+/* logotipo: símbolo "F-haz" + wordmark en minúsculas */
+.logo{display:inline-flex;align-items:center;gap:6px;text-decoration:none;min-height:44px}
+.logo img{width:30px;height:30px}
+.logo b{font:800 25px/1 var(--f-sans);letter-spacing:-.045em}
+.logo span{font:400 25px/1 var(--f-sans);letter-spacing:-.045em;opacity:.55}
