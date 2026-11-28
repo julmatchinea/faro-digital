@@ -82,19 +82,39 @@
     };
     if (img.complete) place(); else img.addEventListener('load', place);
     addEventListener('resize', place);
+
+    // giro real: velocidad constante sobre un eje vertical (una vuelta cada 12 s).
+    // ángulo θ: 0 = apunta a la derecha, 90° = hacia nosotros, 180° = izquierda, 270° = lejos.
+    const PERIOD = 12000;
+    const frame = now => {
+      const th = (now % PERIOD) / PERIOD * Math.PI * 2;
+      const c = Math.cos(th), s = Math.sin(th);
+      // largo aparente del haz = cos θ (se acorta al girar hacia nosotros o lejos)
+      const len = Math.sign(c || 1) * Math.max(.04, Math.abs(c));
+      // brillo: más fuerte de frente; cuando apunta lejos la torre lo tapa en parte
+      const o = (s >= 0 ? .55 + .45 * s : .55 + .35 * s) * (.35 + .65 * Math.pow(Math.abs(c), .5));
+      // destello cuando el haz nos mira de frente
+      const g = Math.pow(Math.max(0, s), 8);
+      beam.style.setProperty('--s', len.toFixed(3));
+      beam.style.setProperty('--o', Math.max(.12, o).toFixed(3));
+      beam.style.setProperty('--g', g.toFixed(3));
+      if (!reduceMotion) requestAnimationFrame(frame);
+    };
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    requestAnimationFrame(frame);
   });
 
   /* ---------- pop-up de cotización: una pregunta a la vez ---------- */
   const T = {
     es:{step:'Paso', of:'de', q0:'¿Para quién es tu página?', h0:'Toca una opción.', church:'Iglesia', school:'Escuela', other:'Otro',
         q1:'¿Qué te gustaría tener?', h1:'Elige todo lo que quieras.', chips:['Sitio nuevo','Rediseño','Ofrendas en línea','Inscripciones','Transmisiones en vivo','Calendario de eventos','Cuidado mensual'],
-        cont:'Continuar', q2:'¿Cómo te contactamos?', h2:'Solo dos datos y listo.', name:'Tu nombre', contact:'Tu WhatsApp o email', send:'Enviar', badName:'Escribe tu nombre.', badContact:'Escribe un teléfono o un email válido.',
-        thanks:'¡Gracias, {n}!', done:'Tu mensaje está listo en WhatsApp. Solo toca enviar y te respondo en 1 o 2 días.', s0:'Para', s1:'Quiero', s2:'Contacto', wa:'Abrir WhatsApp otra vez', mail:'Prefiero enviarlo por email', close:'Cerrar',
+        cont:'Continuar', q2:'¿Cómo te contactamos?', h2:'Solo dos datos y listo.', name:'Tu nombre', contact:'Tu número de teléfono', send:'Enviar', badName:'Escribe tu nombre.', badContact:'Escribe un número de teléfono válido (10 dígitos).', sending:'Enviando…', failed:'No se pudo enviar. Intenta otra vez o llama al (786) 805-7734.',
+        thanks:'¡Gracias, {n}!', done:'Recibí tu solicitud. Te llamo en 1 o 2 días.', s0:'Para', s1:'Quiero', s2:'Teléfono', ok:'Listo', close:'Cerrar',
         msg:'Hola Julio, soy {n}. Quiero una página para: {t}. Me interesa: {c}. Mi contacto: {k}.'},
     en:{step:'Step', of:'of', q0:'Who is your website for?', h0:'Tap one option.', church:'Church', school:'School', other:'Other',
         q1:'What would you like to have?', h1:'Pick as many as you like.', chips:['New website','Redesign','Online giving','Enrollment','Live streams','Events calendar','Monthly care'],
-        cont:'Continue', q2:'How do we reach you?', h2:'Just two details and done.', name:'Your name', contact:'Your WhatsApp or email', send:'Send', badName:'Please enter your name.', badContact:'Please enter a valid phone or email.',
-        thanks:'Thank you, {n}!', done:'Your message is ready in WhatsApp. Just tap send and I will reply within 1–2 days.', s0:'For', s1:'Wants', s2:'Contact', wa:'Open WhatsApp again', mail:'I prefer email', close:'Close',
+        cont:'Continue', q2:'How do we reach you?', h2:'Just two details and done.', name:'Your name', contact:'Your phone number', send:'Send', badName:'Please enter your name.', badContact:'Please enter a valid phone number (10 digits).', sending:'Sending…', failed:'Could not send. Try again or call (786) 805-7734.',
+        thanks:'Thank you, {n}!', done:'I received your request. I will call you within 1–2 days.', s0:'For', s1:'Wants', s2:'Phone', ok:'Done', close:'Close',
         msg:'Hi Julio, I am {n}. I want a website for: {t}. I am interested in: {c}. My contact: {k}.'}
   };
   const ICON = {
@@ -108,7 +128,7 @@
     const t = T[lang];
     qm = document.createElement('div');
     qm.className = 'qm'; qm.setAttribute('role', 'dialog'); qm.setAttribute('aria-modal', 'true'); qm.setAttribute('aria-label', t.q0);
-    qm.innerHTML = `<div class="bg" data-qclose></div><div class="card">
+    qm.innerHTML = `<div class="bg"></div><div class="card">
       <div class="bar"><i></i></div>
       <div class="head"><button class="back" type="button" aria-label="Atrás">←</button><small class="count"></small><button class="x" type="button" data-qclose aria-label="${t.close}">×</button></div>
       <section class="qstep" data-s="0"><h3>${t.q0}</h3><p class="hint">${t.h0}</p><div class="opts three">
@@ -119,17 +139,17 @@
         <button class="btn neon next" type="button" data-next disabled>${t.cont} →</button></section>
       <section class="qstep" data-s="2"><h3>${t.q2}</h3><p class="hint">${t.h2}</p>
         <label for="q-name">${t.name}</label><input id="q-name" autocomplete="name" enterkeyhint="next">
-        <label for="q-contact">${t.contact}</label><input id="q-contact" autocomplete="tel" inputmode="email" enterkeyhint="send">
+        <label for="q-contact">${t.contact}</label><input id="q-contact" type="tel" autocomplete="tel" inputmode="tel" placeholder="(239) 555-1234" enterkeyhint="send">
         <p class="err" role="status"></p><button class="btn neon next" type="button" data-send disabled>${t.send} →</button></section>
       <section class="qstep done" data-s="3"><div class="confetti"></div><div class="check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
         <h3 class="ty"></h3><p class="hint">${t.done}</p><ul class="summary"></ul>
-        <div class="sendrow"><a class="btn neon" data-wa target="_blank" rel="noopener">${t.wa}</a><a class="btn dark" data-mail>${t.mail}</a></div></section>
+        <div class="sendrow"><button class="btn neon" type="button" data-qclose>${t.ok}</button></div></section>
     </div>`;
     document.body.appendChild(qm);
     const steps = [...qm.querySelectorAll('.qstep')], bar = qm.querySelector('.bar i'), count = qm.querySelector('.count'), back = qm.querySelector('.back');
     const nameI = qm.querySelector('#q-name'), contactI = qm.querySelector('#q-contact'), err = qm.querySelector('.err'), sendB = qm.querySelector('[data-send]');
     const validName = () => nameI.value.trim().length > 1;
-    const validContact = () => /^\S+@\S+\.\S+$/.test(contactI.value.trim()) || contactI.value.replace(/\D/g, '').length >= 10;
+    const validContact = () => contactI.value.replace(/\D/g, '').length >= 10;
     qm.show = (i, rev) => {
       cur = i;
       steps.forEach((s, j) => { s.classList.toggle('on', j === i); s.classList.toggle('rev', !!rev && j === i); });
@@ -161,13 +181,18 @@
       if (!validContact()) { err.textContent = t.badContact; contactI.focus(); return; }
       const n = nameI.value.trim(), k = contactI.value.trim();
       const msg = t.msg.replace('{n}', n).replace('{t}', st.type).replace('{c}', st.wants.join(', ')).replace('{k}', k);
-      const wa = 'https://wa.me/17868057734?text=' + encodeURIComponent(msg);
-      qm.querySelector('.ty').textContent = t.thanks.replace('{n}', n.split(' ')[0]);
-      qm.querySelector('.summary').innerHTML = `<li><b>${t.s0}:</b> ${st.type}</li><li><b>${t.s1}:</b> ${st.wants.join(', ')}</li><li><b>${t.s2}:</b> ${k.replace(/</g, '&lt;')}</li>`;
-      qm.querySelector('[data-wa]').href = wa;
-      qm.querySelector('[data-mail]').href = 'mailto:info@farodigitalfl.com?subject=' + encodeURIComponent('Cotización – ' + n) + '&body=' + encodeURIComponent(msg);
-      window.open(wa, '_blank', 'noopener');
-      qm.show(3); buzz(); confetti();
+      // se envía directo al correo de Faro Digital, sin abrir otra app
+      const label = sendB.textContent;
+      sendB.disabled = true; sendB.textContent = t.sending;
+      fetch('https://formsubmit.co/ajax/info@farodigitalfl.com', {
+        method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: JSON.stringify({_subject: 'Nueva cotización – ' + n, _template: 'table', _captcha: 'false', Nombre: n, 'Teléfono': k, Tipo: st.type, Quiere: st.wants.join(', '), Idioma: lang, Mensaje: msg})
+      }).then(r => r.json()).then(d => {
+        if (!(d && (d.success === true || d.success === 'true'))) throw new Error(d && d.message);
+        qm.querySelector('.ty').textContent = t.thanks.replace('{n}', n.split(' ')[0]);
+        qm.querySelector('.summary').innerHTML = `<li><b>${t.s0}:</b> ${st.type}</li><li><b>${t.s1}:</b> ${st.wants.join(', ')}</li><li><b>${t.s2}:</b> ${k.replace(/</g, '&lt;')}</li>`;
+        qm.show(3); buzz(); confetti();
+      }).catch(() => { err.textContent = t.failed; }).finally(() => { sendB.textContent = label; sendB.disabled = false; });
     });
     back.addEventListener('click', () => qm.show(Math.max(0, cur - 1), true));
     qm.querySelectorAll('[data-qclose]').forEach(b => b.addEventListener('click', closeQuote));
@@ -180,6 +205,8 @@
   }
   function openQuote(preset){
     if (qm && qm.dataset.lang !== lang) { qm.remove(); qm = null; }
+    // si cerró a medias, al volver sigue donde iba
+    if (qm && cur !== 3) { document.documentElement.style.overflow = 'hidden'; requestAnimationFrame(() => qm.classList.add('open')); return; }
     if (!qm) { buildQuote(); qm.dataset.lang = lang; }
     st = {wants: []};
     qm.querySelectorAll('.sel').forEach(x => x.classList.remove('sel'));
@@ -192,7 +219,6 @@
     setTimeout(() => (qm.querySelector('.qstep.on .opt, .qstep.on .chip') || qm).focus(), 400);
   }
   function closeQuote(){ if (!qm) return; qm.classList.remove('open'); document.documentElement.style.overflow = ''; }
-  addEventListener('keydown', e => { if (e.key === 'Escape') closeQuote(); });
   // todos los botones "Cotizar" abren el pop-up (la página de contacto queda como respaldo)
   const preset = /iglesias/.test(here) ? 'church' : /escuelas/.test(here) ? 'school' : null;
   document.querySelectorAll('a.btn[href="contacto.html"], a.pill[href="contacto.html"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); document.body.classList.remove('open'); onScroll(); openQuote(preset); }));

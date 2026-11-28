@@ -177,10 +177,14 @@ footer button{background:none;border:0;font:600 14px var(--f);cursor:pointer;col
 /* ---------- luz del faro que gira ---------- */
 .panel>div:not(.beam){position:relative;z-index:1}
 .beam{position:absolute;left:var(--lx,42%);top:var(--ly,12%);width:0;height:0;z-index:0;pointer-events:none}
-.beam .cone{position:absolute;left:0;top:0;width:280vmax;height:280vmax;transform:translate(-50%,-50%) rotate(0deg);background:conic-gradient(from 0deg,rgba(255,238,205,0) 0deg,rgba(255,238,205,.5) 5deg,rgba(255,238,205,.18) 11deg,rgba(255,238,205,0) 17deg,transparent 180deg,rgba(255,238,205,0) 180deg,rgba(255,238,205,.5) 185deg,rgba(255,238,205,.18) 191deg,rgba(255,238,205,0) 197deg,transparent 360deg);-webkit-mask:radial-gradient(circle,#000 0,rgba(0,0,0,.75) 10%,rgba(0,0,0,.25) 30%,transparent 50%);mask:radial-gradient(circle,#000 0,rgba(0,0,0,.75) 10%,rgba(0,0,0,.25) 30%,transparent 50%);mix-blend-mode:screen;animation:sweep 9s linear infinite}
-.beam .lamp{position:absolute;left:0;top:0;width:70px;height:70px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#fff 0,rgba(255,240,210,.9) 14%,rgba(255,200,120,.35) 40%,transparent 70%);mix-blend-mode:screen;animation:glow 4.5s ease-in-out infinite}
-@keyframes sweep{to{transform:translate(-50%,-50%) rotate(360deg)}}
-@keyframes glow{0%,100%{opacity:.75;transform:translate(-50%,-50%) scale(.9)}25%,75%{opacity:1;transform:translate(-50%,-50%) scale(1.25)}}
+/* El faro gira sobre un eje vertical: de lado, el haz barre en horizontal.
+   Se alarga hacia un lado, se acorta al girar hacia nosotros (destello), cruza al otro lado
+   y se apaga un poco cuando apunta lejos (detrás de la torre). Lo mueve site.js. */
+.beam{--s:1;--o:.6;--g:0}
+.beam .ray{position:absolute;left:0;top:0;width:115vw;height:52vh;transform-origin:0 50%;transform:translateY(-50%) rotate(1.2deg) scaleX(var(--s));opacity:var(--o);background:linear-gradient(90deg,rgba(255,246,226,.85) 0%,rgba(255,238,206,.42) 18%,rgba(255,232,195,.16) 55%,rgba(255,230,190,0) 100%);clip-path:polygon(0 48.6%,100% 24%,100% 76%,0 51.4%);filter:blur(6px);mix-blend-mode:screen;will-change:transform,opacity}
+.beam .ray.core{height:30vh;filter:blur(2px);background:linear-gradient(90deg,rgba(255,255,245,.9) 0%,rgba(255,245,225,.35) 22%,rgba(255,240,210,0) 70%);clip-path:polygon(0 49.3%,100% 38%,100% 62%,0 50.7%)}
+.beam .lamp{position:absolute;left:0;top:0;width:64px;height:64px;transform:translate(-50%,-50%) scale(calc(.75 + var(--g) * 2.2));opacity:calc(.55 + var(--g) * .45);border-radius:50%;background:radial-gradient(circle,#fff 0,rgba(255,246,226,.95) 16%,rgba(255,214,150,.4) 42%,transparent 70%);mix-blend-mode:screen;will-change:transform,opacity}
+.beam .flash{position:absolute;left:0;top:0;width:150vmax;height:150vmax;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,238,205,.55) 0,rgba(255,230,190,.16) 12%,transparent 40%);mix-blend-mode:screen;opacity:calc(var(--g) * .9);will-change:opacity}
 
 /* ---------- pop-up de cotización ---------- */
 .qm{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:16px;pointer-events:none}
@@ -244,4 +248,3 @@ footer button{background:none;border:0;font:600 14px var(--f);cursor:pointer;col
   .qm .opt{min-height:100px;font-size:14px}
   .qm .qstep{padding:14px 20px 26px}
 }
-@media (prefers-reduced-motion:reduce){.beam .cone,.beam .lamp{animation:none}}
