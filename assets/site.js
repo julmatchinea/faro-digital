@@ -70,38 +70,92 @@
     }));
   });
 
-  /* ---------- luz del faro: se coloca sobre la lámpara de la foto ---------- */
+  /* ---------- luz del faro: haz que gira, aura y partículas (canvas) ----------
+     El haz sale de la lámpara de la foto, gira despacio y barre la página (también hacia abajo).
+     Bordes suaves que se apagan con la distancia, un aura grande que respira
+     y partículas de polvo que solo brillan cuando la luz pasa por ellas. */
   document.querySelectorAll('.beam').forEach(beam => {
     const panel = beam.closest('.panel'), img = panel.querySelector(':scope > img');
+    beam.innerHTML = '';
+    const cv = document.createElement('canvas');
+    cv.className = 'beamfx'; cv.setAttribute('aria-hidden', 'true');
+    panel.insertBefore(cv, beam);
+    const ctx = cv.getContext('2d');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let W = 0, H = 0, LX = 0, LY = 0, dots = [], visible = true;
     const place = () => {
-      if (!img.naturalWidth) return;
-      const W = panel.clientWidth, H = panel.clientHeight, s = Math.max(W / img.naturalWidth, H / img.naturalHeight);
-      const rw = img.naturalWidth * s, rh = img.naturalHeight * s;
-      beam.style.setProperty('--lx', ((W - rw) / 2 + rw * +beam.dataset.x) + 'px');
-      beam.style.setProperty('--ly', ((H - rh) / 2 + rh * +beam.dataset.y) + 'px');
+      const dpr = Math.min(devicePixelRatio || 1, 1.5);
+      W = panel.clientWidth; H = panel.clientHeight;
+      cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (img.naturalWidth) {
+        const s = Math.max(W / img.naturalWidth, H / img.naturalHeight), rw = img.naturalWidth * s, rh = img.naturalHeight * s;
+        LX = (W - rw) / 2 + rw * +beam.dataset.x; LY = (H - rh) / 2 + rh * +beam.dataset.y;
+      }
+      const n = W < 700 ? 140 : 280;
+      dots = Array.from({length: n}, () => ({x: Math.random() * W, y: Math.random() * H, r: .5 + Math.random() * 1.9, vx: .05 + Math.random() * .22, vy: (Math.random() - .5) * .12, ph: Math.random() * 6.28, tw: .6 + Math.random() * 1.6}));
     };
     if (img.complete) place(); else img.addEventListener('load', place);
     addEventListener('resize', place);
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible && !reduce) requestAnimationFrame(draw); }).observe(panel);
 
-    // giro real: velocidad constante sobre un eje vertical (una vuelta cada 12 s).
-    // ángulo θ: 0 = apunta a la derecha, 90° = hacia nosotros, 180° = izquierda, 270° = lejos.
-    const PERIOD = 12000;
-    const frame = now => {
-      const th = (now % PERIOD) / PERIOD * Math.PI * 2;
-      const c = Math.cos(th), s = Math.sin(th);
-      // largo aparente del haz = cos θ (se acorta al girar hacia nosotros o lejos)
-      const len = Math.sign(c || 1) * Math.max(.04, Math.abs(c));
-      // brillo: más fuerte de frente; cuando apunta lejos la torre lo tapa en parte
-      const o = (s >= 0 ? .55 + .45 * s : .55 + .35 * s) * (.35 + .65 * Math.pow(Math.abs(c), .5));
-      // destello cuando el haz nos mira de frente
-      const g = Math.pow(Math.max(0, s), 8);
-      beam.style.setProperty('--s', len.toFixed(3));
-      beam.style.setProperty('--o', Math.max(.12, o).toFixed(3));
-      beam.style.setProperty('--g', g.toFixed(3));
-      if (!reduceMotion) requestAnimationFrame(frame);
-    };
-    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    requestAnimationFrame(frame);
+    const PERIOD = 16000;                 // una vuelta cada 16 s, velocidad constante
+    const HALF = .085;                    // medio ancho del haz (rad)
+    const angDiff = (a, b) => { let d = (a - b) % (Math.PI * 2); if (d > Math.PI) d -= Math.PI * 2; if (d < -Math.PI) d += Math.PI * 2; return Math.abs(d); };
+
+    function cone(a, R, power){
+      // muchas capas de cuña con poca opacidad = bordes suaves y naturales
+      for (let k = 0; k < 9; k++) {
+        const hw = HALF * (.18 + k * .14), al = power * .085 * (1 - k / 10);
+        const g = ctx.createRadialGradient(LX, LY, 0, LX, LY, R);
+        g.addColorStop(0, `rgba(255,246,224,${al * 1.6})`);
+        g.addColorStop(.12, `rgba(255,238,206,${al})`);
+        g.addColorStop(.45, `rgba(255,228,190,${al * .35})`);
+        g.addColorStop(1, 'rgba(255,220,180,0)');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.moveTo(LX + Math.cos(a + Math.PI / 2) * 5, LY + Math.sin(a + Math.PI / 2) * 5);
+        ctx.arc(LX, LY, R, a - hw, a + hw);
+        ctx.lineTo(LX + Math.cos(a - Math.PI / 2) * 5, LY + Math.sin(a - Math.PI / 2) * 5);
+        ctx.closePath(); ctx.fill();
+      }
+    }
+    function glow(r, rgb, a){
+      const g = ctx.createRadialGradient(LX, LY, 0, LX, LY, r);
+      g.addColorStop(0, `rgba(${rgb},${a})`); g.addColorStop(.35, `rgba(${rgb},${a * .35})`); g.addColorStop(1, `rgba(${rgb},0)`);
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(LX, LY, r, 0, Math.PI * 2); ctx.fill();
+    }
+    function draw(now){
+      if (!W) { if (!reduce) requestAnimationFrame(draw); return; }
+      const t = reduce ? 4000 : now;
+      ctx.clearRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'lighter';
+      const a = (t % PERIOD) / PERIOD * Math.PI * 2 + 1.2;
+      const flick = .93 + .05 * Math.sin(t / 310) + .02 * Math.sin(t / 97);   // la llama nunca es perfecta
+      const R = Math.hypot(W, H) * 1.05;
+      cone(a, R, flick);                   // haz principal
+      cone(a + Math.PI, R, flick * .85);   // haz opuesto (lente de dos caras)
+      // aura: halo grande que respira + núcleo blanco
+      const breathe = .9 + .1 * Math.sin(t / 1400);
+      glow(Math.min(W, H) * .55 * breathe, '255,214,160', .16 * flick);
+      glow(190 * breathe, '255,226,180', .32 * flick);
+      glow(70, '255,244,222', .7 * flick);
+      glow(20, '255,255,250', .95);
+      // partículas: polvo y brisa del mar; brillan cuando el haz o el aura las tocan
+      for (const p of dots) {
+        if (!reduce) { p.x += p.vx; p.y += p.vy + Math.sin(t / 2000 + p.ph) * .08; if (p.x > W + 5) p.x = -5; if (p.y < -5) p.y = H + 5; if (p.y > H + 5) p.y = -5; }
+        const dx = p.x - LX, dy = p.y - LY, d = Math.hypot(dx, dy), ang = Math.atan2(dy, dx);
+        const inBeam = Math.max(Math.exp(-Math.pow(angDiff(ang, a) / (HALF * 1.1), 2)), .85 * Math.exp(-Math.pow(angDiff(ang, a + Math.PI) / (HALF * 1.1), 2)));
+        const lit = inBeam * Math.exp(-d / (R * .5)) + .9 * Math.exp(-d / 160);
+        const tw = .65 + .35 * Math.sin(t / 900 * p.tw + p.ph);
+        const al = Math.min(1, .03 + lit * .95) * tw;
+        if (al < .02) continue;
+        ctx.fillStyle = `rgba(255,240,215,${al.toFixed(3)})`;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r * (1 + lit * .6), 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.globalCompositeOperation = 'source-over';
+      if (!reduce && visible) requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
   });
 
   /* ---------- pop-up de cotización: una pregunta a la vez ---------- */
