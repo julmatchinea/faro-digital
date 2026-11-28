@@ -99,7 +99,7 @@
     new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible && !reduce) requestAnimationFrame(draw); }).observe(panel);
 
     const PERIOD = 16000;                 // una vuelta cada 16 s, velocidad constante
-    const HALF = .085;                    // medio ancho del haz (rad)
+    const HALF = .11;                    // medio ancho del haz (rad)
     const angDiff = (a, b) => { let d = (a - b) % (Math.PI * 2); if (d > Math.PI) d -= Math.PI * 2; if (d < -Math.PI) d += Math.PI * 2; return Math.abs(d); };
 
     function cone(a, R, power){
@@ -136,9 +136,9 @@
       cone(a + Math.PI, R, flick * .85);   // haz opuesto (lente de dos caras)
       // aura: halo grande que respira + núcleo blanco
       const breathe = .9 + .1 * Math.sin(t / 1400);
-      glow(Math.min(W, H) * .55 * breathe, '255,214,160', .16 * flick);
-      glow(190 * breathe, '255,226,180', .32 * flick);
-      glow(70, '255,244,222', .7 * flick);
+      glow(Math.min(W, H) * .75 * breathe, '255,210,150', .24 * flick);
+      glow(240 * breathe, '255,224,176', .42 * flick);
+      glow(90, '255,244,222', .8 * flick);
       glow(20, '255,255,250', .95);
       // partículas: polvo y brisa del mar; brillan cuando el haz o el aura las tocan
       for (const p of dots) {
