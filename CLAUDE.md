@@ -14,6 +14,8 @@ correos privados, cuentas, contraseñas, claves ni notas internas del negocio.
 - Páginas web bilingües (español/inglés) para iglesias y escuelas/academias cristianas.
 - Ya no se dirige a negocios en general y no se menciona "Fort Myers" en el sitio.
 - Nunca inventes testimonios ni reseñas. Las 5 estrellas aparecen una sola vez.
+- El botón principal (naranja) siempre es la cotización (pop-up de 3 pasos, `data-quote` o
+  `a.btn[href="contacto.html"]`). WhatsApp es secundario. Si el envío falla, se ofrece WhatsApp.
 - No mostrar trabajos pasados (MCA, Rosa de Sarón) en el sitio.
 
 ## El sitio
