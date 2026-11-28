@@ -5,189 +5,122 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Brand Guidelines · Faro Digital</title>
 <meta name="robots" content="noindex">
-<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="assets/simbolo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Sofia+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/faro.css">
 <style>
-  /* ---------- layout tipo documentación ---------- */
-  .shell{display:grid;grid-template-columns:260px 1fr;max-width:1500px;margin:0 auto}
-  aside{position:sticky;top:0;height:100vh;overflow:auto;padding:28px 24px;border-right:1px solid var(--linea)}
-  aside .logo{margin-bottom:6px}
-  aside .ver{font:600 12px var(--f-sans);color:var(--gris);margin-bottom:28px;display:block}
-  aside ol{list-style:none;counter-reset:s}
-  aside li a{display:flex;gap:12px;padding:8px 10px;border-radius:10px;text-decoration:none;font:500 15px var(--f-sans);color:#3d3b37}
-  aside li a span{font-variant-numeric:tabular-nums;color:var(--gris);width:20px}
-  aside li a:hover,aside li a.on{background:#E9E4DF;color:var(--tinta)}
-  aside .dl{margin-top:28px}
-  main{min-width:0}
-  .sec{padding:clamp(70px,10vh,120px) clamp(24px,5vw,80px);border-bottom:1px solid var(--linea)}
-  .sec-h{max-width:880px;margin-bottom:48px}
-  .sec-h .num{font:600 13px var(--f-sans);color:var(--gris);letter-spacing:.06em}
-  .sec-h h2{font:400 clamp(44px,5.4vw,80px)/1.02 var(--f-serif);letter-spacing:-.02em;margin:14px 0 18px}
-  .sec-h p{font-size:20px;color:#3d3b37;max-width:62ch}
-  h3.sub{font:600 22px var(--f-sans);letter-spacing:-.01em;margin:56px 0 18px}
-  .g{display:grid;gap:20px}
-  .g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
-  .card{background:var(--crema-2);border-radius:var(--r-lg);padding:28px;border:1px solid var(--linea)}
-  .card .k{font:700 12px var(--f-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--gris)}
-  .card h4{font:600 24px/1.2 var(--f-sans);letter-spacing:-.015em;margin:10px 0 8px}
-  .card p{color:#3d3b37;font-size:16px}
-  code,.code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px}
+  .shell{display:grid;grid-template-columns:250px 1fr;max-width:1500px;margin:0 auto}
+  aside{position:sticky;top:0;height:100vh;overflow:auto;padding:28px 20px;border-right:1px solid var(--linea)}
+  aside .lg{height:18px;margin:8px 0 6px 10px}
+  aside .ver{display:block;font:500 13px var(--f);color:var(--gris);margin:0 0 24px 10px}
+  aside ol{list-style:none}
+  aside a{display:flex;gap:12px;padding:9px 10px;border-radius:var(--r-btn);text-decoration:none;font:600 15px var(--f);color:var(--texto);transition:background .2s}
+  aside a span{color:var(--gris);width:22px;font-weight:500}
+  aside a:hover,aside a.on{background:var(--niebla);color:var(--grafito)}
+  .sec{padding:clamp(64px,9vh,110px) clamp(24px,5vw,80px);border-bottom:1px solid var(--linea)}
+  .sh{max-width:860px;margin-bottom:44px}
+  .sh .num{font:700 13px var(--f);letter-spacing:.14em;color:var(--neon-txt)}
+  .sh h2{font-size:clamp(38px,4.6vw,64px);letter-spacing:-.03em;margin:12px 0 16px}
+  .sh p{font-size:19px;max-width:62ch}
+  h3.sub{font-size:22px;margin:52px 0 18px}
+  .g{display:grid;gap:16px}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+  .card{background:var(--niebla);border-radius:var(--r-card);padding:28px;transition:background .3s,color .3s,transform .3s}
+  .card .k{font:700 12px var(--f);letter-spacing:.12em;text-transform:uppercase;color:var(--gris)}
+  .card h4{font-size:24px;margin:10px 0 8px}
+  .card p{font-size:16px}
+  .card.hov:hover{background:var(--grafito);transform:translateY(-4px)}
+  .card.hov:hover h4{color:#fff}.card.hov:hover p{color:#c9cbcf}.card.hov:hover .k{color:var(--neon)}
 
-  /* cover */
-  .cover{background:var(--noche);color:var(--crema);padding:28px clamp(24px,5vw,80px) 60px;position:relative;overflow:hidden;min-height:88vh;display:flex;flex-direction:column;justify-content:space-between}
-  .cover .bar{display:flex;justify-content:space-between;align-items:center;font:600 13px var(--f-sans);color:#9C968C}
-  .cover .bar .pill{border:1px solid #3a342a;border-radius:99px;padding:6px 12px}
-  .cover h1{font:400 clamp(64px,10vw,168px)/.92 var(--f-serif);letter-spacing:-.03em;max-width:11ch;position:relative;z-index:1}
-  .cover h1 em{font-style:italic;color:var(--senal)}
-  .cover .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;border-top:1px solid #2d281f;padding-top:20px;font-size:15px;color:#B9B3A8;position:relative;z-index:1}
-  .cover .meta b{display:block;color:var(--crema);font-weight:600;margin-bottom:4px}
-  .orbit{position:absolute;border:1.5px solid var(--senal);border-radius:50%;opacity:.55}
-  .dot{position:absolute;border-radius:50%;background:var(--senal)}
-  .cover .mark{position:absolute;right:6vw;top:16%;width:min(34vw,440px);opacity:.95}
+  .cover{position:relative;min-height:92vh;color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:26px clamp(24px,5vw,80px) 56px;isolation:isolate;overflow:hidden}
+  .cover>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+  .cover::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,11,14,.55),rgba(10,11,14,.25) 45%,rgba(10,11,14,.8))}
+  .cover .bar{display:flex;justify-content:space-between;align-items:center;font:600 14px var(--f)}
+  .cover .bar img{height:20px}
+  .cover .bar a{color:#fff;text-decoration:none;padding:8px 14px;border-radius:var(--r-btn)}
+  .cover .bar a:hover{background:rgba(255,255,255,.16)}
+  .cover h1{color:#fff;font-size:clamp(56px,8vw,120px);letter-spacing:-.04em;line-height:.95;max-width:12ch}
+  .cover .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;border-top:1px solid rgba(255,255,255,.25);padding-top:18px;font-size:15px;color:rgba(255,255,255,.85)}
+  .cover .meta b{display:block;color:#fff}
 
-  /* fundación */
-  .purpose{font:400 clamp(30px,3.4vw,52px)/1.12 var(--f-serif);letter-spacing:-.015em;max-width:24ch}
-  .purpose em{font-style:italic;color:var(--senal-txt)}
-  .slider{display:grid;grid-template-columns:140px 1fr 140px;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--linea);font:500 15px var(--f-sans)}
-  .slider .r{text-align:right}
-  .slider .track{height:6px;border-radius:99px;background:#E4DED7;position:relative}
-  .slider .track i{position:absolute;top:50%;width:18px;height:18px;border-radius:50%;background:var(--tinta);transform:translate(-50%,-50%);box-shadow:0 0 0 4px var(--crema-2)}
+  .stage{border-radius:var(--r-card);min-height:300px;display:grid;place-items:center;position:relative;overflow:hidden;background:var(--niebla)}
+  .stage .cap{position:absolute;left:18px;bottom:14px;font:600 13px var(--f);opacity:.7}
+  .stage.dark{background:var(--grafito);color:#fff}.stage.neon{background:var(--neon)}
+  .stage img.wm{width:min(70%,360px)}
+  .stage img.sy{width:110px}
+  .anat{list-style:none}
+  .anat li{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--linea)}
+  .anat .n{width:28px;height:28px;border-radius:50%;background:var(--grafito);color:#fff;display:grid;place-items:center;font:700 13px var(--f)}
+  .anat b{color:var(--grafito)}
+  .clear{position:relative;padding:40px;border:1.5px dashed #c3c5c9;border-radius:8px}
+  .misuse .stage{min-height:180px}
+  .misuse .stage::after{content:"✕";position:absolute;top:12px;right:14px;width:28px;height:28px;border-radius:50%;background:var(--grafito);color:var(--neon);display:grid;place-items:center;font-weight:800}
 
-  /* logo */
-  .anat{display:grid;grid-template-columns:1.1fr 1fr;gap:20px}
-  .stage{border-radius:var(--r-lg);min-height:360px;display:grid;place-items:center;position:relative;border:1px solid var(--linea);overflow:hidden}
-  .stage .cap{position:absolute;left:20px;bottom:16px;font:600 13px var(--f-sans);opacity:.65}
-  .lockup{display:flex;align-items:center;gap:10px}
-  .lockup img{width:76px;height:76px}
-  .lockup b{font:800 76px/1 var(--f-sans);letter-spacing:-.045em}
-  .lockup span{font:400 76px/1 var(--f-sans);letter-spacing:-.045em;opacity:.55}
-  .anat-list{list-style:none;display:grid;gap:0}
-  .anat-list li{display:grid;grid-template-columns:36px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--linea)}
-  .anat-list .n{width:28px;height:28px;border-radius:50%;background:var(--tinta);color:var(--crema);display:grid;place-items:center;font:700 13px var(--f-sans)}
-  .anat-list b{display:block;font-weight:600}
-  .anat-list span{color:#3d3b37;font-size:16px}
-  .clear{position:relative;padding:44px;border:1.5px dashed #C9C1B8;border-radius:12px;display:inline-block}
-  .clear::before,.clear::after{content:"x";position:absolute;font:600 13px var(--f-sans);color:var(--senal-txt)}
-  .clear::before{left:16px;top:50%;transform:translateY(-50%)}.clear::after{top:12px;left:50%;transform:translateX(-50%)}
-  .misuse .stage{min-height:190px}
-  .misuse .stage::after{content:"";position:absolute;right:14px;top:14px;width:26px;height:26px;border-radius:50%;background:#141413 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 5l6 6M11 5l-6 6' stroke='%23FF4D1C' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/14px no-repeat}
-  .misuse img{width:96px;height:96px}
+  .sw{border-radius:var(--r-card);overflow:hidden;background:#fff;border:1px solid var(--linea);transition:transform .3s}
+  .sw:hover{transform:translateY(-4px)}
+  .sw .chip{height:190px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;font:600 14px var(--f)}
+  .sw .chip b{font-size:34px;letter-spacing:-.03em}
+  .sw .rows{padding:14px 18px;display:grid;gap:4px;font-size:14px}
+  .sw .rows div{display:flex;justify-content:space-between}
+  .sw .rows span:first-child{color:var(--gris)}
+  .ratio{display:flex;height:60px;border-radius:var(--r-card);overflow:hidden;border:1px solid var(--linea)}
+  .ratio div{display:flex;align-items:center;padding-left:14px;font:700 12px var(--f)}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  th,td{padding:14px 12px;text-align:left;border-bottom:1px solid var(--linea)}
+  th{font:700 12px var(--f);letter-spacing:.1em;text-transform:uppercase;color:var(--gris)}
+  .ex{display:inline-block;padding:6px 14px;border-radius:var(--r-btn);font-weight:600}
+  .ok{color:#18794e;font-weight:700}.no{color:var(--neon-txt);font-weight:700}
 
-  /* color */
-  .sw{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--linea);background:var(--crema-2)}
-  .sw .chip{height:200px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;font:600 14px var(--f-sans)}
-  .sw .chip b{font:400 40px/1 var(--f-serif);letter-spacing:-.02em}
-  .sw .rows{padding:14px 18px;display:grid;gap:4px}
-  .sw .rows div{display:flex;justify-content:space-between;font-size:14px;color:#3d3b37}
-  .sw .rows div span:first-child{color:var(--gris)}
-  .sw.sm .chip{height:130px}.sw.sm .chip b{font-size:28px}
-  .contrast{width:100%;border-collapse:collapse;font-size:15px;background:var(--crema-2);border-radius:var(--r-lg);overflow:hidden}
-  .contrast th,.contrast td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--linea)}
-  .contrast th{font:700 12px var(--f-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--gris)}
-  .contrast .ex{display:inline-block;padding:6px 14px;border-radius:99px;font-weight:600}
-  .ok{color:#1d7a45;font-weight:700}.no{color:var(--senal-txt);font-weight:700}
-  .ratio{display:flex;height:64px;border-radius:var(--r-pill);overflow:hidden;border:1px solid var(--linea)}
-  .ratio div{display:flex;align-items:center;padding-left:16px;font:600 12px var(--f-sans)}
+  .spec td:first-child{width:160px;color:var(--gris);font-weight:600;font-size:13px}
+  .spec td:last-child{width:250px;text-align:right;color:var(--gris);font-size:13px}
 
-  /* tipo */
-  .specimen{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  .specimen .card{min-height:320px;display:flex;flex-direction:column;justify-content:space-between}
-  .specimen .big{font-size:150px;line-height:.9;letter-spacing:-.03em}
-  .scale{width:100%;border-collapse:collapse}
-  .scale td{padding:16px 0;border-bottom:1px solid var(--linea);vertical-align:baseline}
-  .scale td:first-child{width:170px;font:600 13px var(--f-sans);color:var(--gris)}
-  .scale td:last-child{width:260px;text-align:right;color:var(--gris);font-size:13px}
+  .photo{border-radius:var(--r-card);overflow:hidden;position:relative;aspect-ratio:4/3}
+  .photo img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+  .photo:hover img{transform:scale(1.05)}
+  .photo span{position:absolute;left:12px;bottom:12px;background:rgba(23,26,32,.75);color:#fff;font:600 13px var(--f);padding:6px 10px;border-radius:var(--r-btn)}
 
-  /* layout tokens */
-  .space{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
-  .space div{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:12px;color:var(--gris)}
-  .space i{display:block;background:var(--senal);border-radius:4px}
-  .radii{display:flex;gap:16px;flex-wrap:wrap}
-  .radii div{width:140px;height:100px;background:var(--tinta);color:var(--crema);display:flex;align-items:flex-end;padding:12px;font:600 13px var(--f-sans)}
-  .gridviz{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;height:120px}
-  .gridviz i{background:rgba(255,77,28,.16);border-radius:6px}
-
-  /* elementos gráficos */
-  .el{min-height:260px;display:grid;place-items:center;position:relative;overflow:hidden}
-  .capsule{width:120px;height:200px;border-radius:999px;background:var(--tinta)}
-  .circ{width:170px;height:170px;border-radius:50%;background:var(--senal)}
-  .rain{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 38px,rgba(243,240,238,.5) 38px 39.5px,transparent 39.5px 80px)}
-
-  /* componentes */
-  .comp-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-  .navpill{display:flex;align-items:center;justify-content:space-between;gap:20px;background:rgba(255,255,255,.85);border-radius:99px;padding:10px 10px 10px 22px;box-shadow:0 6px 24px -12px rgba(20,20,19,.25);width:100%}
-  .navpill nav{display:flex;gap:22px;font:500 15px var(--f-sans)}
-  .announce{background:var(--senal);color:var(--tinta);border-radius:12px;padding:12px 18px;font:500 15px var(--f-sans);text-align:center}
-  .announce b{font-weight:700}.announce u{text-underline-offset:3px}
-  .field{display:flex;flex-direction:column;gap:6px;max-width:380px}
-  .field label{font:600 13px var(--f-sans);color:var(--gris)}
-  .field input{font:inherit;background:#fff;border:1.5px solid #D6CFC7;border-radius:14px;min-height:52px;padding:0 16px;outline:none}
-  .field input:focus{border-color:var(--tinta)}
-
-  /* iconos */
-  .icons{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
-  .icons div{aspect-ratio:1;background:var(--noche);border-radius:var(--r-lg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#B9B3A8;font:500 13px var(--f-sans)}
-  .icons svg{width:56px;height:56px;stroke:var(--crema);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-
-  /* movimiento */
-  .beam-demo{height:220px;background:var(--noche);border-radius:var(--r-lg);position:relative;overflow:hidden}
-  .beam-demo img{position:absolute;left:40px;bottom:30px;width:110px;height:110px}
-  .beam-demo .sweep{position:absolute;left:110px;top:58px;width:900px;height:120px;transform-origin:0 50%;background:linear-gradient(90deg,rgba(255,77,28,.55),rgba(255,77,28,0));clip-path:polygon(0 45%,100% 0,100% 100%,0 55%);animation:sweep 6s cubic-bezier(.45,0,.55,1) infinite}
-  @keyframes sweep{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(12deg)}}
-  .tokens{width:100%;border-collapse:collapse;font-size:15px}
-  .tokens td{padding:12px 0;border-bottom:1px solid var(--linea)}
-  .tokens td:first-child{width:220px}
-
-  /* aplicaciones */
-  .bizcard{aspect-ratio:3.5/2;border-radius:16px;padding:26px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 30px 60px -30px rgba(20,20,19,.45)}
-  .bizcard.front{background:var(--noche);color:var(--crema)}
-  .bizcard.back{background:var(--crema-2);border:1px solid var(--linea)}
-  .bizcard .n{font:600 20px var(--f-sans);letter-spacing:-.01em}
-  .bizcard .t{font-size:14px;opacity:.65}
-  .bizcard .c{font-size:14px;line-height:1.6}
-  .phone{width:260px;margin:0 auto;background:#0f0d09;border-radius:40px;padding:12px;box-shadow:0 40px 70px -35px rgba(0,0,0,.6)}
-  .phone .scr{background:#11100d;border-radius:30px;padding:40px 20px 28px;color:#e9e6e0;text-align:center}
+  .biz{aspect-ratio:3.5/2;border-radius:10px;padding:26px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}
+  .biz.front{background:var(--grafito);color:#fff;align-items:center;justify-content:center}
+  .biz.front img{width:60%}
+  .biz.back{background:#fff;border:1px solid var(--linea)}
+  .biz .n{font:700 20px var(--f);color:var(--grafito)}
+  .biz .t{font-size:14px;color:var(--gris)}
+  .biz .c{font-size:14px;line-height:1.7}
+  .phone{width:250px;margin:0 auto;background:#0d0e11;border-radius:38px;padding:12px;box-shadow:0 40px 70px -35px rgba(0,0,0,.6)}
+  .phone .scr{background:#16181c;border-radius:28px;padding:40px 20px 28px;color:#e8e8e8;text-align:center}
   .phone img{width:120px;height:120px;border-radius:50%;margin:0 auto 14px}
-  .phone b{display:block;font-size:20px}.phone small{color:#9c968c}
-  .post{aspect-ratio:1;border-radius:var(--r-lg);background:var(--senal);padding:30px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-  .post h5{font:400 44px/1 var(--f-serif);letter-spacing:-.02em;color:var(--tinta);max-width:9ch;position:relative}
-  .post .orbit{border-color:var(--tinta);opacity:.35}
-  .sig{background:#fff;border:1px solid var(--linea);border-radius:16px;padding:22px;font-size:15px;line-height:1.5}
-  .sig b{font-size:17px}.sig .bar{display:flex;align-items:center;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--linea)}
-  .sig .bar img{width:22px;height:22px}
+  .phone b{display:block;font-size:20px}.phone small{color:#9a9ca0}
+  .post{aspect-ratio:1;border-radius:var(--r-card);overflow:hidden;position:relative;color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:24px;isolation:isolate}
+  .post>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+  .post::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.7))}
+  .post h5{font:700 30px/1.05 var(--f);letter-spacing:-.02em}
+  .post .wm{height:16px;width:auto;align-self:flex-start}
+  .sig{background:#fff;border:1px solid var(--linea);border-radius:var(--r-card);padding:22px;font-size:15px}
+  .sig img{height:16px;margin-top:14px}
 
-  pre{background:var(--noche);color:#E9E4DA;border-radius:var(--r-lg);padding:28px;overflow:auto;font-size:13px;line-height:1.7}
-  pre .c{color:#8C857A}pre .v{color:#FF8A66}
-  .downloads{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .downloads a{display:flex;align-items:center;gap:16px;padding:18px;border-radius:20px;background:var(--crema-2);border:1px solid var(--linea);text-decoration:none}
-  .downloads a:hover{border-color:var(--tinta)}
-  .downloads .th{width:64px;height:64px;border-radius:14px;display:grid;place-items:center;flex-shrink:0}
-  .downloads .th img{width:42px;height:42px}
-  .downloads b{display:block;font-weight:600}.downloads small{color:var(--gris)}
+  .downloads{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .downloads a{display:flex;align-items:center;gap:16px;padding:16px;border-radius:var(--r-card);background:var(--niebla);text-decoration:none;transition:background .2s,transform .2s}
+  .downloads a:hover{background:#e9e9e9;transform:translateY(-2px)}
+  .downloads .th{width:72px;height:56px;border-radius:8px;display:grid;place-items:center;flex-shrink:0;background:#fff}
+  .downloads .th img{max-width:56px;max-height:30px}
+  .downloads b{display:block;color:var(--grafito)}.downloads small{color:var(--gris)}
+  pre{background:var(--grafito);color:#e8e8e8;border-radius:var(--r-card);padding:26px;overflow:auto;font-size:13px;line-height:1.7;margin-top:20px}
+  pre .v{color:var(--neon)}
+  footer{padding:36px clamp(24px,5vw,80px);display:flex;justify-content:space-between;color:var(--gris);font-size:14px}
 
-  footer{padding:40px clamp(24px,5vw,80px);display:flex;justify-content:space-between;color:var(--gris);font-size:14px}
-  footer a{text-decoration:none}
-
-  @media (max-width:1100px){.shell{grid-template-columns:1fr}aside{display:none}.g4{grid-template-columns:repeat(2,1fr)}.icons{grid-template-columns:repeat(3,1fr)}.downloads{grid-template-columns:1fr 1fr}}
-  @media (max-width:760px){.g2,.g3,.g4,.anat,.specimen,.downloads{grid-template-columns:1fr}.cover .meta{grid-template-columns:1fr 1fr}.cover .mark{opacity:.25}.lockup img{width:48px;height:48px}.lockup b,.lockup span{font-size:46px}.slider{grid-template-columns:90px 1fr 90px;font-size:13px}.specimen .big{font-size:100px}.scale td:last-child{display:none}}
+  @media (max-width:1100px){.shell{grid-template-columns:1fr}aside{display:none}.g4{grid-template-columns:repeat(2,1fr)}.downloads{grid-template-columns:1fr 1fr}}
+  @media (max-width:760px){.g2,.g3,.g4,.downloads{grid-template-columns:1fr}.cover .meta{grid-template-columns:1fr 1fr}.spec td:last-child{display:none}}
 </style>
 </head>
 <body>
 
 <header class="cover">
-  <div class="orbit" style="width:900px;height:900px;right:-260px;top:-180px"></div>
-  <div class="orbit" style="width:520px;height:520px;right:-60px;top:20px;opacity:.3"></div>
-  <span class="dot" style="width:14px;height:14px;left:52%;top:22%"></span>
-  <span class="dot" style="width:9px;height:9px;left:61%;top:64%"></span>
-  <span class="dot" style="width:20px;height:20px;left:44%;top:78%"></span>
-  <img class="mark" src="assets/logo-blanco.svg" alt="">
-  <div class="bar"><span class="logo" style="color:var(--crema)"><img src="assets/logo-blanco.svg" alt=""><b>faro</b><span>digital</span></span><span class="pill">Brand Guidelines · v3.0 · Nov 2026</span></div>
-  <h1>Una señal clara, <em>desde lejos.</em></h1>
+  <img src="https://images.unsplash.com/photo-1627718725000-8d47e8ff6354?auto=format&fit=crop&w=2200&q=80" alt="">
+  <div class="bar"><img src="assets/logo-blanco.svg" alt="Faro"><a href="index.html">Ver el sitio →</a></div>
+  <h1>Brand Guidelines</h1>
   <div class="meta">
-    <div><b>Para</b>Todo lo que lleva el nombre Faro Digital: sitio, WhatsApp, redes, propuestas.</div>
+    <div><b>Versión</b>4.0 · Noviembre 2026</div>
     <div><b>Dueño</b>Julio C. Chinea, Fundador</div>
     <div><b>Idiomas</b>Español · English</div>
     <div><b>Base</b>Fort Myers, Florida</div>
@@ -196,276 +129,177 @@
 
 <div class="shell">
 <aside>
-  <span class="logo"><img src="assets/logo.svg" alt=""><b>faro</b><span>digital</span></span>
-  <span class="ver">Brand Guidelines v3.0</span>
+  <img class="lg" src="assets/logo.svg" alt="Faro">
+  <span class="ver">Brand Guidelines 4.0</span>
   <ol id="toc">
     <li><a href="#fundacion"><span>01</span>Fundación</a></li>
     <li><a href="#logo"><span>02</span>Logo</a></li>
     <li><a href="#color"><span>03</span>Color</a></li>
     <li><a href="#tipografia"><span>04</span>Tipografía</a></li>
-    <li><a href="#layout"><span>05</span>Rejilla y espacio</a></li>
-    <li><a href="#elementos"><span>06</span>Elementos gráficos</a></li>
-    <li><a href="#componentes"><span>07</span>Componentes</a></li>
-    <li><a href="#iconos"><span>08</span>Iconografía</a></li>
-    <li><a href="#movimiento"><span>09</span>Movimiento</a></li>
-    <li><a href="#voz"><span>10</span>Voz y tono</a></li>
-    <li><a href="#aplicaciones"><span>11</span>Aplicaciones</a></li>
-    <li><a href="#descargas"><span>12</span>Descargas y tokens</a></li>
+    <li><a href="#componentes"><span>05</span>Componentes</a></li>
+    <li><a href="#fotografia"><span>06</span>Fotografía</a></li>
+    <li><a href="#voz"><span>07</span>Voz y tono</a></li>
+    <li><a href="#aplicaciones"><span>08</span>Aplicaciones</a></li>
+    <li><a href="#descargas"><span>09</span>Descargas</a></li>
   </ol>
-  <div class="dl"><a class="btn" href="index.html" style="width:100%">Ver el sitio <span class="arr">↗</span></a></div>
 </aside>
 
 <main>
-<!-- 01 FUNDACIÓN -->
 <section class="sec" id="fundacion">
-  <div class="sec-h"><span class="num">01 — FUNDACIÓN</span><h2>Por qué existimos.</h2><p>Todo lo visual sale de aquí. Si una decisión de diseño no ayuda a cumplir este propósito, no va.</p></div>
-  <p class="purpose">Iluminar el camino de iglesias, escuelas y negocios para que su mensaje <em>se vea desde lejos</em>, en los dos idiomas de su comunidad.</p>
-  <div class="g g3" style="margin-top:56px">
-    <div class="card"><span class="k">Misión</span><h4>Páginas claras que la gente sí usa.</h4><p>Sitios bilingües, rápidos y fáciles de mantener para organizaciones del suroeste de Florida.</p></div>
-    <div class="card"><span class="k">Promesa</span><h4>Respuesta en 1 o 2 días.</h4><p>Un trato cercano, por WhatsApp, con una persona real que conoce tu comunidad.</p></div>
-    <div class="card"><span class="k">Posicionamiento</span><h4>Calidad de gran empresa, trato de pastor.</h4><p>Para ministerios y negocios locales que necesitan verse profesionales sin perder su voz.</p></div>
+  <div class="sh"><span class="num">01 — FUNDACIÓN</span><h2>Que se vea desde lejos.</h2><p>Faro Digital hace páginas web bilingües para iglesias, escuelas y negocios del suroeste de Florida. Todo lo visual existe para que el mensaje de nuestros clientes se vea claro y llegue lejos.</p></div>
+  <div class="g g3">
+    <div class="card hov"><span class="k">Misión</span><h4>Sitios claros que la gente usa</h4><p>Bilingües, rápidos y fáciles de mantener.</p></div>
+    <div class="card hov"><span class="k">Promesa</span><h4>Respuesta en 1–2 días</h4><p>Una persona real, por WhatsApp o en persona, en Fort Myers.</p></div>
+    <div class="card hov"><span class="k">Prueba</span><h4>5.0 ★★★★★</h4><p>Calificación de nuestros 2 clientes. Siempre decimos cuántas reseñas hay.</p></div>
   </div>
   <h3 class="sub">Valores</h3>
   <div class="g g3">
-    <div class="card"><span class="k">01</span><h4>Claridad</h4><p>Una idea por pantalla. Si hay que explicarlo dos veces, se rediseña.</p></div>
-    <div class="card"><span class="k">02</span><h4>Cercanía</h4><p>Hablamos de tú, con nombres y lugares reales. Nada de jerga.</p></div>
-    <div class="card"><span class="k">03</span><h4>Constancia</h4><p>Como un faro: siempre encendido. Acompañamos después de publicar.</p></div>
-  </div>
-  <h3 class="sub">Personalidad</h3>
-  <div class="card" style="padding:10px 28px">
-    <div class="slider"><span>Formal</span><div class="track"><i style="left:62%"></i></div><span class="r">Cercana</span></div>
-    <div class="slider"><span>Clásica</span><div class="track"><i style="left:70%"></i></div><span class="r">Moderna</span></div>
-    <div class="slider"><span>Seria</span><div class="track"><i style="left:45%"></i></div><span class="r">Alegre</span></div>
-    <div class="slider"><span>Discreta</span><div class="track"><i style="left:78%"></i></div><span class="r">Audaz</span></div>
-    <div class="slider" style="border:0"><span>Técnica</span><div class="track"><i style="left:80%"></i></div><span class="r">Sencilla</span></div>
+    <div class="card hov"><span class="k">01</span><h4>Claridad</h4><p>Una idea por pantalla.</p></div>
+    <div class="card hov"><span class="k">02</span><h4>Cercanía</h4><p>De tú, con nombres y lugares reales.</p></div>
+    <div class="card hov"><span class="k">03</span><h4>Constancia</h4><p>Como un faro: siempre encendido.</p></div>
   </div>
 </section>
 
-<!-- 02 LOGO -->
 <section class="sec" id="logo">
-  <div class="sec-h"><span class="num">02 — LOGO</span><h2>La F que alumbra.</h2><p>El símbolo es una letra F construida como un faro: el trazo vertical es la torre y el brazo superior es el haz de luz. Simple para un favicon, fuerte para un letrero.</p></div>
-  <div class="anat">
-    <div class="stage" style="background:var(--crema-2)"><div class="lockup"><img src="assets/logo.svg" alt=""><b>faro</b><span>digital</span></div><span class="cap">Logotipo principal · horizontal</span></div>
-    <div class="card">
-      <ul class="anat-list">
-        <li><span class="n">1</span><div><b>La torre</b><span>Trazo vertical que se ensancha hacia abajo: estabilidad, base firme.</span></div></li>
-        <li><span class="n">2</span><div><b>El haz</b><span>Brazo superior en Señal, separado de la torre: la luz que sale y llega lejos. Es la única parte de color.</span></div></li>
-        <li><span class="n">3</span><div><b>El brazo medio</b><span>Completa la F. Más corto que el haz para que la luz domine.</span></div></li>
-        <li style="border:0"><span class="n">4</span><div><b>El wordmark</b><span>“faro” en Sofia Sans 800 y “digital” en 400 al 55%, en minúsculas, con espaciado −4.5%.</span></div></li>
+  <div class="sh"><span class="num">02 — LOGO</span><h2>FARO, con la luz en la O.</h2><p>Un logotipo de letras propias, anchas y firmes. La O es un anillo naranja neón: la luz del faro. Sin adornos, para que funcione igual en un letrero, una camiseta o un ícono de 16 píxeles.</p></div>
+  <div class="g g2">
+    <div class="stage"><img class="wm" src="assets/logo.svg" alt="Logotipo FARO"><span class="cap">Logotipo principal</span></div>
+    <div class="card" style="background:#fff;border:1px solid var(--linea)">
+      <ul class="anat">
+        <li><span class="n">1</span><div><b>Letras propias.</b> F, A y R dibujadas a mano con el mismo grosor. No es una fuente: nadie más la tiene.</div></li>
+        <li><span class="n">2</span><div><b>La A sin travesaño.</b> Su forma recuerda la torre de un faro.</div></li>
+        <li><span class="n">3</span><div><b>La O de luz.</b> Anillo en naranja neón. Es la única parte de color.</div></li>
+        <li style="border:0"><span class="n">4</span><div><b>El símbolo.</b> La O sola, con un punto de luz al centro, para íconos y redes.</div></li>
       </ul>
     </div>
   </div>
   <h3 class="sub">Versiones</h3>
   <div class="g g4">
-    <div class="stage" style="background:var(--noche);color:var(--crema)"><img src="assets/logo-blanco.svg" alt="" style="width:110px;height:110px"><span class="cap">Símbolo sobre Noche</span></div>
-    <div class="stage" style="background:var(--crema-2)"><img src="assets/logo.svg" alt="" style="width:110px;height:110px"><span class="cap">Símbolo sobre Crema</span></div>
-    <div class="stage" style="background:var(--senal)"><img src="assets/logo-sobre-senal.svg" alt="" style="width:110px;height:110px"><span class="cap">Sobre Señal (haz en Crema)</span></div>
-    <div class="stage" style="background:var(--pizarra)"><img src="assets/app-icon.svg" alt="" style="width:120px;height:120px;border-radius:28px"><span class="cap">Ícono de app</span></div>
+    <div class="stage dark"><img class="wm" src="assets/logo-blanco.svg" alt=""><span class="cap">Sobre grafito</span></div>
+    <div class="stage neon"><img class="wm" src="assets/logo-negro.svg" alt=""><span class="cap">Sobre neón · todo grafito</span></div>
+    <div class="stage"><img class="sy" src="assets/simbolo.svg" alt=""><span class="cap">Símbolo</span></div>
+    <div class="stage dark"><img class="sy" src="assets/app-icon.svg" alt="" style="border-radius:24px"><span class="cap">Ícono de app</span></div>
   </div>
   <h3 class="sub">Espacio libre y tamaño mínimo</h3>
   <div class="g g2">
-    <div class="stage" style="background:var(--crema-2)"><div class="clear"><div class="lockup"><img src="assets/logo.svg" alt="" style="width:48px;height:48px"><b style="font-size:48px">faro</b><span style="font-size:48px">digital</span></div></div><span class="cap">x = ancho de la torre. Mínimo 1x alrededor.</span></div>
-    <div class="card" style="display:flex;flex-direction:column;justify-content:center;gap:22px">
-      <div style="display:flex;align-items:center;gap:20px"><img src="assets/logo.svg" alt="" style="width:20px;height:20px"><span>Símbolo: <b>20 px</b> en pantalla · <b>6 mm</b> impreso</span></div>
-      <div style="display:flex;align-items:center;gap:20px"><span class="logo" style="min-height:0"><img src="assets/logo.svg" alt="" style="width:18px;height:18px"><b style="font-size:16px">faro</b><span style="font-size:16px">digital</span></span><span>Logotipo: <b>110 px</b> de ancho · <b>30 mm</b> impreso</span></div>
-    </div>
+    <div class="stage"><div class="clear"><img src="assets/logo.svg" alt="" style="width:220px"></div><span class="cap">Margen mínimo = alto de la letra F</span></div>
+    <div class="card" style="display:grid;gap:22px;align-content:center"><div style="display:flex;align-items:center;gap:18px"><img src="assets/logo.svg" alt="" style="height:12px"><span>Logotipo: <b>12 px</b> de alto · <b>4 mm</b> impreso</span></div><div style="display:flex;align-items:center;gap:18px"><img src="assets/simbolo.svg" alt="" style="height:20px"><span>Símbolo: <b>16 px</b> · <b>5 mm</b> impreso</span></div></div>
   </div>
-  <h3 class="sub">Usos incorrectos</h3>
+  <h3 class="sub">No hagas</h3>
   <div class="g g4 misuse">
-    <div class="stage" style="background:var(--crema-2)"><img src="assets/logo.svg" alt="" style="transform:scaleX(1.6)"><span class="cap">No lo estires</span></div>
-    <div class="stage" style="background:var(--crema-2)"><img src="assets/logo.svg" alt="" style="transform:rotate(-18deg)"><span class="cap">No lo rotes</span></div>
-    <div class="stage" style="background:var(--crema-2)"><svg viewBox="0 0 48 48" style="width:96px;height:96px"><path d="M12.5 5h7.5l2.6 38H9.9z" fill="#141413"/><path d="M23.2 6.6 45 2.5v14.5L23.6 12.4z" fill="#2F6BFF"/><path d="M22.4 21.5 35 20v7.5H22.9z" fill="#141413"/></svg><span class="cap">No cambies el color del haz</span></div>
-    <div class="stage" style="background:var(--crema-2)"><img src="assets/logo.svg" alt="" style="filter:drop-shadow(6px 8px 6px rgba(0,0,0,.45))"><span class="cap">Sin sombras ni efectos</span></div>
+    <div class="stage"><img src="assets/logo.svg" alt="" style="width:60%;transform:scaleY(1.7)"><span class="cap">No lo estires</span></div>
+    <div class="stage"><img src="assets/logo.svg" alt="" style="width:60%;transform:rotate(-12deg)"><span class="cap">No lo gires</span></div>
+    <div class="stage"><img src="assets/logo.svg" alt="" style="width:60%;filter:hue-rotate(160deg)"><span class="cap">No cambies el color de la O</span></div>
+    <div class="stage"><img src="assets/logo.svg" alt="" style="width:60%;filter:drop-shadow(5px 6px 4px rgba(0,0,0,.5))"><span class="cap">Sin sombras ni efectos</span></div>
   </div>
 </section>
 
-<!-- 03 COLOR -->
 <section class="sec" id="color">
-  <div class="sec-h"><span class="num">03 — COLOR</span><h2>Crema, Noche y una Señal.</h2><p>Dos mundos: el día (Crema, cálido y calmado) y la noche (oscuro, dramático). Señal es el haz del faro y aparece en los dos, siempre poco.</p></div>
-  <h3 class="sub" style="margin-top:0">Primarios</h3>
+  <div class="sh"><span class="num">03 — COLOR</span><h2>Neutros tranquilos. Un neón que se nota.</h2><p>Grafito y blancos hacen el trabajo. El naranja neón es la luz: botones principales, la O del logo y bloques de color a todo lo ancho.</p></div>
   <div class="g g3">
-    <div class="sw"><div class="chip" style="background:var(--crema)"><span>--crema</span><b>Crema</b></div><div class="rows"><div><span>HEX</span><span>#F3F0EE</span></div><div><span>RGB</span><span>243 240 238</span></div><div><span>Uso</span><span>Fondo principal</span></div></div></div>
-    <div class="sw"><div class="chip" style="background:var(--tinta);color:var(--crema)"><span>--tinta</span><b>Tinta</b></div><div class="rows"><div><span>HEX</span><span>#141413</span></div><div><span>RGB</span><span>20 20 19</span></div><div><span>Uso</span><span>Texto y botones</span></div></div></div>
-    <div class="sw"><div class="chip" style="background:var(--senal)"><span>--senal</span><b>Señal</b></div><div class="rows"><div><span>HEX</span><span>#FF4D1C</span></div><div><span>RGB</span><span>255 77 28</span></div><div><span>Uso</span><span>Acción principal, haz</span></div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--neon)"><span>--neon</span><b>Neón</b></div><div class="rows"><div><span>HEX</span><span>#FF5E00</span></div><div><span>RGB</span><span>255 94 0</span></div><div><span>Uso</span><span>Acción, la O, bloques</span></div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--grafito);color:#fff"><span>--grafito</span><b>Grafito</b></div><div class="rows"><div><span>HEX</span><span>#171A20</span></div><div><span>RGB</span><span>23 26 32</span></div><div><span>Uso</span><span>Títulos, fondos oscuros</span></div></div></div>
+    <div class="sw"><div class="chip" style="background:#fff;border-bottom:1px solid var(--linea)"><span>--blanco</span><b>Blanco</b></div><div class="rows"><div><span>HEX</span><span>#FFFFFF</span></div><div><span>RGB</span><span>255 255 255</span></div><div><span>Uso</span><span>Fondo principal</span></div></div></div>
   </div>
-  <h3 class="sub">Secundarios y neutros</h3>
+  <h3 class="sub">Apoyo</h3>
   <div class="g g4">
-    <div class="sw sm"><div class="chip" style="background:var(--noche);color:var(--crema)"><span>--noche</span><b>Noche</b></div><div class="rows"><div><span>HEX</span><span>#15120C</span></div></div></div>
-    <div class="sw sm"><div class="chip" style="background:var(--noche-2);color:var(--crema)"><span>--noche-2</span><b>Noche 2</b></div><div class="rows"><div><span>HEX</span><span>#211C13</span></div></div></div>
-    <div class="sw sm"><div class="chip" style="background:var(--pizarra)"><span>--pizarra</span><b>Pizarra</b></div><div class="rows"><div><span>HEX</span><span>#B7C0CE</span></div></div></div>
-    <div class="sw sm"><div class="chip" style="background:var(--senal-txt);color:var(--crema)"><span>--senal-txt</span><b>Señal texto</b></div><div class="rows"><div><span>HEX</span><span>#C8370A</span></div></div></div>
-    <div class="sw sm"><div class="chip" style="background:var(--crema-2)"><span>--crema-2</span><b>Crema 2</b></div><div class="rows"><div><span>HEX</span><span>#FCFBFA</span></div></div></div>
-    <div class="sw sm"><div class="chip" style="background:var(--gris);color:var(--crema)"><span>--gris</span><b>Gris</b></div><div class="rows"><div><span>HEX</span><span>#6B6862</span></div></div></div>
-    <div class="sw sm"><div class="chip" style="background:var(--linea)"><span>--linea</span><b>Línea</b></div><div class="rows"><div><span>HEX</span><span>#DDD7D1</span></div></div></div>
-    <div class="sw sm"><div class="chip" style="background:#fff"><span>--blanco</span><b>Blanco</b></div><div class="rows"><div><span>HEX</span><span>#FFFFFF</span></div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--niebla);height:110px"><span>--niebla</span><b style="font-size:24px">Niebla</b></div><div class="rows"><div><span>HEX</span><span>#F4F4F4</span></div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--texto);color:#fff;height:110px"><span>--texto</span><b style="font-size:24px">Texto</b></div><div class="rows"><div><span>HEX</span><span>#393C41</span></div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--gris);color:#fff;height:110px"><span>--gris</span><b style="font-size:24px">Gris</b></div><div class="rows"><div><span>HEX</span><span>#5C5E62</span></div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--neon-txt);color:#fff;height:110px"><span>--neon-txt</span><b style="font-size:24px">Neón texto</b></div><div class="rows"><div><span>HEX</span><span>#C24600</span></div></div></div>
   </div>
   <h3 class="sub">Proporción</h3>
-  <div class="ratio"><div style="flex:50;background:var(--crema)">CREMA 50%</div><div style="flex:25;background:var(--noche);color:var(--crema)">NOCHE 25%</div><div style="flex:13;background:var(--tinta);color:var(--crema)">TINTA 13%</div><div style="flex:7;background:var(--pizarra)">PIZARRA</div><div style="flex:5;background:var(--senal)"></div></div>
+  <div class="ratio"><div style="flex:50;background:#fff">BLANCO 50%</div><div style="flex:25;background:var(--grafito);color:#fff">GRAFITO 25%</div><div style="flex:12;background:var(--niebla)">NIEBLA</div><div style="flex:13;background:var(--neon)">NEÓN 13%</div></div>
   <h3 class="sub">Contraste (WCAG 2.2)</h3>
-  <table class="contrast">
+  <table>
     <tr><th>Combinación</th><th>Ejemplo</th><th>Contraste</th><th>Texto normal</th></tr>
-    <tr><td>Tinta sobre Crema</td><td><span class="ex" style="background:var(--crema);color:var(--tinta)">Cotizar</span></td><td>16.2 : 1</td><td class="ok">AAA</td></tr>
-    <tr><td>Crema sobre Noche</td><td><span class="ex" style="background:var(--noche);color:var(--crema)">Cotizar</span></td><td>16.5 : 1</td><td class="ok">AAA</td></tr>
-    <tr><td>Tinta sobre Pizarra</td><td><span class="ex" style="background:var(--pizarra);color:var(--tinta)">Cotizar</span></td><td>10.0 : 1</td><td class="ok">AAA</td></tr>
-    <tr><td>Señal sobre Noche</td><td><span class="ex" style="background:var(--noche);color:var(--senal)">Cotizar</span></td><td>5.6 : 1</td><td class="ok">AA</td></tr>
-    <tr><td>Tinta sobre Señal</td><td><span class="ex" style="background:var(--senal);color:var(--tinta)">Cotizar</span></td><td>5.6 : 1</td><td class="ok">AA</td></tr>
-    <tr><td>Señal texto sobre Crema</td><td><span class="ex" style="background:var(--crema);color:var(--senal-txt)">Cotizar</span></td><td>4.6 : 1</td><td class="ok">AA</td></tr>
-    <tr><td>Blanco sobre Señal</td><td><span class="ex" style="background:var(--senal);color:#fff">Cotizar</span></td><td>3.3 : 1</td><td class="no">No usar</td></tr>
+    <tr><td>Grafito sobre blanco</td><td><span class="ex" style="color:var(--grafito);border:1px solid var(--linea)">Cotizar</span></td><td>17.4 : 1</td><td class="ok">AAA</td></tr>
+    <tr><td>Grafito sobre niebla</td><td><span class="ex" style="background:var(--niebla);color:var(--grafito)">Cotizar</span></td><td>15.8 : 1</td><td class="ok">AAA</td></tr>
+    <tr><td>Grafito sobre neón</td><td><span class="ex" style="background:var(--neon);color:var(--grafito)">Cotizar</span></td><td>5.7 : 1</td><td class="ok">AA</td></tr>
+    <tr><td>Neón sobre grafito</td><td><span class="ex" style="background:var(--grafito);color:var(--neon)">Cotizar</span></td><td>5.7 : 1</td><td class="ok">AA</td></tr>
+    <tr><td>Neón texto sobre blanco</td><td><span class="ex" style="color:var(--neon-txt);border:1px solid var(--linea)">Cotizar</span></td><td>5.0 : 1</td><td class="ok">AA</td></tr>
+    <tr><td>Blanco sobre neón</td><td><span class="ex" style="background:var(--neon);color:#fff">Cotizar</span></td><td>3.1 : 1</td><td class="no">No usar</td></tr>
   </table>
 </section>
 
-<!-- 04 TIPOGRAFÍA -->
 <section class="sec" id="tipografia">
-  <div class="sec-h"><span class="num">04 — TIPOGRAFÍA</span><h2>Una voz con dos tonos.</h2><p>Newsreader, una serif editorial, para los momentos grandes: titulares de portada y cierres. Sofia Sans, una sans humanista en peso medio, para todo lo demás. Las dos son gratis en Google Fonts.</p></div>
-  <div class="specimen">
-    <div class="card"><span class="k">Display · Newsreader 400</span><div class="big" style="font-family:var(--f-serif)">Aa</div><div style="font:400 22px var(--f-serif)">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ<br><em>abcdefghijklmnñopqrstuvwxyz 0123456789</em></div></div>
-    <div class="card"><span class="k">Texto e interfaz · Sofia Sans 400–800</span><div class="big" style="font-family:var(--f-sans);font-weight:500">Aa</div><div style="font:500 22px var(--f-sans)">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ<br>abcdefghijklmnñopqrstuvwxyz 0123456789</div></div>
-  </div>
-  <h3 class="sub">Escala</h3>
-  <table class="scale">
-    <tr><td>Display XL</td><td style="font:400 clamp(56px,7vw,112px)/1 var(--f-serif);letter-spacing:-.03em">Desde lejos.</td><td>Newsreader 400 · 112/112 · −3%</td></tr>
-    <tr><td>Display L</td><td style="font:400 64px/1.05 var(--f-serif);letter-spacing:-.02em">Hablemos.</td><td>Newsreader 400 · 64/68 · −2%</td></tr>
-    <tr><td>Heading XL</td><td style="font:500 clamp(48px,5vw,88px)/1 var(--f-sans);letter-spacing:-.025em">Tres formas</td><td>Sofia Sans 500 · 88/88 · −2.5%</td></tr>
-    <tr><td>Heading 1</td><td style="font:500 48px/1.05 var(--f-sans);letter-spacing:-.02em">Para quién trabajamos</td><td>Sofia Sans 500 · 48/50 · −2%</td></tr>
-    <tr><td>Heading 2</td><td style="font:500 32px/1.15 var(--f-sans);letter-spacing:-.015em">Iglesias y ministerios</td><td>Sofia Sans 500 · 32/37 · −1.5%</td></tr>
-    <tr><td>Body L</td><td style="font:400 20px/1.5 var(--f-sans)">Páginas web bilingües, claras y fáciles de mantener.</td><td>Sofia Sans 400 · 20/30</td></tr>
-    <tr><td>Body</td><td style="font:400 17px/1.55 var(--f-sans)">Te respondemos en 1 o 2 días con una cotización sin compromiso.</td><td>Sofia Sans 400 · 17/26</td></tr>
-    <tr><td>Eyebrow</td><td><span class="eyebrow">Servicios</span></td><td>Sofia Sans 700 · 13 · +6% · mayúsculas</td></tr>
+  <div class="sh"><span class="num">04 — TIPOGRAFÍA</span><h2>Figtree, una sola familia.</h2><p>Limpia como la de Tesla, amable como la de Starbucks. Gratis en Google Fonts. Pesos 400 a 800; títulos en 600–700 con espaciado un poco cerrado.</p></div>
+  <div class="card" style="background:#fff;border:1px solid var(--linea);padding:8px 28px">
+  <table class="spec">
+    <tr><td>Display</td><td style="font:600 clamp(40px,4.6vw,60px)/1.05 var(--f);letter-spacing:-.025em;color:var(--grafito)">Que se vea desde lejos</td><td>Figtree 600 · 60 · −2.5%</td></tr>
+    <tr><td>Título de sección</td><td style="font:600 44px/1.1 var(--f);letter-spacing:-.025em;color:var(--grafito)">Tres formas de empezar</td><td>Figtree 600 · 44–52 · −2.5%</td></tr>
+    <tr><td>Título de bloque</td><td style="font:700 34px/1.1 var(--f);letter-spacing:-.02em;color:var(--grafito)">Sitio completo</td><td>Figtree 700 · 34–42 · −2%</td></tr>
+    <tr><td>Etiqueta</td><td style="font:700 13px var(--f);letter-spacing:.14em;text-transform:uppercase;color:var(--neon-txt)">Iglesias y ministerios</td><td>Figtree 700 · 13 · +14% · mayúsculas</td></tr>
+    <tr><td>Texto</td><td style="font:400 18px/1.55 var(--f)">Páginas web bilingües, claras y fáciles de mantener.</td><td>Figtree 400 · 17–18 · 1.55</td></tr>
+    <tr><td>Botón</td><td style="font:600 15px var(--f);color:var(--grafito)">Cotización gratis</td><td>Figtree 600 · 14–15</td></tr>
   </table>
-</section>
-
-<!-- 05 LAYOUT -->
-<section class="sec" id="layout">
-  <div class="sec-h"><span class="num">05 — REJILLA Y ESPACIO</span><h2>Aire de sobra.</h2><p>Rejilla de 12 columnas, márgenes generosos y una escala de espacio de base 4. Las secciones respiran: entre 96 y 160 px arriba y abajo.</p></div>
-  <div class="card"><div class="gridviz">
-    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-  </div><p style="margin-top:14px;font-size:14px;color:var(--gris)">12 columnas · ancho máximo 1340 px · medianiles 24 px · margen lateral 20–56 px</p></div>
-  <h3 class="sub">Escala de espacio</h3>
-  <div class="card"><div class="space">
-    <div><i style="width:4px;height:4px"></i>4</div><div><i style="width:8px;height:8px"></i>8</div><div><i style="width:12px;height:12px"></i>12</div><div><i style="width:16px;height:16px"></i>16</div><div><i style="width:24px;height:24px"></i>24</div><div><i style="width:32px;height:32px"></i>32</div><div><i style="width:48px;height:48px"></i>48</div><div><i style="width:64px;height:64px"></i>64</div><div><i style="width:96px;height:96px"></i>96</div><div><i style="width:128px;height:128px"></i>128</div>
-  </div></div>
-  <h3 class="sub">Radios</h3>
-  <div class="radii">
-    <div style="border-radius:999px;justify-content:center;align-items:center">pill · 999</div>
-    <div style="border-radius:48px">xl · 48</div>
-    <div style="border-radius:28px">lg · 28</div>
-    <div style="border-radius:14px">md · 14</div>
   </div>
 </section>
 
-<!-- 06 ELEMENTOS -->
-<section class="sec" id="elementos">
-  <div class="sec-h"><span class="num">06 — ELEMENTOS GRÁFICOS</span><h2>Formas que vienen de la luz.</h2><p>Cinco recursos, todos derivados del faro. Úsalos para enmarcar fotos y dar ritmo, nunca como decoración vacía.</p></div>
-  <div class="g g3">
-    <div class="card el"><div class="capsule"></div><span class="k" style="position:absolute;left:24px;bottom:18px">Cápsula · marco de fotos</span></div>
-    <div class="card el"><div class="circ"></div><div class="orbit" style="width:260px;height:260px;left:50%;top:50%;transform:translate(-30%,-62%);opacity:.8"></div><span class="k" style="position:absolute;left:24px;bottom:18px">Círculo + órbita</span></div>
-    <div class="card el" style="background:var(--noche)"><span class="dot" style="width:14px;height:14px;left:30%;top:30%"></span><span class="dot" style="width:9px;height:9px;left:64%;top:42%"></span><span class="dot" style="width:22px;height:22px;left:46%;top:62%"></span><span class="dot" style="width:7px;height:7px;left:22%;top:70%"></span><span class="k" style="position:absolute;left:24px;bottom:18px;color:#9c968c">Puntos de señal</span></div>
-    <div class="card el" style="background:var(--noche)"><div class="rain"></div><span class="k" style="position:absolute;left:24px;bottom:18px;color:#9c968c">Lluvia de luz · llamados finales</span></div>
-    <div class="card el" style="background:var(--senal)"><div style="font:400 60px/1 var(--f-serif);letter-spacing:-.02em">Aa</div><span class="k" style="position:absolute;left:24px;bottom:18px;color:var(--tinta)">Bloque Señal a todo lo ancho</span></div>
-    <div class="card el"><div style="width:220px;height:140px;border-radius:18px;background:var(--noche);box-shadow:0 30px 50px -25px rgba(0,0,0,.6);border:8px solid #2a251b"></div><span class="k" style="position:absolute;left:24px;bottom:18px">Pantalla · muestra el trabajo real</span></div>
-  </div>
-</section>
-
-<!-- 07 COMPONENTES -->
 <section class="sec" id="componentes">
-  <div class="sec-h"><span class="num">07 — COMPONENTES</span><h2>Pocas piezas, siempre iguales.</h2><p>Todos los botones miden 48 px de alto, lo mínimo para tocar cómodo con el dedo.</p></div>
+  <div class="sh"><span class="num">05 — COMPONENTES</span><h2>Todo responde al tocarlo.</h2><p>Botones rectos de 4 px (Tesla) para acciones principales y píldoras con borde (Starbucks) dentro de los bloques de color. Todo sube un poco y cambia al pasar el mouse.</p></div>
   <div class="g g2">
-    <div class="card"><span class="k">Botones</span><div class="comp-row" style="margin-top:18px"><a class="btn senal" href="#componentes">Cotización gratis <span class="arr">→</span></a><a class="btn" href="#componentes">Ver trabajos</a><a class="btn line" href="#componentes">Cotizar</a><button class="circle-btn" type="button" aria-label="Siguiente">→</button></div></div>
-    <div class="card" style="background:var(--noche);border-color:var(--noche)"><span class="k" style="color:#9c968c">Sobre Noche</span><div class="comp-row" style="margin-top:18px"><a class="btn senal" href="#componentes">Empezar <span class="arr">→</span></a><a class="btn ghost-senal" href="#componentes">English</a></div></div>
-    <div class="card"><span class="k">Barra de anuncio</span><div class="announce" style="margin-top:18px"><b>Cotización gratis en 1–2 días:</b> escríbenos por WhatsApp. <u>Empezar</u></div></div>
-    <div class="card"><span class="k">Eyebrow y campo</span><div style="margin-top:18px;display:grid;gap:18px"><span class="eyebrow">Servicios</span><div class="field"><label for="demo-n">Nombre</label><input id="demo-n" placeholder="Escribe aquí"></div></div></div>
-    <div class="card" style="grid-column:1/-1;background:var(--pizarra);border-color:var(--pizarra)"><span class="k" style="color:var(--tinta)">Menú flotante (píldora)</span><div class="navpill" style="margin-top:18px"><span class="logo"><img src="assets/logo.svg" alt=""><b>faro</b><span>digital</span></span><nav><span>Servicios</span><span>Trabajos</span><span>Proceso</span><span>Contacto</span></nav><span class="btn senal">Cotizar</span></div></div>
+    <div class="card"><span class="k">Botones principales · 4 px</span><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px"><a class="btn neon" href="#componentes">Cotización gratis</a><a class="btn dark" href="#componentes">Enviar por email</a></div></div>
+    <div class="card" style="background:var(--grafito)"><span class="k" style="color:#a9abaf">Sobre foto o fondo oscuro</span><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px"><a class="btn neon" href="#componentes">Cotizar</a><a class="btn light" href="#componentes">Qué incluye</a></div></div>
+    <div class="card" style="background:var(--neon)"><span class="k" style="color:var(--grafito)">Píldora sobre neón</span><div style="margin-top:18px"><a class="pill on-neon" href="#componentes">Cotizar</a></div></div>
+    <div class="card"><span class="k">Píldora sobre claro</span><div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap"><a class="pill on-light" href="#componentes">Cotizar</a><span class="stars" style="align-self:center;font-size:20px">★★★★★</span><b style="align-self:center;color:var(--grafito)">5.0</b></div></div>
   </div>
 </section>
 
-<!-- 08 ICONOS -->
-<section class="sec" id="iconos">
-  <div class="sec-h"><span class="num">08 — ICONOGRAFÍA</span><h2>Línea fina, sobre la noche.</h2><p>Trazo de 1.5 px, puntas redondas, en una cuadrícula de 24. En Crema sobre Noche o en Tinta sobre Crema. Nunca en cuadritos de colores.</p></div>
-  <div class="icons">
-    <div><svg viewBox="0 0 24 24"><path d="M12 2v4M10 4h4M5 21V11l7-4 7 4v10M3 21h18M10 21v-4h4v4"/></svg>Iglesia</div>
-    <div><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.6 2.7 3 6 3s6-1.4 6-3v-5M22 9v6"/></svg>Escuela</div>
-    <div><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0zM5 13v8h14v-8M10 21v-5h4v5"/></svg>Negocio</div>
-    <div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.8 3.8 5.8 3.8 9s-1.3 6.2-3.8 9c-2.5-2.8-3.8-5.8-3.8-9S9.5 5.8 12 3z"/></svg>Bilingüe</div>
-    <div><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.9A8 8 0 1 1 21 12z"/><path d="M8.5 10.5h7M8.5 13.5h4.5"/></svg>WhatsApp</div>
-    <div><svg viewBox="0 0 24 24"><path d="M10 21l-1-4 6-11 3 1-1 4-6 10zM9 17l-3 1 1-3M15 6l3 1"/><path d="M4 8h3M5 4l2 2M20 15v3M17 20h3"/></svg>Publicar</div>
+<section class="sec" id="fotografia">
+  <div class="sh"><span class="num">06 — FOTOGRAFÍA</span><h2>Gente real, luz real.</h2><p>Fotos a pantalla completa de personas reales en iglesias, salones de clase y negocios locales, más faros con su luz. Usamos fotos libres de Unsplash y damos crédito en el pie. Nunca imágenes hechas con IA ni capturas de clientes sin permiso.</p></div>
+  <div class="g g3">
+    <div class="photo"><img src="https://images.unsplash.com/photo-1579975096649-e773152b04cb?auto=format&fit=crop&w=900&q=70" alt="" loading="lazy"><span>Iglesias</span></div>
+    <div class="photo"><img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=70" alt="" loading="lazy"><span>Escuelas</span></div>
+    <div class="photo"><img src="https://images.unsplash.com/photo-1753351052617-62818ffc9173?auto=format&fit=crop&w=900&q=70" alt="" loading="lazy"><span>Negocios</span></div>
   </div>
 </section>
 
-<!-- 09 MOVIMIENTO -->
-<section class="sec" id="movimiento">
-  <div class="sec-h"><span class="num">09 — MOVIMIENTO</span><h2>Como un haz que barre.</h2><p>El movimiento es lento, continuo y con propósito, como la luz de un faro. Nada rebota ni parpadea. Si el usuario pide menos movimiento, todo se detiene.</p></div>
-  <div class="beam-demo"><div class="sweep"></div><img src="assets/logo-blanco.svg" alt=""></div>
-  <table class="tokens" style="margin-top:28px">
-    <tr><td><code>--dur-rapido</code></td><td>150 ms · botones y estados</td></tr>
-    <tr><td><code>--dur-medio</code></td><td>300 ms · menús, tarjetas</td></tr>
-    <tr><td><code>--dur-lento</code></td><td>600 ms · entradas de sección, carrusel</td></tr>
-    <tr><td><code>--ease-faro</code></td><td><code>cubic-bezier(.2, .8, .2, 1)</code> · sale rápido, llega suave</td></tr>
-  </table>
-</section>
-
-<!-- 10 VOZ -->
 <section class="sec" id="voz">
-  <div class="sec-h"><span class="num">10 — VOZ Y TONO</span><h2>Cercana, clara, de tú.</h2><p>Habla como un pastor que conoce a su comunidad. Primero lo que la persona gana; después cómo se hace. El mismo tono en español y en inglés.</p></div>
+  <div class="sh"><span class="num">07 — VOZ Y TONO</span><h2>Cercana, clara, de tú.</h2><p>Primero lo que la persona gana, después cómo se hace. Mismo tono en español y en inglés. Datos honestos: si decimos 5 estrellas, decimos de cuántos clientes.</p></div>
   <div class="g g2">
-    <div class="card"><span class="k" style="color:#1d7a45">Así sí</span><p style="font:400 30px/1.2 var(--f-serif);color:var(--tinta);margin-top:12px">“Que tu iglesia se vea desde lejos. Te respondemos en 1 o 2 días.”</p></div>
-    <div class="card"><span class="k" style="color:var(--senal-txt)">Así no</span><p style="font:400 30px/1.2 var(--f-serif);color:var(--gris);margin-top:12px;text-decoration:line-through">“Potenciamos tu presencia digital con soluciones innovadoras de última generación.”</p></div>
-  </div>
-  <div class="g g3" style="margin-top:20px">
-    <div class="card"><span class="k">Usa</span><p style="margin-top:10px">Tú · tu comunidad · claro · fácil · en los dos idiomas · Fort Myers · WhatsApp</p></div>
-    <div class="card"><span class="k">Evita</span><p style="margin-top:10px">Soluciones · sinergia · siguiente nivel · disruptivo · experiencias digitales</p></div>
-    <div class="card"><span class="k">English</span><p style="margin-top:10px">Same warmth: “So your church can be seen from afar. We reply within 1–2 days.”</p></div>
+    <div class="card"><span class="k" style="color:#18794e">Así sí</span><h4>“Que te encuentren. Que te llamen.”</h4></div>
+    <div class="card"><span class="k" style="color:var(--neon-txt)">Así no</span><h4 style="color:var(--gris);text-decoration:line-through">“Soluciones digitales innovadoras de última generación.”</h4></div>
   </div>
 </section>
 
-<!-- 11 APLICACIONES -->
 <section class="sec" id="aplicaciones">
-  <div class="sec-h"><span class="num">11 — APLICACIONES</span><h2>La marca, en la vida real.</h2><p>Ejemplos de cómo se ve el sistema fuera del sitio web.</p></div>
+  <div class="sh"><span class="num">08 — APLICACIONES</span><h2>La marca, en la vida real.</h2></div>
   <div class="g g2">
-    <div class="bizcard front"><span class="logo" style="color:var(--crema);min-height:0"><img src="assets/logo-blanco.svg" alt=""><b>faro</b><span>digital</span></span><div><div style="font:400 30px/1 var(--f-serif);letter-spacing:-.02em">Se ve desde lejos.</div></div></div>
-    <div class="bizcard back"><div><div class="n">Julio C. Chinea</div><div class="t">Fundador · Founder</div></div><div class="c">(786) 805-7734 · WhatsApp<br>chinea@farodigitalfl.com<br>farodigitalfl.com · Fort Myers, FL</div></div>
+    <div class="biz front"><img src="assets/logo-blanco.svg" alt=""></div>
+    <div class="biz back"><div><div class="n">Julio C. Chinea</div><div class="t">Fundador · Founder</div></div><div class="c">(786) 805-7734 · WhatsApp<br>chinea@farodigitalfl.com<br>farodigitalfl.com · Fort Myers, FL</div></div>
   </div>
-  <div class="g g3" style="margin-top:20px;align-items:center">
-    <div class="phone"><div class="scr"><img src="assets/faro-digital-perfil.png" alt="Foto de perfil de WhatsApp"><b>Faro Digital</b><small>Business account</small></div></div>
-    <div class="post"><div class="orbit" style="width:340px;height:340px;right:-120px;top:-120px"></div><span class="eyebrow" style="color:var(--tinta)">Faro Digital</span><h5>Tu iglesia, en los dos idiomas.</h5><span class="logo" style="min-height:0"><img src="assets/logo-sobre-senal.svg" alt=""><b>faro</b><span>digital</span></span></div>
-    <div class="sig"><b>Julio C. Chinea</b><br><span style="color:var(--gris)">Fundador, Faro Digital</span><br>(786) 805-7734 · farodigitalfl.com<div class="bar"><img src="assets/logo.svg" alt=""><span style="font-size:13px;color:var(--gris)">Páginas web bilingües · Fort Myers, FL</span></div></div>
+  <div class="g g3" style="margin-top:16px;align-items:center">
+    <div class="phone"><div class="scr"><img src="assets/faro-digital-perfil.png" alt=""><b>Faro Digital</b><small>Business account</small></div></div>
+    <div class="post"><img class="bg" src="https://images.unsplash.com/photo-1579975096649-e773152b04cb?auto=format&fit=crop&w=900&q=70" alt=""><img class="wm" src="assets/logo-blanco.svg" alt=""><div><h5>Tu iglesia, abierta todos los días.</h5><span class="btn neon" style="margin-top:14px;min-width:0">Cotizar</span></div></div>
+    <div class="sig"><b style="color:var(--grafito);font-size:17px">Julio C. Chinea</b><br><span style="color:var(--gris)">Fundador, Faro Digital</span><br>(786) 805-7734 · farodigitalfl.com<br><img src="assets/logo.svg" alt=""></div>
   </div>
 </section>
 
-<!-- 12 DESCARGAS -->
 <section class="sec" id="descargas">
-  <div class="sec-h"><span class="num">12 — DESCARGAS Y TOKENS</span><h2>Todo en un lugar.</h2><p>Archivos listos para usar, y los tokens de diseño que usa el sitio web.</p></div>
+  <div class="sh"><span class="num">09 — DESCARGAS</span><h2>Todo en un lugar.</h2></div>
   <div class="downloads">
-    <a href="assets/logo.svg" download><span class="th" style="background:var(--crema-2);border:1px solid var(--linea)"><img src="assets/logo.svg" alt=""></span><span><b>Símbolo · Tinta</b><small>SVG</small></span></a>
-    <a href="assets/logo-blanco.svg" download><span class="th" style="background:var(--noche)"><img src="assets/logo-blanco.svg" alt=""></span><span><b>Símbolo · Crema</b><small>SVG</small></span></a>
-    <a href="assets/logo-sobre-senal.svg" download><span class="th" style="background:var(--senal)"><img src="assets/logo-sobre-senal.svg" alt=""></span><span><b>Símbolo · sobre Señal</b><small>SVG</small></span></a>
-    <a href="assets/app-icon.svg" download><span class="th"><img src="assets/app-icon.svg" alt="" style="width:64px;height:64px;border-radius:14px"></span><span><b>Ícono de app</b><small>SVG · 512 px</small></span></a>
-    <a href="assets/faro-digital-perfil.png" download><span class="th" style="background:var(--noche)"><img src="assets/logo-blanco.svg" alt=""></span><span><b>Perfil WhatsApp · oscuro</b><small>PNG · 1024 px</small></span></a>
-    <a href="assets/faro-digital-perfil-claro.png" download><span class="th" style="background:var(--crema-2);border:1px solid var(--linea)"><img src="assets/logo.svg" alt=""></span><span><b>Perfil · claro</b><small>PNG · 1024 px</small></span></a>
-    <a href="assets/faro.css" download><span class="th" style="background:var(--senal)"><span style="font:700 15px var(--f-sans)">CSS</span></span><span><b>Design tokens</b><small>faro.css</small></span></a>
+    <a href="assets/logo.svg" download><span class="th"><img src="assets/logo.svg" alt=""></span><span><b>Logotipo</b><small>SVG · color</small></span></a>
+    <a href="assets/logo-blanco.svg" download><span class="th" style="background:var(--grafito)"><img src="assets/logo-blanco.svg" alt=""></span><span><b>Logotipo blanco</b><small>SVG · fondos oscuros</small></span></a>
+    <a href="assets/logo-negro.svg" download><span class="th" style="background:var(--neon)"><img src="assets/logo-negro.svg" alt=""></span><span><b>Logotipo grafito</b><small>SVG · sobre neón</small></span></a>
+    <a href="assets/simbolo.svg" download><span class="th"><img src="assets/simbolo.svg" alt="" style="max-height:40px"></span><span><b>Símbolo</b><small>SVG</small></span></a>
+    <a href="assets/app-icon.svg" download><span class="th" style="background:none"><img src="assets/app-icon.svg" alt="" style="max-height:52px;border-radius:12px"></span><span><b>Ícono de app</b><small>SVG · 512 px</small></span></a>
+    <a href="assets/faro-digital-perfil.png" download><span class="th" style="background:var(--grafito)"><img src="assets/simbolo.svg" alt="" style="max-height:40px"></span><span><b>Perfil WhatsApp</b><small>PNG · 1024 px</small></span></a>
   </div>
-<pre><span class="c">/* Faro Digital · design tokens v3 */</span>
-:root {
-  --crema: <span class="v">#F3F0EE</span>;   --tinta: <span class="v">#141413</span>;   --senal: <span class="v">#FF4D1C</span>;
-  --noche: <span class="v">#15120C</span>;   --noche-2: <span class="v">#211C13</span>; --pizarra: <span class="v">#B7C0CE</span>;
-  --senal-txt: <span class="v">#C8370A</span>; --gris: <span class="v">#6B6862</span>;  --linea: <span class="v">#DDD7D1</span>;
-
-  --f-serif: <span class="v">"Newsreader", Georgia, serif</span>;
-  --f-sans:  <span class="v">"Sofia Sans", system-ui, sans-serif</span>;
-
-  --r-pill: <span class="v">999px</span>; --r-xl: <span class="v">48px</span>; --r-lg: <span class="v">28px</span>;
-  --ease-faro: <span class="v">cubic-bezier(.2, .8, .2, 1)</span>;
-}</pre>
+<pre>/* Faro Digital · tokens v4 · assets/faro.css */
+--grafito: <span class="v">#171A20</span>;  --texto: <span class="v">#393C41</span>;  --gris: <span class="v">#5C5E62</span>;
+--niebla:  <span class="v">#F4F4F4</span>;  --blanco: <span class="v">#FFFFFF</span>;
+--neon:    <span class="v">#FF5E00</span>;  --neon-txt: <span class="v">#C24600</span>;
+--f: <span class="v">"Figtree", system-ui, sans-serif</span>;
+--r-btn: <span class="v">4px</span>;  --r-card: <span class="v">12px</span>;  --r-pill: <span class="v">999px</span>;</pre>
 </section>
 </main>
 </div>
-
-<footer><span>Faro Digital · Brand Guidelines v3.0 · Fort Myers, FL</span><a href="index.html">Volver al sitio →</a></footer>
-
+<footer><span>Faro Digital · Brand Guidelines 4.0 · Fotos: Unsplash</span><a href="index.html">Volver al sitio →</a></footer>
 <script>
-  // resalta la sección activa en el índice lateral
-  const links = [...document.querySelectorAll('#toc a')];
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { links.forEach(l => l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id)); } }), {rootMargin:'-40% 0px -55% 0px'});
-  document.querySelectorAll('.sec').forEach(s => io.observe(s));
+  const links=[...document.querySelectorAll('#toc a')];
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-40% 0px -55% 0px'});
+  document.querySelectorAll('.sec').forEach(s=>io.observe(s));
 </script>
 </body>
 </html>

@@ -1,54 +1,49 @@
-/* Faro Digital — brand kit v3 "Señal clara" (nov 2026)
-   Inspiración: Mastercard (crema, cápsulas, órbitas, titulares medianos)
-   y Robinhood (noche + un color fuerte, serif grande, secciones a todo lo ancho). */
+/* Faro Digital — brand kit v4 (nov 2026)
+   Base neutra (grafito + blancos) y un naranja neón que se nota.
+   Inspiración: Tesla (pantallas completas, botones de 4px, menú limpio)
+   y Starbucks (bloques de color 50/50, botones píldora, pie en columnas). */
 :root{
-  --crema:#F3F0EE;   /* fondo principal */
-  --crema-2:#FCFBFA; /* tarjetas sobre crema */
-  --tinta:#141413;   /* texto */
-  --noche:#15120C;   /* secciones oscuras */
-  --noche-2:#211C13; /* segunda sección oscura */
-  --senal:#FF4D1C;   /* acento: botones, puntos, órbitas, banda superior */
-  --senal-h:#E8400F;
-  --senal-txt:#C8370A; /* Señal para texto sobre crema (mejor contraste) */
-  --pizarra:#B7C0CE; /* sección de apoyo */
-  --gris:#6B6862;    /* texto secundario */
-  --linea:#DDD7D1;
+  --grafito:#171A20;   /* texto y fondos oscuros */
+  --grafito-2:#22262E; /* segundo oscuro */
+  --texto:#393C41;     /* texto de párrafo */
+  --gris:#5C5E62;      /* texto secundario */
+  --niebla:#F4F4F4;    /* fondos claros, campos */
+  --linea:#E2E3E3;
+  --blanco:#FFFFFF;
+  --neon:#FF5E00;      /* naranja neón: acción principal, la luz del faro */
+  --neon-h:#FF7A26;    /* hover */
+  --neon-txt:#C24600;  /* naranja para texto sobre blanco */
+  --glow:0 0 0 1px rgba(255,94,0,.35),0 10px 34px -6px rgba(255,94,0,.65);
 
-  --f-serif:"Newsreader",Georgia,serif;               /* titulares grandes */
-  --f-sans:"Sofia Sans",-apple-system,system-ui,sans-serif; /* todo lo demás */
-
-  --pad:clamp(20px,3.4vw,56px);
-  --max:1340px;
-  --r-xl:48px;   /* contenedores grandes (hero) */
-  --r-lg:28px;   /* tarjetas */
-  --r-pill:999px;
+  --f:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  --pad:clamp(20px,3.4vw,48px);
+  --max:1280px;
+  --r-btn:4px;   /* botones estilo Tesla */
+  --r-card:12px;
+  --r-pill:999px;/* botones estilo Starbucks */
+  --ease:cubic-bezier(.2,.8,.2,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:110px}
-body{background:var(--crema);color:var(--tinta);font-family:var(--f-sans);font-size:18px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+body{background:var(--blanco);color:var(--texto);font-family:var(--f);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 img{display:block;max-width:100%}
-::selection{background:var(--senal);color:var(--tinta)}
-:focus-visible{outline:2px solid var(--senal);outline-offset:3px;border-radius:6px}
+h1,h2,h3,h4{color:var(--grafito);font-weight:600;letter-spacing:-.02em;line-height:1.1}
+::selection{background:var(--neon);color:var(--grafito)}
+:focus-visible{outline:2px solid var(--neon);outline-offset:3px}
 
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font:700 13px var(--f-sans);letter-spacing:.06em;text-transform:uppercase}
-.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--senal)}
+/* botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;min-width:200px;padding:0 24px;border-radius:var(--r-btn);border:0;background:var(--grafito);color:var(--blanco);font:600 15px var(--f);text-decoration:none;cursor:pointer;transition:background .25s var(--ease),box-shadow .25s var(--ease),transform .25s var(--ease),color .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn.neon{background:var(--neon);color:var(--grafito)}
+.btn.neon:hover{background:var(--neon-h);box-shadow:var(--glow)}
+.btn.light{background:rgba(255,255,255,.92);color:var(--grafito)}
+.btn.light:hover{background:#fff}
+.btn.dark:hover{background:#000}
+.pill{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 22px;border-radius:var(--r-pill);border:1.5px solid currentColor;background:transparent;font:600 15px var(--f);text-decoration:none;cursor:pointer;transition:background .25s,color .25s,border-color .25s,transform .25s}
+.pill:hover{transform:translateY(-2px)}
+.pill.on-dark{color:#fff}.pill.on-dark:hover{background:#fff;color:var(--grafito);border-color:#fff}
+.pill.on-light{color:var(--grafito)}.pill.on-light:hover{background:var(--grafito);color:#fff;border-color:var(--grafito)}
+.pill.on-neon{color:var(--grafito)}.pill.on-neon:hover{background:var(--grafito);color:var(--neon);border-color:var(--grafito)}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 26px;border-radius:var(--r-pill);background:var(--tinta);color:var(--crema);border:1.5px solid var(--tinta);font:600 16px var(--f-sans);text-decoration:none;cursor:pointer;transition:background .15s,color .15s,border-color .15s,transform .15s}
-.btn:hover{transform:translateY(-1px)}
-.btn.senal{background:var(--senal);border-color:var(--senal);color:var(--tinta)}
-.btn.senal:hover{background:var(--senal-h);border-color:var(--senal-h)}
-.btn.line{background:transparent;color:var(--tinta)}
-.btn.line:hover{background:var(--tinta);color:var(--crema)}
-.btn.ghost-senal{background:transparent;border-color:var(--senal);color:var(--senal)}
-.btn.ghost-senal:hover{background:var(--senal);color:var(--tinta)}
-.btn .arr{font-size:18px;line-height:1}
-
-.circle-btn{width:48px;height:48px;border-radius:50%;display:inline-grid;place-items:center;border:1.5px solid var(--tinta);background:transparent;color:var(--tinta);cursor:pointer;font-size:18px;transition:background .15s,color .15s}
-.circle-btn:hover{background:var(--tinta);color:var(--crema)}
-
-/* logotipo: símbolo "F-haz" + wordmark en minúsculas */
-.logo{display:inline-flex;align-items:center;gap:6px;text-decoration:none;min-height:44px}
-.logo img{width:30px;height:30px}
-.logo b{font:800 25px/1 var(--f-sans);letter-spacing:-.045em}
-.logo span{font:400 25px/1 var(--f-sans);letter-spacing:-.045em;opacity:.55}
+.stars{color:var(--neon);letter-spacing:2px}
