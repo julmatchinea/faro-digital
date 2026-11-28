@@ -185,7 +185,7 @@ footer button{background:none;border:0;font:600 14px var(--f);cursor:pointer;col
 /* ---------- pop-up de cotización ---------- */
 .qm{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:16px;pointer-events:none}
 .qm .bg{position:absolute;inset:0;background:rgba(10,11,14,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;transition:opacity .35s}
-.qm .card{position:relative;width:min(560px,100%);max-height:calc(100svh - 32px);overflow:auto;background:#fff;border-radius:20px;box-shadow:0 40px 100px -30px rgba(0,0,0,.6);transform:translateY(30px) scale(.96);opacity:0;transition:transform .45s var(--ease),opacity .3s}
+.qm .card{position:relative;width:min(560px,100%);max-height:calc(100svh - 32px);overflow-y:auto;overflow-x:hidden;background:#fff;border-radius:20px;box-shadow:0 40px 100px -30px rgba(0,0,0,.6);transform:translateY(30px) scale(.96);opacity:0;transition:transform .45s var(--ease),opacity .3s}
 .qm.open{pointer-events:auto}.qm.open .bg{opacity:1}.qm.open .card{transform:none;opacity:1}
 .qm .bar{height:5px;background:var(--niebla)}
 .qm .bar i{display:block;height:100%;width:0;background:var(--neon);border-radius:0 4px 4px 0;transition:width .5s var(--ease);box-shadow:0 0 14px rgba(255,94,0,.7)}
