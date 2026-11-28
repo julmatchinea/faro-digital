@@ -65,7 +65,7 @@
     const el = e.target, key = el.id || el.className.split(' ')[0] + ':' + [...document.querySelectorAll('.' + el.className.split(' ')[0])].indexOf(el);
     if (seen.has(key)) return; seen.add(key); track('section_view', {section: key});
   }), {threshold: .5});
-  document.querySelectorAll('main > section, main > .blocks, .panel, .block, .julio, .steps, .page-head').forEach(el => io.observe(el));
+  document.querySelectorAll('main > section, .panel, .julio, .s-sec, .cta-band').forEach(el => io.observe(el));
 
   // ---- clics, clics de rabia, clics muertos ----
   const label = el => (el.getAttribute('aria-label') || el.textContent || el.value || '').replace(/\s+/g, ' ').trim().slice(0, 60);

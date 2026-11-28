@@ -11,8 +11,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com">
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/faro.css?v=17">
-<link rel="stylesheet" href="assets/site.css?v=17">
+<link rel="stylesheet" href="assets/faro.css?v=18">
+<link rel="stylesheet" href="assets/site.css?v=18">
 <!-- Microsoft Clarity: grabaciones y mapas de calor -->
 <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","zkhfzbr6y8");</script>
 </head>
@@ -47,47 +47,53 @@
 </aside>
 
 <main>
-<section class="panel">
+<section class="s-hero">
   <img src="https://images.unsplash.com/photo-1579975096649-e773152b04cb?auto=format&fit=crop&w=2200&q=80" alt="Personas adorando con las manos levantadas" fetchpriority="high">
-  <div>
-    <span class="tag" data-en="Churches & ministries">Iglesias y ministerios</span>
+  <div class="wrap">
+    <span class="eyebrow" data-en="Churches & ministries">Iglesias y ministerios</span>
     <h1 data-en="Your church, open every day">Tu iglesia, abierta todos los días</h1>
-    <p class="sub" data-en="A website where your people find service times, watch live and give online, in English and Spanish.">Un sitio donde tu gente encuentra los horarios, ve el servicio en vivo y ofrenda en línea, en inglés y en español.</p>
+    <p data-en="One place where your people find service times, watch live and give online. In English and Spanish.">Un solo lugar donde tu gente encuentra los horarios, ve el servicio en vivo y ofrenda en línea. En inglés y en español.</p>
+    <div class="ctas">
+      <a class="btn neon" href="contacto.html" data-en="Get a free quote">Cotización gratis</a>
+      <a class="link" href="#incluye" data-en="See what's included ↓">Ver qué incluye ↓</a>
+    </div>
   </div>
-  <div class="ctas">
-    <a class="btn neon" href="contacto.html" data-en="Get a free quote">Cotización gratis</a>
-    <a class="btn light" href="#incluye" data-en="What's included">Qué incluye</a>
-  </div>
-  <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
 </section>
 
-<div class="blocks" id="incluye">
-  <div class="block dark">
-    <div class="txt">
-      <span class="badge" data-en="What's included">Qué incluye</span>
-      <h2 data-en="Everything your church needs online">Todo lo que tu iglesia necesita en internet</h2>
-      <ul>
-        <li data-en="Service times and location with map">Horarios de servicio y ubicación con mapa</li>
-        <li data-en="Live streams and recorded sermons">Transmisiones en vivo y mensajes grabados</li>
-        <li data-en="Online giving (Tithely, Breeze and more)">Ofrendas en línea (Tithely, Breeze y otras)</li>
-        <li data-en="Events and ministries calendar">Calendario de eventos y ministerios</li>
-        <li data-en="Everything in English and Spanish">Todo en inglés y en español</li>
-      </ul>
-      <a class="pill on-dark" href="contacto.html" data-en="Get a quote">Cotizar</a>
+<section class="s-sec" id="incluye">
+  <div class="wrap">
+    <div class="s-head"><span class="eyebrow" data-en="What's included">Qué incluye</span><h2 data-en="Everything your church needs online">Todo lo que tu iglesia necesita en internet</h2></div>
+    <div class="feat">
+      <article><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3 data-en="Times & location">Horarios y ubicación</h3><p data-en="Service times and a map so visitors arrive without calling.">Horarios de servicio y mapa para que lleguen sin llamar.</p></article>
+      <article><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M10 9l5 2-5 2z"/><path d="M8 21h8"/></svg></div><h3 data-en="Live streams">Transmisiones en vivo</h3><p data-en="Your service and past sermons, right on the site.">Tu servicio y mensajes anteriores, dentro del sitio.</p></article>
+      <article><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></div><h3 data-en="Online giving">Ofrendas en línea</h3><p data-en="Connected to Tithely, Breeze or the platform you use.">Conectado con Tithely, Breeze o la plataforma que uses.</p></article>
+      <article><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div><h3 data-en="Events calendar">Calendario de eventos</h3><p data-en="Retreats, services and activities, always up to date.">Retiros, cultos y actividades, siempre al día.</p></article>
+      <article><div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14 20c0-2.5 1.5-4.5 4-4.5s3 1.5 3 4.5"/></svg></div><h3 data-en="Ministries">Ministerios</h3><p data-en="Each ministry with its own space: youth, women, kids.">Cada ministerio con su espacio: jóvenes, damas, niños.</p></article>
+      <article><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.8 3.8 5.8 3.8 9s-1.3 6.2-3.8 9c-2.5-2.8-3.8-5.8-3.8-9S9.5 5.8 12 3z"/></svg></div><h3 data-en="Bilingual">Bilingüe</h3><p data-en="English and Spanish with one tap, written naturally.">Inglés y español con un toque, escrito de forma natural.</p></article>
     </div>
-    <div class="pic"><img src="https://images.unsplash.com/photo-1507692049790-de58290a4334?auto=format&fit=crop&w=1400&q=80" alt="Banda de alabanza en un escenario" loading="lazy"></div>
   </div>
-  <div class="block neon flip">
-    <div class="txt">
-      <span class="badge" data-en="Next step">Siguiente paso</span>
-      <h2 data-en="Let's talk about your church">Hablemos de tu iglesia</h2>
-      <p data-en="A free conversation to understand your vision and your people. No obligation.">Una conversación gratis para entender tu visión y tu gente. Sin compromiso.</p>
-      <div style="margin-top:26px"><a class="pill on-neon" href="contacto.html" data-en="Talk to Julio">Hablar con Julio</a></div>
+</section>
+
+<section class="s-sec gray">
+  <div class="wrap">
+    <div class="s-head center"><span class="eyebrow" data-en="Questions">Preguntas</span><h2 data-en="Frequently asked questions">Preguntas frecuentes</h2></div>
+    <div class="faq">
+      <details><summary data-en="How long does it take?">¿Cuánto tiempo toma?</summary><p data-en="It depends on the size of the site. In your quote you get a clear date, before we start.">Depende del tamaño del sitio. En tu cotización recibes una fecha clara, antes de empezar.</p></details>
+      <details><summary data-en="Can I update it myself?">¿Puedo actualizarlo yo mismo?</summary><p data-en="Yes. We show you how, or we do it for you with monthly care.">Sí. Te enseñamos cómo hacerlo, o lo hacemos por ti con el cuidado mensual.</p></details>
+      <details><summary data-en="Does it work with Tithely or Breeze?">¿Funciona con Tithely o Breeze?</summary><p data-en="Yes. We connect the giving or management platform your church already uses.">Sí. Conectamos la plataforma de ofrendas o administración que tu iglesia ya usa.</p></details>
+      <details><summary data-en="Do I need a domain?">¿Necesito un dominio?</summary><p data-en="If you don't have one, we help you buy it and connect it, step by step.">Si no tienes uno, te ayudamos a comprarlo y conectarlo, paso a paso.</p></details>
     </div>
-    <div class="pic"><img src="https://images.unsplash.com/photo-1477281765962-ef34e8bb0967?auto=format&fit=crop&w=1400&q=80" alt="Congregación con las manos levantadas" loading="lazy"></div>
   </div>
-</div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <div><h2 data-en="Let's talk about your church">Hablemos de tu iglesia</h2><p data-en="Free quote in 1–2 days. No obligation.">Cotización gratis en 1–2 días. Sin compromiso.</p></div>
+    <a class="btn" href="contacto.html" data-en="Get a free quote">Cotización gratis</a>
+  </div>
+</section>
 </main>
+
 
 <footer>
   <div class="wrap">
@@ -100,7 +106,7 @@
 
 <a class="wa" href="https://wa.me/17868057734" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.4 6.4 0 0 0 1.3 3.4 14.7 14.7 0 0 0 5.6 5c2.1.9 2.9 1 4 .8.6-.1 1.9-.8 2.2-1.5s.3-1.4.2-1.5-.3-.2-.6-.3z"/></svg><span>WhatsApp</span></a>
 
-<script src="assets/track.js?v=17"></script>
-<script src="assets/site.js?v=17"></script>
+<script src="assets/track.js?v=18"></script>
+<script src="assets/site.js?v=18"></script>
 </body>
 </html>

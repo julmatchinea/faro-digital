@@ -15,7 +15,7 @@
 
   // menú: transparente sobre fotos oscuras (como Tesla), blanco sobre contenido claro
   const top = document.getElementById('top');
-  const darkEls = [...document.querySelectorAll('.panel, .julio')];
+  const darkEls = [...document.querySelectorAll('.panel, .julio, .s-hero')];
   const onScroll = () => {
     const y = 40; // punto bajo el menú
     const overDark = darkEls.some(el => { const r = el.getBoundingClientRect(); return r.top <= y && r.bottom > y; });
